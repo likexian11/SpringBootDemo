@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>智能校园自助缴费系统</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="../img/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="../img/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="../img/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="../css/amazeui.min.css">
+  <link rel="stylesheet" href="../css/app.css">
+    <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+  
+</head>
+<body>
+
+<div class="header">
+  <div class="am-g">
+    <img src="../img/payhead.gif" width="100%">
+  </div>
+  <hr>
+</div>
+<div class="am-g">
+
+  <div class="am-u-lg-6 am-u-md-10 am-u-sm-centered">
+  
+    <form class="am-form am-form-horizontal">
+	  <div class="am-form-group">
+	    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">缴费号</label>
+	    <div class="am-u-sm-8">
+	      <input type="text" id="doc-ipt-pwd-2" placeholder="输入缴费号">
+	    </div>
+	    <div class="am-u-sm-2">
+	    	<button type="submit" class="am-btn am-btn-primary am-round">查询</button>
+	    </div>
+	  </div>
+	  
+		<div class="am-form-group">
+	       <label for="doc-select-1" class="am-u-sm-2 am-form-label">学校</label>
+	       <div class="am-u-sm-10">
+		       <select id="doc-select-1">
+		       	<option value="">请选择学校</option>
+		        <option value="12364">广西工职院-南宁校区</option>
+				<option value="12365">广西工职院-贵港校区</option>
+		      </select>
+	       </div>
+	      <span class="am-form-caret"></span>
+	    </div>
+	  
+	  <!-- <div class="am-form-group">
+	    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">学校</label>
+	    <div class="am-u-sm-10">
+	      <input type="email" id="doc-ipt-3" placeholder="学校">
+	    </div>
+	  </div>
+	   -->
+	
+	  <div class="am-form-group">
+	       <label for="doc-select-1" class="am-u-sm-4 am-form-label">院系名称</label>
+	       <div class="am-u-sm-8">
+		       <select id="doc-select-1">
+		       	<option value="">请选择</option>
+		        <option value="12364">xx院</option>
+				<option value="12365">2院</option>
+		      </select>
+	       </div>
+	      <span class="am-form-caret"></span>
+	    </div>
+	  
+	  <div class="am-form-group">
+	       <label for="doc-select-1" class="am-u-sm-4 am-form-label">专业名称</label>
+	       <div class="am-u-sm-8">
+		       <select id="doc-select-1">
+		       	<option value="">请选择</option>
+		        <option value="12364">通信工程</option>
+				<option value="12365">电子信息工程</option>
+				<option value="12365">软件工程</option>
+		      </select>
+	       </div>
+	      <span class="am-form-caret"></span>
+	    </div>
+	  
+	  <div class="am-form-group">
+	    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">班级</label>
+	    <div class="am-u-sm-10">
+	      <input type="text" id="doc-ipt-pwd-2" placeholder="输入班级名称">
+	    </div>
+	  </div>
+	  
+	  <div class="am-form-group">
+	       <label for="doc-select-1" class="am-u-sm-2 am-form-label">费用名称</label>
+	       <div class="am-u-sm-10">
+		       <select id="doc-select-1">
+		       	<option value="">请选择</option>
+		        <option value="12364">学费</option>
+		        <option value="12364">住宿费</option>
+		        <option value="12364">重修费</option>
+		      </select>
+	       </div>
+	      <span class="am-form-caret"></span>
+	    </div>
+	  
+	  <div class="am-form-group">
+	    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">金额</label>
+	    <div class="am-u-sm-10">
+	      <input type="text" id="doc-ipt-pwd-2" placeholder="缴费金额">
+	    </div>
+	  </div>
+	  
+	  <div class="am-form-group">
+	    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">姓名</label>
+	    <div class="am-u-sm-10">
+	      <input type="password" id="doc-ipt-pwd-2" placeholder="输入姓名">
+	    </div>
+	  </div>
+	  
+	  <div class="am-form-group">
+	    <label for="doc-ipt-pwd-2" class="am-u-sm-2 am-form-label">备注</label>
+	    <div class="am-u-sm-10">
+	      <input type="password" id="doc-ipt-pwd-2" placeholder="手机号/贷款生/贫困生">
+	    </div>
+	  </div>
+  
+
+  <!-- <div class="am-form-group">
+    <div class="am-u-sm-offset-2 am-u-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> 记住十万年
+        </label>
+      </div>
+    </div>
+  </div>
+ -->
+  <div class="am-form-group">
+    <div class="am-u-sm-10 am-u-sm-offset-3">
+      <button type="submit" class="am-u-sm-6 am-btn am-btn-primary am-round ">创建账单</button>
+    </div>
+  </div>
+</form>
+    
+    
+    <hr>
+    <!-- 
+    <div class="am-u-sm-10 am-u-sm-offset-3">
+    	<p>©2019 凡科睿科技有限公司</p>
+    </div>
+     -->
+  </div>
+</div>
+
+</body>
+</html>
