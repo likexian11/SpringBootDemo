@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <script src="../js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <style type="text/css">
         .header {
@@ -15,7 +16,9 @@
 
 	<img src="../img/payhead.gif" width="100%" height="140">
 	</hr>
+	
 	<div class="aui-content aui-margin-b-15">
+	<form action="">
         <ul class="aui-list aui-form-list">
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
@@ -23,7 +26,7 @@
                        	<span>缴费号</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
+                        <input id ="paycost_num" th:value="${payDetail.paycost_num}" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
                     </div>
                     <div class="aui-btn aui-btn-info aui-margin-r-5">查找</div>
                 </div>
@@ -34,10 +37,9 @@
                         <span>学校</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <select>
+                        <select id="schoolInfo">
                             <option value="">请选择学校</option>
-		        			<option value="12364">广西工职院-南宁校区</option>
-							<option value="12365">广西工职院-贵港校区</option>
+                            <option th:each="s:${schoolList}" th:value="${s.school_id}+'-'+${s.school_area_id}" th:text="${s.school_name}+'-'+${s.area_name}">
                         </select>
                     </div>
                 </div>
@@ -49,10 +51,8 @@
                         <span>院系名称</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <select>
+                        <select id="academyInfo">
 					       	<option value="">请选择</option>
-					        <option value="12364">xx院</option>
-							<option value="12365">2院</option>
                         </select>
                     </div>
                 </div>
@@ -64,11 +64,8 @@
                         <span>专业名称</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <select>
+                        <select id='prfInfo'>
 					       	<option value="">请选择</option>
-					        <option value="12364">通信工程</option>
-							<option value="12365">电子信息工程</option>
-							<option value="12365">软件工程</option>
                         </select>
                     </div>
                 </div>
@@ -155,8 +152,59 @@
                 </div>
             </li>
         </ul>
+        </form>
     </div>
-
+    
+    
+	<script type="text/javascript">
+	$(document).ready(function(){ 
+	    $("#schoolInfo").change(function(){ 
+	       var id = $("#schoolInfo").val(); 
+	       if(id !=null){
+	    	   $.ajax({ 
+	    		   url:'/page/academy', 
+                   async:false, 
+	    		   type:'post', 
+	    		   data:{id:id}, 
+                       success:function(data){ 
+                    	   //alert(data.length);
+                           var t2 = $("#academyInfo").empty();
+                           for ( var i = 0; i < data.length; i++) { 
+                               t2.append("<option value='"+data[i].academy_id+"'>"+ data[i].academy_name+"</option>"); 
+                           } 
+                           
+                       } 
+	    		   }) 
+	    		}; 
+	       });
+	    
+	    $("#academyInfo").change(function(){ 
+		       var academyId = $("#academyInfo").val(); 
+		       if(academyId !=null){
+		    	   alert(academyId);
+		    	   $.ajax({ 
+		    		   url:'/page/prf', 
+	                   async:false, 
+		    		   type:'post', 
+		    		   data:{aid:aid}, 
+	                       success:function(data){ 
+	                    	   //alert(data.length);
+	                           var t2 = $("#prfInfo").empty();
+	                           for ( var i = 0; i < data.length; i++) { 
+	                               t2.append("<option value='"+data[i].academy_id+"'>"+ data[i].academy_name+"</option>"); 
+	                           } 
+	                           
+	                       } 
+		    		   })
+		    		 
+		    		}; 
+		       });
+	    
+	    
+	})
+	</script>
+    
 </body>
+
 
 </html>

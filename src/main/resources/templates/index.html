@@ -8,5 +8,10 @@
 this is a test !
 
 <img src="../img/payhead.gif" width="100%" height="140">
+
+<select>
+    <option value="">请选择学校</option>
+    <option th:each="s:${schoolList}" th:value="${s.school_id}" th:text="${s.school_name}">
+</select>
 </body>
 </html>
