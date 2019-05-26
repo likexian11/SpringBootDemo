@@ -285,18 +285,43 @@
 	function req(){
 	    	
 	    //alert("数据处理");
-	    var schoolName = $("#schoolInfo").val(); 
-	    var academyName = $("#academyInfo").val(); 
-	    var prfName = $("#prfInfo").val(); 
-	    var classNum = $("#classNum").val(); 
-	    var costType = $("#costType").val(); 
-	    var costMoney = $("#costMoney").val(); 
-	    var studentName = $("#studentName").val(); 
-	    var remark = $("#remark").val(); 
+	    //var schoolName = $("#schoolInfo").val(); 
+	    //var academyName = $("#academyInfo").val(); 
+	    //var prfName = $("#prfInfo").val(); 
+	    //var classNum = $("#classNum").val(); 
+	    //var costType = $("#costType").val(); 
+	    //var costMoney = $("#costMoney").val(); 
+	    //var studentName = $("#studentName").val(); 
+	    //var remark = $("#remark").val()+"|" + schoolName + "|" + academyName +"|"+ prfName +"|"+ classNum +"|"+ costType +"|"+ costMoney +"|"+ studentName; 
 		//$("#remark").val(remark + "|" + schoolName + "|" + academyInfo +"|"+ prfInfo +"|"+ classNum +"|"+ costType +"|"
 		//		+ costMoney +"|"+ studentName);
-		alert(remark + "|" + schoolName + "|" + academyName +"|"+ prfName +"|"+ classNum +"|"+ costType +"|"
-		+ costMoney +"|"+ studentName);
+		//alert(remark + "|" + schoolName + "|" + academyName +"|"+ prfName +"|"+ classNum +"|"+ costType +"|"
+		//+ costMoney +"|"+ studentName);
+		//var command = "caibao.pay.h5";
+		//var app = "h50008530000066";
+		//var operator_id="c777292c6becd2d7fd3f7d898e847d04";
+		//var key="fc471d2a8ec3670f7789e0dfcbb8dfb1";
+		var amount= $("#costMoney").val()*100; 
+		//var local_order_no="OPENAPI201808291113261934988";
+		//var timestamp="1535512406676";
+		//var subject="学校缴费系统测试";
+		var remark= $("#studentName").val() + "|" + $("#academyInfo").text() +"|"
+					+ $("#prfInfo").text()  +"|"+ $("#costType").text() +"|"+ $("#costMoney").val() ;
+		//var redirect_url="redirect_url:http://www.borongsoft.com";
+		//var version="1.0";
+		$.ajax({ 
+    		   url:'/page/sign', 
+               async:false, 
+    		   type:'post', 
+    		   //dataType:'json',
+    		   data:{amount:amount,remark:remark}, 
+               success:function(data){ 
+            	   
+            	   window.open("http://openapi.caibaopay.com/gatewayOpen.htm"+data);
+            	   
+               } 
+		})
+		
 	}
 	</script>
     
