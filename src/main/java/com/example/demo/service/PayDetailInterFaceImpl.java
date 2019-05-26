@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.PayDetailDao;
 import com.example.demo.model.AcademyInfo;
+import com.example.demo.model.CostType;
 import com.example.demo.model.PayDetail;
 import com.example.demo.model.Professional;
 import com.example.demo.model.SchoolInfo;
@@ -18,9 +19,9 @@ public class PayDetailInterFaceImpl implements PayDetailInterFace {
 	@Autowired PayDetailDao payDetailDao;
 	
 	@Override
-	public PayDetail queryDetail(){
+	public PayDetail queryDetail(String paycost_num){
 		// TODO Auto-generated method stub
-		return payDetailDao.getDetail();
+		return payDetailDao.getDetail(paycost_num);
 	}
 
 	@Override
@@ -39,6 +40,12 @@ public class PayDetailInterFaceImpl implements PayDetailInterFace {
 	public List<Professional> queryPrfList(int school_id, int school_area_id, int academy_id) {
 		// TODO Auto-generated method stub
 		return payDetailDao.getPrfList(school_id, school_area_id, academy_id);
+	}
+
+	@Override
+	public List<CostType> queryCostList(int professional_id) {
+		// TODO Auto-generated method stub
+		return payDetailDao.getCostTyteList(professional_id);
 	}
 
 }

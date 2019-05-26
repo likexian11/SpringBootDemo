@@ -18,7 +18,7 @@
 	</hr>
 	
 	<div class="aui-content aui-margin-b-15">
-	<form action="">
+	<form id="formId" action="">
         <ul class="aui-list aui-form-list">
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
@@ -26,9 +26,9 @@
                        	<span>缴费号</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input id ="paycost_num" th:value="${payDetail.paycost_num}" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
+                        <input id ="paycost_num" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
                     </div>
-                    <div class="aui-btn aui-btn-info aui-margin-r-5">查找</div>
+                    <button class="aui-btn aui-btn-info aui-margin-r-5" type="button" onclick="selectPayInfo()">查找</button>
                 </div>
             </li>
             <li class="aui-list-item">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="aui-list-item-input">
                         <select id="academyInfo">
-					       	<option value="">请选择</option>
+					       	<!-- <option value="">请选择</option> -->
                         </select>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="aui-list-item-input">
                         <select id='prfInfo'>
-					       	<option value="">请选择</option>
+					       	<!-- <option value="">请选择</option>-->
                         </select>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                         <span>班级名称</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="number" placeholder="输入班级名称">
+                        <input id="classNum" type="number" placeholder="输入班级名称">
                     </div>
                     
                 </div>
@@ -89,11 +89,8 @@
                         <span>费用类型</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <select>
-					       	<option value="">请选择</option>
-					        <option value="12364">学费</option>
-					        <option value="12364">住宿费</option>
-					        <option value="12364">重修费</option>
+                        <select id="costType">
+                        	
                         </select>
                     </div>
                 </div>
@@ -102,10 +99,10 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        <span>金额</span>
+                        <span>金额￥</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="number" placeholder="缴费金额">
+                        <input id="costMoney" type="number" placeholder="缴费金额">
                     </div>
                 </div>
             </li>
@@ -116,7 +113,7 @@
                         <span>姓名</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="text" placeholder="输入姓名">
+                        <input id=studentName type="text" placeholder="输入姓名">
                     </div>
                 </div>
             </li>
@@ -127,7 +124,7 @@
                         <span>备注</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="text" placeholder="手机号/贷款生/贫困生">
+                        <input id="remark" type="text" placeholder="手机号/贷款生/贫困生">
                     </div>
                 </div>
             </li>
@@ -148,7 +145,8 @@
             
             <li class="aui-list-item">
                 <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
-                    <div class="aui-btn aui-btn-info aui-btn-block aui-margin-r-5">创建账单</div>
+                    <!-- <div class="aui-btn aui-btn-info aui-btn-block aui-margin-r-5">创建账单</div> -->
+                    <button class="aui-btn-info aui-btn-block aui-margin-r-5" type="button" onclick="req()">创建账单</button>
                 </div>
             </li>
         </ul>
@@ -157,10 +155,15 @@
     
     
 	<script type="text/javascript">
+
 	$(document).ready(function(){ 
+		
+		
+		//显示学院列表
 	    $("#schoolInfo").change(function(){ 
 	       var id = $("#schoolInfo").val(); 
-	       if(id !=null){
+	       //alert(id);
+	       if(id !=""){
 	    	   $.ajax({ 
 	    		   url:'/page/academy', 
                    async:false, 
@@ -169,39 +172,132 @@
                        success:function(data){ 
                     	   //alert(data.length);
                            var t2 = $("#academyInfo").empty();
+                           var t3 = $("#prfInfo").empty();
+                           t2.append("<option value=\"\">请选择</option>"); 
+                           t3.append("<option value=\"\">请选择</option>"); 
                            for ( var i = 0; i < data.length; i++) { 
                                t2.append("<option value='"+data[i].academy_id+"'>"+ data[i].academy_name+"</option>"); 
                            } 
                            
                        } 
 	    		   }) 
-	    		}; 
-	       });
+	    	}; 
+	    });
 	    
 	    $("#academyInfo").change(function(){ 
+	    	   var id = $("#schoolInfo").val(); 
 		       var academyId = $("#academyInfo").val(); 
-		       if(academyId !=null){
-		    	   alert(academyId);
+		       if(academyId !=""){
+		    	 //显示专业列表
 		    	   $.ajax({ 
-		    		   url:'/page/prf', 
+		    		   url:'/page/professional', 
 	                   async:false, 
 		    		   type:'post', 
-		    		   data:{aid:aid}, 
+		    		   data:{id:id,aid:academyId}, 
 	                       success:function(data){ 
 	                    	   //alert(data.length);
 	                           var t2 = $("#prfInfo").empty();
+	                           t3.append("<option value=\"\">请选择</option>");
 	                           for ( var i = 0; i < data.length; i++) { 
-	                               t2.append("<option value='"+data[i].academy_id+"'>"+ data[i].academy_name+"</option>"); 
+	                               t2.append("<option value='"+data[i].professional_id+"'>"+ data[i].prf_name+"</option>"); 
+	                           } 
+	                       } 
+		    		   })
+		    		 
+		    		}; 
+	       });
+	    
+	    $("#prfInfo").change(function(){ 
+	    	   var pid = $("#prfInfo").val(); 
+		       if(pid !=""){
+		    	 //显示缴费类型列表
+		    	   $.ajax({ 
+		    		   url:'/page/costType', 
+	                   async:false, 
+		    		   type:'post', 
+		    		   data:{pid:pid}, 
+	                       success:function(data){ 
+	                    	   //alert(data.length);
+	                           var t4 = $("#costType").empty();
+	                           t4.append("<option value=\"\">请选择</option>");
+	                           for ( var i = 0; i < data.length; i++) { 
+	                               t4.append("<option value='"+data[i].cost_id+"-"+data[i].money+"'>"+ data[i].cost_name+"</option>"); 
 	                           } 
 	                           
 	                       } 
 		    		   })
 		    		 
 		    		}; 
-		       });
+	       });
 	    
-	    
+	    $("#costType").change(function(){ 
+	    	   var pid = $("#costType").val(); 
+	    	   //value: id_money
+	    	   $("#costMoney").val(pid.split("-")[1]);
+	       });
+
 	})
+	
+	function selectPayInfo(){
+		var num = $("#paycost_num").val();
+		//alert(num);
+		//清空表单
+		//$('#formId')[0].reset();
+		//$("#schoolInfo").find("option:contains('10000-1')").attr("selected",true);
+		$.ajax({ 
+ 		   url:'/page/costDetail', 
+           async:false, 
+ 		   type:'post', 
+ 		   data:{num:num}, 
+                success:function(data){ 
+             	   //alert(data.length);
+                   
+                   $("#paycost_num").val(num);
+                   //$("#schoolInfo").val(data.school_id);
+                   //学校-校区
+                   $("#schoolInfo").val(data.school_id+"-"+data.school_area_id);
+                   //学院
+                   $("#academyInfo").empty();
+                   $("#academyInfo").append("<option value='"+data.academy_id+"'>"+ data.academy_name+"</option>"); 
+                   //专业
+                   $("#prfInfo").empty();
+                   $("#prfInfo").append("<option value='"+data.professional_id+"'>"+ data.prf_name+"</option>"); 
+                   //班级
+                   $("#classNum").attr("readOnly",true);
+                   $("#classNum").val(data.class_num);
+                   //缴费项目
+                   $("#costType").empty();
+                   $("#costType").append("<option value='"+data.cost_id+"-"+data.money+"'>"+ data.cost_name+"</option>"); 
+                   //金额
+                   $("#costMoney").attr("readOnly",true);
+                   $("#costMoney").val(data.money);
+                   //学生姓名
+                   $("#studentName").attr("readOnly",true);
+                   $("#studentName").val(data.student_name);
+                   
+                   
+                } 
+ 		   })
+ 		   
+ 		   
+	}
+	
+	function req(){
+	    	
+	    //alert("数据处理");
+	    var schoolName = $("#schoolInfo").val(); 
+	    var academyName = $("#academyInfo").val(); 
+	    var prfName = $("#prfInfo").val(); 
+	    var classNum = $("#classNum").val(); 
+	    var costType = $("#costType").val(); 
+	    var costMoney = $("#costMoney").val(); 
+	    var studentName = $("#studentName").val(); 
+	    var remark = $("#remark").val(); 
+		//$("#remark").val(remark + "|" + schoolName + "|" + academyInfo +"|"+ prfInfo +"|"+ classNum +"|"+ costType +"|"
+		//		+ costMoney +"|"+ studentName);
+		alert(remark + "|" + schoolName + "|" + academyName +"|"+ prfName +"|"+ classNum +"|"+ costType +"|"
+		+ costMoney +"|"+ studentName);
+	}
 	</script>
     
 </body>

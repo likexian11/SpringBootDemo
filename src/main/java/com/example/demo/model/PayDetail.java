@@ -5,10 +5,15 @@ public class PayDetail {
 	public String paycost_num;
 	public int school_id;
 	public int school_area_id;
+	public String school_name;
 	public int academy_id;
+	public String academy_name;
+	public int professional_id;
+	public String prf_name;
 	public String class_num;
 	public double money;
 	public int cost_id;
+	public String cost_name;
 	public String student_name;
 	public String remark;
 	public int is_pay;
@@ -33,11 +38,23 @@ public class PayDetail {
 	public void setSchool_area_id(int school_area_id) {
 		this.school_area_id = school_area_id;
 	}
+	public String getSchool_name() {
+		return school_name;
+	}
+	public void setSchool_name(String school_name) {
+		this.school_name = school_name;
+	}
 	public int getAcademy_id() {
 		return academy_id;
 	}
 	public void setAcademy_id(int academy_id) {
 		this.academy_id = academy_id;
+	}
+	public String getAcademy_name() {
+		return academy_name;
+	}
+	public void setAcademy_name(String academy_name) {
+		this.academy_name = academy_name;
 	}
 	public String getClass_num() {
 		return class_num;
@@ -87,5 +104,22 @@ public class PayDetail {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	public String getPrf_name() {
+		return prf_name;
+	}
+	public void setPrf_name(String prf_name) {
+		this.prf_name = prf_name;
+	}
+	public String getCost_name() {
+		return cost_name;
+	}
+	public void setCost_name(String cost_name) {
+		this.cost_name = cost_name;
+	}
+	public int getProfessional_id() {
+		return professional_id;
+	}
+	public void setProfessional_id(int professional_id) {
+		this.professional_id = professional_id;
+	}
 }
