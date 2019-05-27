@@ -197,6 +197,7 @@
 	                       success:function(data){ 
 	                    	   //alert(data.length);
 	                           var t2 = $("#prfInfo").empty();
+	                           var t3 = $("#prfInfo").empty();
 	                           t3.append("<option value=\"\">请选择</option>");
 	                           for ( var i = 0; i < data.length; i++) { 
 	                               t2.append("<option value='"+data[i].professional_id+"'>"+ data[i].prf_name+"</option>"); 
