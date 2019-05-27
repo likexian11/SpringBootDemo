@@ -9,12 +9,14 @@ import java.util.Map;
 
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.AcademyInfo;
@@ -105,6 +107,11 @@ public class PageController {
 			//map.put("version", "1.0");
 			parms = EncryptionMD5.getReqParms(map, key);
 			//System.out.println(parms);
+			
+			ResponseEntity<String> response = new RestTemplate().postForEntity("http://openapi.borongsoft.com/gatewayOpen.htm", map, String.class);
+	        String body = response.getBody();
+	        System.out.println(body);
+			
 		}
 		
 		/*
