@@ -9,6 +9,10 @@ import java.util.Map;
 
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.model.AcademyInfo;
 import com.example.demo.model.CostType;
 import com.example.demo.model.PayDetail;
@@ -91,6 +96,7 @@ public class PageController {
 	public String markSign(@RequestParam Map<String,String> map) throws ParseException {
 		String key = "fc471d2a8ec3670f7789e0dfcbb8dfb1";
 		String parms = "";
+		String payUrl="";
 		
 		if(!EmptyUtil.isEmpty(map)) {
 			String date= DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
@@ -108,9 +114,34 @@ public class PageController {
 			parms = EncryptionMD5.getReqParms(map, key);
 			//System.out.println(parms);
 			
-			ResponseEntity<String> response = new RestTemplate().postForEntity("http://openapi.borongsoft.com/gatewayOpen.htm", map, String.class);
-	        String body = response.getBody();
-	        System.out.println(body);
+			
+			//ResponseEntity<String> response = new RestTemplate().postForEntity("http://openapi.borongsoft.com/gatewayOpen.htm", reqPay, String.class);
+	        //String body = response.getBody();
+			
+			/*
+			HttpHeaders headers = new HttpHeaders();
+	        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
+	        headers.setContentType(type);
+	        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
+	        
+	        HttpEntity<String> formEntity = new HttpEntity<String>(map.toString(), headers);
+	        String result =  new RestTemplate().postForObject("http://openapi.borongsoft.com/gatewayOpen.htm", formEntity, String.class);
+			*/
+			
+			String uri="http://openapi.borongsoft.com/gatewayOpen.htm"+parms;
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+	        HttpEntity<String> entity = new HttpEntity<String>(headers);
+	        String strbody=new RestTemplate().exchange(uri, HttpMethod.GET, entity,String.class).getBody();
+	        
+
+	        JSONObject jsonResult = (JSONObject) JSONObject.parseObject(strbody).get("result");
+	        JSONObject jsonData = (JSONObject) JSONObject.parseObject(strbody).get("data");
+	        //return weatherResponse;
+			if((boolean) jsonResult.get("success")) {
+				payUrl = jsonData.getString("url");
+				return payUrl;
+			}
 			
 		}
 		
@@ -134,7 +165,7 @@ public class PageController {
 		//String str1 = "amount=100&app=zyptestapp&barcode=123123123123&local_order_no=localorderno123123123123&operator_id=axgdfdafd34124&subject=这是一笔支付订单&timestamp=1460512556270&key=thisistestkey";
 		//String str2 = EncryptionMD5.encryptWithMD5(str1, "UTF-8");
 		//System.out.println("yanzheng2222:"+str.equals(str2));
-		return parms;
+		return payUrl;
 		
 		
 	}

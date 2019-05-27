@@ -51,7 +51,7 @@ public class EncryptionMD5 {
 	    //获取sign_method
 
 	    sign = encryptWithMD5(newStrTemp,"UTF-8");
-	    String reqParms = "&"+newStrTemp +"&command="+command +"&redirect_url="+redirect_url +"&version="+version + "&sign="+sign;
+	    String reqParms = "?"+newStrTemp +"&command="+command +"&redirect_url="+redirect_url +"&version="+version + "&sign="+sign;
 	    
 	    return reqParms;
 	}

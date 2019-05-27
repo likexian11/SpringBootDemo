@@ -317,8 +317,9 @@
     		   //dataType:'json',
     		   data:{amount:amount,remark:remark}, 
                success:function(data){ 
-            	   
-            	   //window.open("http://openapi.caibaopay.com/gatewayOpen.htm"+data);
+            	   //var a = "caibao.pay.h5";
+            	   window.location.href=data;
+            	   //window.open(data);
             	   
                } 
 		})
