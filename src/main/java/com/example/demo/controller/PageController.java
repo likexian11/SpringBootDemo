@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -30,6 +31,7 @@ import com.example.demo.model.PayDetail;
 import com.example.demo.model.Professional;
 import com.example.demo.model.SchoolInfo;
 import com.example.demo.service.PayDetailInterFace;
+import com.example.demo.service.SecretKeyInterFace;
 import com.example.demo.util.DateUtil;
 import com.example.demo.util.EmptyUtil;
 import com.example.demo.util.EncryptionMD5;
@@ -40,6 +42,7 @@ public class PageController {
 	
 	@Autowired
 	private PayDetailInterFace payDetailInterFace;
+	private SecretKeyInterFace secretKeyInterFace;
 	
 	@RequestMapping(value ="/sy")
 	public ModelAndView  getPage(ModelMap map) {
@@ -56,9 +59,11 @@ public class PageController {
 	}
 	//支付界面
 	@RequestMapping(value ="/zhif")
-	public ModelAndView  getPayPage(ModelMap map) {
+	public ModelAndView  getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
 		List<SchoolInfo>  schoolList =  payDetailInterFace.querySchoolList();
 		map.addAttribute("schoolList",schoolList);
+		map.addAttribute("businessId",businessId);
+		//System.out.println("businessId:"+businessId);
 		return new ModelAndView("pay");
 	}
 	//获取缴费信息
@@ -94,10 +99,19 @@ public class PageController {
 	//
 	@RequestMapping(value ="/sign")
 	public String markSign(@RequestParam Map<String,String> map) throws ParseException {
+		String businessId="";
 		String key = "fc471d2a8ec3670f7789e0dfcbb8dfb1";
 		String parms = "";
 		String payUrl="";
 		
+		//System.out.println("id:"+map.get("businessId"));
+		if(map.containsKey("businessId")) {
+			businessId= map.get("businessId");
+			System.out.println("businessId:"+businessId);
+			payUrl = secretKeyInterFace.getPayUrl(businessId, map);
+		}
+		 
+		/*
 		if(!EmptyUtil.isEmpty(map)) {
 			String date= DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 			//map.put("command","caibao.pay.h5");
@@ -115,35 +129,23 @@ public class PageController {
 			//System.out.println(parms);
 			
 			
-			//ResponseEntity<String> response = new RestTemplate().postForEntity("http://openapi.borongsoft.com/gatewayOpen.htm", reqPay, String.class);
-	        //String body = response.getBody();
-			
-			/*
-			HttpHeaders headers = new HttpHeaders();
-	        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
-	        headers.setContentType(type);
-	        headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-	        
-	        HttpEntity<String> formEntity = new HttpEntity<String>(map.toString(), headers);
-	        String result =  new RestTemplate().postForObject("http://openapi.borongsoft.com/gatewayOpen.htm", formEntity, String.class);
-			*/
-			
 			String uri="http://openapi.borongsoft.com/gatewayOpen.htm"+parms;
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 	        HttpEntity<String> entity = new HttpEntity<String>(headers);
 	        String strbody=new RestTemplate().exchange(uri, HttpMethod.GET, entity,String.class).getBody();
+	        System.out.println(strbody);
 	        
-
 	        JSONObject jsonResult = (JSONObject) JSONObject.parseObject(strbody).get("result");
 	        JSONObject jsonData = (JSONObject) JSONObject.parseObject(strbody).get("data");
-	        //return weatherResponse;
-			if((boolean) jsonResult.get("success")) {
+
+	        if((boolean) jsonResult.get("success")) {
 				payUrl = jsonData.getString("url");
 				return payUrl;
 			}
 			
 		}
+		*/
 		
 		/*
 		Map<String,String> map = new HashMap<String, String>();

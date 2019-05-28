@@ -20,6 +20,17 @@
 	<div class="aui-content aui-margin-b-15">
 	<form id="formId" action="">
         <ul class="aui-list aui-form-list">
+        
+          <li class="aui-list-item aui-hide">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                       	<span>商户id</span>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input id ="businessId" type="text" th:value="${businessId}">
+                    </div>
+                </div>
+            </li>
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
@@ -310,16 +321,17 @@
 					+ $("#prfInfo").text()  +"|"+ $("#costType").text() +"|"+ $("#costMoney").val() ;
 		//var redirect_url="redirect_url:http://www.borongsoft.com";
 		//var version="1.0";
+		var businessId = $("#businessId").val()
 		$.ajax({ 
     		   url:'/page/sign', 
                async:false, 
     		   type:'post', 
     		   //dataType:'json',
-    		   data:{amount:amount,remark:remark}, 
+    		   data:{businessId:businessId,amount:amount,remark:remark,}, 
                success:function(data){ 
             	   //var a = "caibao.pay.h5";
-            	   window.location.href=data;
-            	   //window.open(data);
+            	   
+            	   //window.location.href=data;
             	   
                } 
 		})
