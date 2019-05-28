@@ -42,6 +42,7 @@ public class PageController {
 	
 	@Autowired
 	private PayDetailInterFace payDetailInterFace;
+	@Autowired
 	private SecretKeyInterFace secretKeyInterFace;
 	
 	@RequestMapping(value ="/sy")
@@ -100,75 +101,14 @@ public class PageController {
 	@RequestMapping(value ="/sign")
 	public String markSign(@RequestParam Map<String,String> map) throws ParseException {
 		String businessId="";
-		String key = "fc471d2a8ec3670f7789e0dfcbb8dfb1";
-		String parms = "";
 		String payUrl="";
 		
-		//System.out.println("id:"+map.get("businessId"));
 		if(map.containsKey("businessId")) {
 			businessId= map.get("businessId");
 			System.out.println("businessId:"+businessId);
 			payUrl = secretKeyInterFace.getPayUrl(businessId, map);
 		}
-		 
-		/*
-		if(!EmptyUtil.isEmpty(map)) {
-			String date= DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
-			//map.put("command","caibao.pay.h5");
-			map.put("app","h50008530000066");
-			map.put("operator_id","c777292c6becd2d7fd3f7d898e847d04");
-			//System.out.println(map.get("amount"));
-			map.put("local_order_no", "ddh"+date);
-			map.put("timestamp", System.currentTimeMillis()+"");
-			//System.out.println(map.get("timestamp"));
-			map.put("subject", "学校缴费系统测试");
-			System.out.println(map.get("remark"));
-			//map.put("redirect_url", "http://www.borongsoft.com");
-			//map.put("version", "1.0");
-			parms = EncryptionMD5.getReqParms(map, key);
-			//System.out.println(parms);
-			
-			
-			String uri="http://openapi.borongsoft.com/gatewayOpen.htm"+parms;
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-	        HttpEntity<String> entity = new HttpEntity<String>(headers);
-	        String strbody=new RestTemplate().exchange(uri, HttpMethod.GET, entity,String.class).getBody();
-	        System.out.println(strbody);
-	        
-	        JSONObject jsonResult = (JSONObject) JSONObject.parseObject(strbody).get("result");
-	        JSONObject jsonData = (JSONObject) JSONObject.parseObject(strbody).get("data");
-
-	        if((boolean) jsonResult.get("success")) {
-				payUrl = jsonData.getString("url");
-				return payUrl;
-			}
-			
-		}
-		*/
-		
-		/*
-		Map<String,String> map = new HashMap<String, String>();
-		String key = "fc471d2a8ec3670f7789e0dfcbb8dfb1";
-		map.put("amount", "1");
-		map.put("app", "h50008530000066");
-		map.put("local_order_no", "OPENAPI201808291113261934988");
-		map.put("operator_id", "c777292c6becd2d7fd3f7d898e847d04");
-		map.put("remark", "左思幸|201808001|计算机系|计算机科学与技术专业|学费|5000");
-		map.put("subject", "博融缴费平台测试");
-		map.put("timestamp", "1535512406676");
-		String signMD5 = EncryptionMD5.sortAndEncryptionMD5(map, key);
-		//System.out.println("remark:"+remark);
-		String str= "3e93620707342b144a93e841241cd5a6";
-		System.out.println("signMD5:"+signMD5);
-		System.out.println("yanzheng:"+str.equals(signMD5));
-		*/
-		
-		//String str1 = "amount=100&app=zyptestapp&barcode=123123123123&local_order_no=localorderno123123123123&operator_id=axgdfdafd34124&subject=这是一笔支付订单&timestamp=1460512556270&key=thisistestkey";
-		//String str2 = EncryptionMD5.encryptWithMD5(str1, "UTF-8");
-		//System.out.println("yanzheng2222:"+str.equals(str2));
 		return payUrl;
-		
 		
 	}
 	

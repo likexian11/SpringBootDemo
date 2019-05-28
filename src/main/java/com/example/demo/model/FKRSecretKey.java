@@ -5,6 +5,7 @@ public class FKRSecretKey {
 	public String business_id;
 	public String command;
 	public String app;
+	public String key;
 	public String operator_id;
 	public String version;
 	public String redirect_url;
@@ -45,5 +46,10 @@ public class FKRSecretKey {
 	public void setRedirect_url(String redirect_url) {
 		this.redirect_url = redirect_url;
 	}
-	
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 }

@@ -47,7 +47,7 @@ public class DateUtil {
      * @return
      * @throws ParseException
      */
-    public static String dateFormat(Date date, String pattern) throws ParseException{
+    public static String dateFormat(Date date, String pattern){
         if(EmptyUtil.isEmptyStrTrim(pattern)){
             pattern = DateUtil.DATE_PATTERN;
         }
