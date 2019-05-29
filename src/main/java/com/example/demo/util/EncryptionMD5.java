@@ -5,11 +5,9 @@ import java.security.MessageDigest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.demo.controller.TestController;
-
 public class EncryptionMD5 {
 	
-	private final static Logger log = LoggerFactory.getLogger(TestController.class);
+	private final static Logger log = LoggerFactory.getLogger(EncryptionMD5.class);
 	
 	
 	/**
