@@ -30,7 +30,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	
 	@Override
 	public String getPayUrl(String businessId,Map<String, String> map){
-		// TODO Auto-generated method stub
+		
 		Map<String, String> signMap = new HashMap<String, String>();
 		String payUrl = "";
 		String sign=null;
@@ -73,7 +73,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 	        HttpEntity<String> entity = new HttpEntity<String>(headers);
 	        String strbody=new RestTemplate().exchange(uri, HttpMethod.GET, entity,String.class).getBody();
-	        System.out.println(strbody);
+	        //System.out.println(strbody);
 	        
 	        JSONObject jsonResult = (JSONObject) JSONObject.parseObject(strbody).get("result");
 	        JSONObject jsonData = (JSONObject) JSONObject.parseObject(strbody).get("data");

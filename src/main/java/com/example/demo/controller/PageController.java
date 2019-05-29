@@ -105,7 +105,7 @@ public class PageController {
 		
 		if(map.containsKey("businessId")) {
 			businessId= map.get("businessId");
-			System.out.println("businessId:"+businessId);
+			//System.out.println("businessId:"+businessId);
 			payUrl = secretKeyInterFace.getPayUrl(businessId, map);
 		}
 		return payUrl;
