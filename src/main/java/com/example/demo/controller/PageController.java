@@ -32,9 +32,9 @@ import com.example.demo.model.Professional;
 import com.example.demo.model.SchoolInfo;
 import com.example.demo.service.PayDetailInterFace;
 import com.example.demo.service.SecretKeyInterFace;
-import com.example.demo.util.DateUtil;
-import com.example.demo.util.EmptyUtil;
-import com.example.demo.util.EncryptionMD5;
+import com.example.demo.utils.DateUtil;
+import com.example.demo.utils.EmptyUtil;
+import com.example.demo.utils.EncryptionMD5;
 
 @RestController
 @RequestMapping(value ="/page")

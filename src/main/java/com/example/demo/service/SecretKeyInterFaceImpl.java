@@ -20,9 +20,9 @@ import org.springframework.web.client.RestTemplate;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.dao.SecretKeyDao;
 import com.example.demo.model.FKRSecretKey;
-import com.example.demo.util.DateUtil;
-import com.example.demo.util.EmptyUtil;
-import com.example.demo.util.EncryptionMD5;
+import com.example.demo.utils.DateUtil;
+import com.example.demo.utils.EmptyUtil;
+import com.example.demo.utils.EncryptionMD5;
 
 @Service
 public class SecretKeyInterFaceImpl implements SecretKeyInterFace {

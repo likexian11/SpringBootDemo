@@ -1,4 +1,4 @@
-package com.example.demo.util;
+package com.example.demo.utils;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
