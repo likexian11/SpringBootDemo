@@ -5,13 +5,25 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="cost_id" jdbcType="INTEGER" property="costId" />
-    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
-    <result column="school_area_id" jdbcType="INTEGER" property="schoolAreaId" />
-    <result column="academy_id" jdbcType="INTEGER" property="academyId" />
-    <result column="professional_id" jdbcType="INTEGER" property="professionalId" />
-    <result column="cost_name" jdbcType="VARCHAR" property="costName" />
+    <id column="cost_id" jdbcType="INTEGER" property="cost_id" />
+    <result column="school_id" jdbcType="INTEGER" property="school_id" />
+    <result column="school_area_id" jdbcType="INTEGER" property="school_area_id" />
+    <result column="academy_id" jdbcType="INTEGER" property="academy_id" />
+    <result column="professional_id" jdbcType="INTEGER" property="professional_id" />
+    <result column="cost_name" jdbcType="VARCHAR" property="cost_name" />
     <result column="money" jdbcType="DOUBLE" property="money" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  
+    <!-- 查询缴费项目列表 -->
+  <select id="getCostTyteList" resultType="com.example.demo.pojo.CostList" >
+	     SELECT
+			c.cost_id,
+			c.cost_name,
+			c.money
+		FROM
+			fkr_cost_list c
+		WHERE
+			c.professional_id = #{professional_id}
+	</select>
 </mapper>

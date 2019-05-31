@@ -8,27 +8,23 @@ public class SchoolInfo {
      * 学校id
      */
     @Id
-    @Column(name = "school_id")
-    private Integer schoolId;
+    private Integer school_id;
 
     /**
      * 校区id
      */
     @Id
-    @Column(name = "school_area_id")
-    private Integer schoolAreaId;
+    private Integer school_area_id;
 
     /**
      * 学校名称
      */
-    @Column(name = "school_name")
-    private String schoolName;
+    private String school_name;
 
     /**
      * 校区名称
      */
-    @Column(name = "area_name")
-    private String areaName;
+    private String area_name;
 
     /**
      * 备注
@@ -40,17 +36,17 @@ public class SchoolInfo {
      *
      * @return school_id - 学校id
      */
-    public Integer getSchoolId() {
-        return schoolId;
+    public Integer getSchool_id() {
+        return school_id;
     }
 
     /**
      * 设置学校id
      *
-     * @param schoolId 学校id
+     * @param school_id 学校id
      */
-    public void setSchoolId(Integer schoolId) {
-        this.schoolId = schoolId;
+    public void setSchool_id(Integer school_id) {
+        this.school_id = school_id;
     }
 
     /**
@@ -58,17 +54,17 @@ public class SchoolInfo {
      *
      * @return school_area_id - 校区id
      */
-    public Integer getSchoolAreaId() {
-        return schoolAreaId;
+    public Integer getSchool_area_id() {
+        return school_area_id;
     }
 
     /**
      * 设置校区id
      *
-     * @param schoolAreaId 校区id
+     * @param school_area_id 校区id
      */
-    public void setSchoolAreaId(Integer schoolAreaId) {
-        this.schoolAreaId = schoolAreaId;
+    public void setSchool_area_id(Integer school_area_id) {
+        this.school_area_id = school_area_id;
     }
 
     /**
@@ -76,17 +72,17 @@ public class SchoolInfo {
      *
      * @return school_name - 学校名称
      */
-    public String getSchoolName() {
-        return schoolName;
+    public String getSchool_name() {
+        return school_name;
     }
 
     /**
      * 设置学校名称
      *
-     * @param schoolName 学校名称
+     * @param school_name 学校名称
      */
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
+    public void setSchool_name(String school_name) {
+        this.school_name = school_name;
     }
 
     /**
@@ -94,17 +90,17 @@ public class SchoolInfo {
      *
      * @return area_name - 校区名称
      */
-    public String getAreaName() {
-        return areaName;
+    public String getArea_name() {
+        return area_name;
     }
 
     /**
      * 设置校区名称
      *
-     * @param areaName 校区名称
+     * @param area_name 校区名称
      */
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
+    public void setArea_name(String area_name) {
+        this.area_name = area_name;
     }
 
     /**

@@ -8,8 +8,7 @@ public class Secretkey {
      * 收款商户id
      */
     @Id
-    @Column(name = "business_id")
-    private String businessId;
+    private String business_id;
 
     /**
      * br接口名
@@ -24,8 +23,7 @@ public class Secretkey {
     /**
      * br收银员的id
      */
-    @Column(name = "operator_id")
-    private String operatorId;
+    private String operator_id;
 
     /**
      * 接口版本号
@@ -35,8 +33,7 @@ public class Secretkey {
     /**
      * 支付成功之后的跳转页面
      */
-    @Column(name = "redirect_url")
-    private String redirectUrl;
+    private String redirect_url;
 
     /**
      * br校验key
@@ -48,17 +45,17 @@ public class Secretkey {
      *
      * @return business_id - 收款商户id
      */
-    public String getBusinessId() {
-        return businessId;
+    public String getBusiness_id() {
+        return business_id;
     }
 
     /**
      * 设置收款商户id
      *
-     * @param businessId 收款商户id
+     * @param business_id 收款商户id
      */
-    public void setBusinessId(String businessId) {
-        this.businessId = businessId;
+    public void setBusiness_id(String business_id) {
+        this.business_id = business_id;
     }
 
     /**
@@ -102,17 +99,17 @@ public class Secretkey {
      *
      * @return operator_id - br收银员的id
      */
-    public String getOperatorId() {
-        return operatorId;
+    public String getOperator_id() {
+        return operator_id;
     }
 
     /**
      * 设置br收银员的id
      *
-     * @param operatorId br收银员的id
+     * @param operator_id br收银员的id
      */
-    public void setOperatorId(String operatorId) {
-        this.operatorId = operatorId;
+    public void setOperator_id(String operator_id) {
+        this.operator_id = operator_id;
     }
 
     /**
@@ -138,17 +135,17 @@ public class Secretkey {
      *
      * @return redirect_url - 支付成功之后的跳转页面
      */
-    public String getRedirectUrl() {
-        return redirectUrl;
+    public String getRedirect_url() {
+        return redirect_url;
     }
 
     /**
      * 设置支付成功之后的跳转页面
      *
-     * @param redirectUrl 支付成功之后的跳转页面
+     * @param redirect_url 支付成功之后的跳转页面
      */
-    public void setRedirectUrl(String redirectUrl) {
-        this.redirectUrl = redirectUrl;
+    public void setRedirect_url(String redirect_url) {
+        this.redirect_url = redirect_url;
     }
 
     /**

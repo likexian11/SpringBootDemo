@@ -13,8 +13,7 @@ public class Pay {
     /**
      * 收款商户id
      */
-    @Column(name = "business_id")
-    private String businessId;
+    private String business_id;
 
     /**
      * 缴费金额
@@ -54,17 +53,17 @@ public class Pay {
      *
      * @return business_id - 收款商户id
      */
-    public String getBusinessId() {
-        return businessId;
+    public String getBusiness_id() {
+        return business_id;
     }
 
     /**
      * 设置收款商户id
      *
-     * @param businessId 收款商户id
+     * @param business_id 收款商户id
      */
-    public void setBusinessId(String businessId) {
-        this.businessId = businessId;
+    public void setBusiness_id(String business_id) {
+        this.business_id = business_id;
     }
 
     /**

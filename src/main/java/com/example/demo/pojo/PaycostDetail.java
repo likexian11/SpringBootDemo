@@ -8,56 +8,47 @@ public class PaycostDetail {
     /**
      * 缴费号
      */
-    @Column(name = "paycost_num")
-    private String paycostNum;
+    private String paycost_num;
 
     /**
      * 学校id
      */
-    @Column(name = "school_id")
-    private Integer schoolId;
+    private Integer school_id;
 
     /**
      * 校区id
      */
-    @Column(name = "school_area_id")
-    private Integer schoolAreaId;
+    private Integer school_area_id;
 
     /**
      * 学校名称
      */
-    @Column(name = "school_name")
-    private String schoolName;
+    private String school_name;
 
     /**
      * 学院id
      */
-    @Column(name = "academy_id")
-    private Integer academyId;
+    private Integer academy_id;
 
     /**
      * 学院名称
      */
-    @Column(name = "academy_name")
-    private String academyName;
+    private String academy_name;
 
     /**
      * 专业id
      */
-    @Column(name = "professional_id")
-    private Integer professionalId;
+    private Integer professional_id;
 
     /**
      * 专业名称
      */
-    @Column(name = "prf_name")
-    private String prfName;
+    private String prf_name;
 
     /**
      * 班级
      */
-    @Column(name = "class_num")
-    private String classNum;
+    private String class_num;
 
     /**
      * 缴费金额
@@ -67,26 +58,22 @@ public class PaycostDetail {
     /**
      * 缴费id
      */
-    @Column(name = "cost_id")
-    private Integer costId;
+    private Integer cost_id;
 
     /**
      * 缴费项目名字
      */
-    @Column(name = "cost_name")
-    private String costName;
+    private String cost_name;
 
     /**
      * 学生名字
      */
-    @Column(name = "student_name")
-    private String studentName;
+    private String student_name;
 
     /**
      * 导入批号
      */
-    @Column(name = "batch_num")
-    private String batchNum;
+    private String batch_num;
 
     /**
      * 备注
@@ -96,14 +83,12 @@ public class PaycostDetail {
     /**
      * 是否缴费 1:是/0:否/2:部分缴费
      */
-    @Column(name = "is_pay")
-    private Integer isPay;
+    private Integer is_pay;
 
     /**
      * 缴费时间
      */
-    @Column(name = "pay_time")
-    private Date payTime;
+    private Date pay_time;
 
     /**
      * 是否有效 1:是0：否
@@ -115,17 +100,17 @@ public class PaycostDetail {
      *
      * @return paycost_num - 缴费号
      */
-    public String getPaycostNum() {
-        return paycostNum;
+    public String getPaycost_num() {
+        return paycost_num;
     }
 
     /**
      * 设置缴费号
      *
-     * @param paycostNum 缴费号
+     * @param paycost_num 缴费号
      */
-    public void setPaycostNum(String paycostNum) {
-        this.paycostNum = paycostNum;
+    public void setPaycost_num(String paycost_num) {
+        this.paycost_num = paycost_num;
     }
 
     /**
@@ -133,17 +118,17 @@ public class PaycostDetail {
      *
      * @return school_id - 学校id
      */
-    public Integer getSchoolId() {
-        return schoolId;
+    public Integer getSchool_id() {
+        return school_id;
     }
 
     /**
      * 设置学校id
      *
-     * @param schoolId 学校id
+     * @param school_id 学校id
      */
-    public void setSchoolId(Integer schoolId) {
-        this.schoolId = schoolId;
+    public void setSchool_id(Integer school_id) {
+        this.school_id = school_id;
     }
 
     /**
@@ -151,17 +136,17 @@ public class PaycostDetail {
      *
      * @return school_area_id - 校区id
      */
-    public Integer getSchoolAreaId() {
-        return schoolAreaId;
+    public Integer getSchool_area_id() {
+        return school_area_id;
     }
 
     /**
      * 设置校区id
      *
-     * @param schoolAreaId 校区id
+     * @param school_area_id 校区id
      */
-    public void setSchoolAreaId(Integer schoolAreaId) {
-        this.schoolAreaId = schoolAreaId;
+    public void setSchool_area_id(Integer school_area_id) {
+        this.school_area_id = school_area_id;
     }
 
     /**
@@ -169,17 +154,17 @@ public class PaycostDetail {
      *
      * @return school_name - 学校名称
      */
-    public String getSchoolName() {
-        return schoolName;
+    public String getSchool_name() {
+        return school_name;
     }
 
     /**
      * 设置学校名称
      *
-     * @param schoolName 学校名称
+     * @param school_name 学校名称
      */
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
+    public void setSchool_name(String school_name) {
+        this.school_name = school_name;
     }
 
     /**
@@ -187,17 +172,17 @@ public class PaycostDetail {
      *
      * @return academy_id - 学院id
      */
-    public Integer getAcademyId() {
-        return academyId;
+    public Integer getAcademy_id() {
+        return academy_id;
     }
 
     /**
      * 设置学院id
      *
-     * @param academyId 学院id
+     * @param academy_id 学院id
      */
-    public void setAcademyId(Integer academyId) {
-        this.academyId = academyId;
+    public void setAcademy_id(Integer academy_id) {
+        this.academy_id = academy_id;
     }
 
     /**
@@ -205,17 +190,17 @@ public class PaycostDetail {
      *
      * @return academy_name - 学院名称
      */
-    public String getAcademyName() {
-        return academyName;
+    public String getAcademy_name() {
+        return academy_name;
     }
 
     /**
      * 设置学院名称
      *
-     * @param academyName 学院名称
+     * @param academy_name 学院名称
      */
-    public void setAcademyName(String academyName) {
-        this.academyName = academyName;
+    public void setAcademy_name(String academy_name) {
+        this.academy_name = academy_name;
     }
 
     /**
@@ -223,17 +208,17 @@ public class PaycostDetail {
      *
      * @return professional_id - 专业id
      */
-    public Integer getProfessionalId() {
-        return professionalId;
+    public Integer getProfessional_id() {
+        return professional_id;
     }
 
     /**
      * 设置专业id
      *
-     * @param professionalId 专业id
+     * @param professional_id 专业id
      */
-    public void setProfessionalId(Integer professionalId) {
-        this.professionalId = professionalId;
+    public void setProfessional_id(Integer professional_id) {
+        this.professional_id = professional_id;
     }
 
     /**
@@ -241,17 +226,17 @@ public class PaycostDetail {
      *
      * @return prf_name - 专业名称
      */
-    public String getPrfName() {
-        return prfName;
+    public String getPrf_name() {
+        return prf_name;
     }
 
     /**
      * 设置专业名称
      *
-     * @param prfName 专业名称
+     * @param prf_name 专业名称
      */
-    public void setPrfName(String prfName) {
-        this.prfName = prfName;
+    public void setPrf_name(String prf_name) {
+        this.prf_name = prf_name;
     }
 
     /**
@@ -259,17 +244,17 @@ public class PaycostDetail {
      *
      * @return class_num - 班级
      */
-    public String getClassNum() {
-        return classNum;
+    public String getClass_num() {
+        return class_num;
     }
 
     /**
      * 设置班级
      *
-     * @param classNum 班级
+     * @param class_num 班级
      */
-    public void setClassNum(String classNum) {
-        this.classNum = classNum;
+    public void setClass_num(String class_num) {
+        this.class_num = class_num;
     }
 
     /**
@@ -295,17 +280,17 @@ public class PaycostDetail {
      *
      * @return cost_id - 缴费id
      */
-    public Integer getCostId() {
-        return costId;
+    public Integer getCost_id() {
+        return cost_id;
     }
 
     /**
      * 设置缴费id
      *
-     * @param costId 缴费id
+     * @param cost_id 缴费id
      */
-    public void setCostId(Integer costId) {
-        this.costId = costId;
+    public void setCost_id(Integer cost_id) {
+        this.cost_id = cost_id;
     }
 
     /**
@@ -313,17 +298,17 @@ public class PaycostDetail {
      *
      * @return cost_name - 缴费项目名字
      */
-    public String getCostName() {
-        return costName;
+    public String getCost_name() {
+        return cost_name;
     }
 
     /**
      * 设置缴费项目名字
      *
-     * @param costName 缴费项目名字
+     * @param cost_name 缴费项目名字
      */
-    public void setCostName(String costName) {
-        this.costName = costName;
+    public void setCost_name(String cost_name) {
+        this.cost_name = cost_name;
     }
 
     /**
@@ -331,17 +316,17 @@ public class PaycostDetail {
      *
      * @return student_name - 学生名字
      */
-    public String getStudentName() {
-        return studentName;
+    public String getStudent_name() {
+        return student_name;
     }
 
     /**
      * 设置学生名字
      *
-     * @param studentName 学生名字
+     * @param student_name 学生名字
      */
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudent_name(String student_name) {
+        this.student_name = student_name;
     }
 
     /**
@@ -349,17 +334,17 @@ public class PaycostDetail {
      *
      * @return batch_num - 导入批号
      */
-    public String getBatchNum() {
-        return batchNum;
+    public String getBatch_num() {
+        return batch_num;
     }
 
     /**
      * 设置导入批号
      *
-     * @param batchNum 导入批号
+     * @param batch_num 导入批号
      */
-    public void setBatchNum(String batchNum) {
-        this.batchNum = batchNum;
+    public void setBatch_num(String batch_num) {
+        this.batch_num = batch_num;
     }
 
     /**
@@ -385,17 +370,17 @@ public class PaycostDetail {
      *
      * @return is_pay - 是否缴费 1:是/0:否/2:部分缴费
      */
-    public Integer getIsPay() {
-        return isPay;
+    public Integer getIs_pay() {
+        return is_pay;
     }
 
     /**
      * 设置是否缴费 1:是/0:否/2:部分缴费
      *
-     * @param isPay 是否缴费 1:是/0:否/2:部分缴费
+     * @param is_pay 是否缴费 1:是/0:否/2:部分缴费
      */
-    public void setIsPay(Integer isPay) {
-        this.isPay = isPay;
+    public void setIs_pay(Integer is_pay) {
+        this.is_pay = is_pay;
     }
 
     /**
@@ -403,17 +388,17 @@ public class PaycostDetail {
      *
      * @return pay_time - 缴费时间
      */
-    public Date getPayTime() {
-        return payTime;
+    public Date getPay_time() {
+        return pay_time;
     }
 
     /**
      * 设置缴费时间
      *
-     * @param payTime 缴费时间
+     * @param pay_time 缴费时间
      */
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
+    public void setPay_time(Date pay_time) {
+        this.pay_time = pay_time;
     }
 
     /**

@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.mapper.SecretkeyMapper;
 import com.example.demo.pojo.Secretkey;
@@ -38,10 +39,10 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	    StringBuffer sb = new StringBuffer();
 		String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 		
-		Secretkey secretKey = secretkeyMapper.queryKeyInfo(businessId);
+		Secretkey secretKey = secretkeyMapper.getKeyInfo(businessId);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
 			signMap.put("app", secretKey.getApp());
-			signMap.put("operator_id", secretKey.getOperatorId());
+			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
 			signMap.put("local_order_no", "TEST_"+date);
 			signMap.put("timestamp", System.currentTimeMillis()+"");
@@ -51,7 +52,8 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		    List<Map.Entry<String, String>> infoIds =
 		            new ArrayList<Map.Entry<String, String>>(signMap.entrySet());
 		    Collections.sort(infoIds, new Comparator<Map.Entry<String, String>>() {
-		        public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
+		        @Override
+				public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
 		            return (o1.getKey()).toString().compareTo(o2.getKey());
 		        }
 		    });
@@ -68,7 +70,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url
 			String uri="http://openapi.borongsoft.com/gatewayOpen.htm"+"?"
-						+newStrTemp +"&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirectUrl() +"&version="+secretKey.getVersion()
+						+newStrTemp +"&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirect_url() +"&version="+secretKey.getVersion()
 						+ "&sign="+sign;;
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -76,8 +78,8 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	        String strbody=new RestTemplate().exchange(uri, HttpMethod.GET, entity,String.class).getBody();
 	        //System.out.println(strbody);
 	        
-	        JSONObject jsonResult = (JSONObject) JSONObject.parseObject(strbody).get("result");
-	        JSONObject jsonData = (JSONObject) JSONObject.parseObject(strbody).get("data");
+	        JSONObject jsonResult = (JSONObject) JSON.parseObject(strbody).get("result");
+	        JSONObject jsonData = (JSONObject) JSON.parseObject(strbody).get("data");
 
 	        if((boolean) jsonResult.get("success")) {
 				payUrl = jsonData.getString("url");

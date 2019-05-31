@@ -5,12 +5,22 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="school_id" jdbcType="INTEGER" property="schoolId" />
-    <id column="school_area_id" jdbcType="INTEGER" property="schoolAreaId" />
-    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
-    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <id column="school_id" jdbcType="INTEGER" property="school_id" />
+    <id column="school_area_id" jdbcType="INTEGER" property="school_area_id" />
+    <result column="school_name" jdbcType="VARCHAR" property="school_name" />
+    <result column="area_name" jdbcType="VARCHAR" property="area_name" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   
-  
+  <!-- 查询学校列表 -->
+	<select id="getSchoolList" resultType="com.example.demo.pojo.SchoolInfo" 
+										 parameterType="java.lang.String" >
+	     SELECT
+			school_id ,
+			school_area_id ,
+			school_name ,
+			area_name 
+		FROM
+			fkr_school_info
+	</select>
 </mapper>

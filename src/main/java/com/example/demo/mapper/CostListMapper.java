@@ -7,6 +7,5 @@ import com.example.demo.utils.ParentMapper;
 
 public interface CostListMapper extends ParentMapper<CostList> {
 	
-	//获取缴费类型
-		public List<CostList> queryCostList(int professional_id);
+	List<CostList> getCostTyteList(int professional_id);
 }

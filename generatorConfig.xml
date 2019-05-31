@@ -28,7 +28,11 @@
         <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-		<table tableName="%" >
+		<table tableName="%" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false"
+			selectByExampleQueryId="true" enableUpdateByExample="false">
+			
+           <property name="useActualColumnNames" value="true"/>
            <domainObjectRenamingRule searchString="^Fkr" replaceString="" />  
 			<!-- <columnRenamingRule searchString="^Fkr" replaceString=""/>-->
 		</table>

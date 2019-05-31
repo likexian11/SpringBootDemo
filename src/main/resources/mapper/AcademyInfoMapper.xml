@@ -5,10 +5,22 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="academy_id" jdbcType="INTEGER" property="academyId" />
-    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
-    <result column="school_area_id" jdbcType="INTEGER" property="schoolAreaId" />
-    <result column="academy_name" jdbcType="VARCHAR" property="academyName" />
+    <result column="academy_id" jdbcType="INTEGER" property="academy_id" />
+    <result column="school_id" jdbcType="INTEGER" property="school_id" />
+    <result column="school_area_id" jdbcType="INTEGER" property="school_area_id" />
+    <result column="academy_name" jdbcType="VARCHAR" property="academy_name" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  
+  <!-- 查询学院列表 -->
+  <select id="getAcademyList" resultType="com.example.demo.pojo.AcademyInfo" >
+	     SELECT
+			a.academy_id,
+			a.academy_name
+		FROM
+			fkr_academy_info a
+		WHERE
+			a.school_id = #{school_id} and a.school_area_id=#{school_area_id}
+	</select>
+  
 </mapper>

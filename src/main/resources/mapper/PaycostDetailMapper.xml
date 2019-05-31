@@ -5,23 +5,47 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="paycost_num" jdbcType="VARCHAR" property="paycostNum" />
-    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
-    <result column="school_area_id" jdbcType="INTEGER" property="schoolAreaId" />
-    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
-    <result column="academy_id" jdbcType="INTEGER" property="academyId" />
-    <result column="academy_name" jdbcType="VARCHAR" property="academyName" />
-    <result column="professional_id" jdbcType="INTEGER" property="professionalId" />
-    <result column="prf_name" jdbcType="VARCHAR" property="prfName" />
-    <result column="class_num" jdbcType="VARCHAR" property="classNum" />
+    <result column="paycost_num" jdbcType="VARCHAR" property="paycost_num" />
+    <result column="school_id" jdbcType="INTEGER" property="school_id" />
+    <result column="school_area_id" jdbcType="INTEGER" property="school_area_id" />
+    <result column="school_name" jdbcType="VARCHAR" property="school_name" />
+    <result column="academy_id" jdbcType="INTEGER" property="academy_id" />
+    <result column="academy_name" jdbcType="VARCHAR" property="academy_name" />
+    <result column="professional_id" jdbcType="INTEGER" property="professional_id" />
+    <result column="prf_name" jdbcType="VARCHAR" property="prf_name" />
+    <result column="class_num" jdbcType="VARCHAR" property="class_num" />
     <result column="money" jdbcType="DOUBLE" property="money" />
-    <result column="cost_id" jdbcType="INTEGER" property="costId" />
-    <result column="cost_name" jdbcType="VARCHAR" property="costName" />
-    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
-    <result column="batch_num" jdbcType="VARCHAR" property="batchNum" />
+    <result column="cost_id" jdbcType="INTEGER" property="cost_id" />
+    <result column="cost_name" jdbcType="VARCHAR" property="cost_name" />
+    <result column="student_name" jdbcType="VARCHAR" property="student_name" />
+    <result column="batch_num" jdbcType="VARCHAR" property="batch_num" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
-    <result column="is_pay" jdbcType="INTEGER" property="isPay" />
-    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="is_pay" jdbcType="INTEGER" property="is_pay" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="pay_time" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+  
+   <!-- 根据缴费号查询对象信息 -->
+  <select id="getDetailList" resultType="com.example.demo.pojo.PaycostDetail" >
+	     SELECT
+			d.paycost_num,
+			d.school_id,
+			d.school_area_id,
+			d.school_name,
+			d.academy_id,
+			d.academy_name,
+			d.professional_id,
+			d.prf_name,
+			d.student_name,
+			d.class_num,
+			d.cost_id,
+			d.cost_name,
+			d.money
+		FROM
+			fkr_paycost_detail d
+		WHERE
+			STATUS = 1
+		AND paycost_num = #{paycost_num}
+	</select>
+  
 </mapper>

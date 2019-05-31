@@ -7,5 +7,5 @@ import com.example.demo.utils.ParentMapper;
 
 public interface AcademyInfoMapper extends ParentMapper<AcademyInfo> {
 	
-	public List<AcademyInfo> queryAcademyList(int school_id,int school_area_id);
+	List<AcademyInfo> getAcademyList(int school_id, int school_area_id);
 }

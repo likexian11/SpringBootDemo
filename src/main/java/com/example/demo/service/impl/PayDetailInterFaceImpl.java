@@ -21,7 +21,6 @@ import com.example.demo.service.PayDetailInterFace;
 @Service
 public class PayDetailInterFaceImpl implements PayDetailInterFace {
 
-	//引入dao层借口
 	@Autowired PaycostDetailMapper PaycostDetailMapper;
 	@Autowired SchoolInfoMapper schoolInfoMapper;
 	@Autowired AcademyInfoMapper academyInfoMapper;
@@ -32,31 +31,30 @@ public class PayDetailInterFaceImpl implements PayDetailInterFace {
 	@Override
 	public PaycostDetail queryDetail(String paycost_num){
 		// TODO Auto-generated method stub
-		return PaycostDetailMapper.queryDetail(paycost_num);
+		return PaycostDetailMapper.getDetailList(paycost_num);
 	}
 	
 	@Override
 	public List<SchoolInfo> querySchoolList() {
-		// TODO Auto-generated method stub
-		return schoolInfoMapper.selectAll();
+		return schoolInfoMapper.getSchoolList();
 	}
 
 	@Override
 	public List<AcademyInfo> queryAcademyList(int school_id,int school_area_id) {
 		// TODO Auto-generated method stub
-		return academyInfoMapper.queryAcademyList(school_id,school_area_id);
+		return academyInfoMapper.getAcademyList(school_id,school_area_id);
 	}
 
 	@Override
 	public List<Professional> queryPrfList(int school_id, int school_area_id, int academy_id) {
 		// TODO Auto-generated method stub
-		return professionalMapper.queryPrfList(school_id, school_area_id, academy_id);
+		return professionalMapper.getPrfList(school_id, school_area_id, academy_id);
 	}
 
 	@Override
 	public List<CostList> queryCostList(int professional_id) {
 		// TODO Auto-generated method stub
-		return costListMapper.queryCostList(professional_id);
+		return costListMapper.getCostTyteList(professional_id);
 	}
 
 }

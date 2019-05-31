@@ -7,32 +7,27 @@ public class Professional {
     /**
      * 专业id
      */
-    @Column(name = "professional_id")
-    private Integer professionalId;
+    private Integer professional_id;
 
     /**
      * 专业名称
      */
-    @Column(name = "prf_name")
-    private String prfName;
+    private String prf_name;
 
     /**
      * 学校id
      */
-    @Column(name = "school_id")
-    private Integer schoolId;
+    private Integer school_id;
 
     /**
      * 校区id
      */
-    @Column(name = "school_area_id")
-    private Integer schoolAreaId;
+    private Integer school_area_id;
 
     /**
      * 学院id
      */
-    @Column(name = "academy_id")
-    private Integer academyId;
+    private Integer academy_id;
 
     /**
      * 备注
@@ -44,17 +39,17 @@ public class Professional {
      *
      * @return professional_id - 专业id
      */
-    public Integer getProfessionalId() {
-        return professionalId;
+    public Integer getProfessional_id() {
+        return professional_id;
     }
 
     /**
      * 设置专业id
      *
-     * @param professionalId 专业id
+     * @param professional_id 专业id
      */
-    public void setProfessionalId(Integer professionalId) {
-        this.professionalId = professionalId;
+    public void setProfessional_id(Integer professional_id) {
+        this.professional_id = professional_id;
     }
 
     /**
@@ -62,17 +57,17 @@ public class Professional {
      *
      * @return prf_name - 专业名称
      */
-    public String getPrfName() {
-        return prfName;
+    public String getPrf_name() {
+        return prf_name;
     }
 
     /**
      * 设置专业名称
      *
-     * @param prfName 专业名称
+     * @param prf_name 专业名称
      */
-    public void setPrfName(String prfName) {
-        this.prfName = prfName;
+    public void setPrf_name(String prf_name) {
+        this.prf_name = prf_name;
     }
 
     /**
@@ -80,17 +75,17 @@ public class Professional {
      *
      * @return school_id - 学校id
      */
-    public Integer getSchoolId() {
-        return schoolId;
+    public Integer getSchool_id() {
+        return school_id;
     }
 
     /**
      * 设置学校id
      *
-     * @param schoolId 学校id
+     * @param school_id 学校id
      */
-    public void setSchoolId(Integer schoolId) {
-        this.schoolId = schoolId;
+    public void setSchool_id(Integer school_id) {
+        this.school_id = school_id;
     }
 
     /**
@@ -98,17 +93,17 @@ public class Professional {
      *
      * @return school_area_id - 校区id
      */
-    public Integer getSchoolAreaId() {
-        return schoolAreaId;
+    public Integer getSchool_area_id() {
+        return school_area_id;
     }
 
     /**
      * 设置校区id
      *
-     * @param schoolAreaId 校区id
+     * @param school_area_id 校区id
      */
-    public void setSchoolAreaId(Integer schoolAreaId) {
-        this.schoolAreaId = schoolAreaId;
+    public void setSchool_area_id(Integer school_area_id) {
+        this.school_area_id = school_area_id;
     }
 
     /**
@@ -116,17 +111,17 @@ public class Professional {
      *
      * @return academy_id - 学院id
      */
-    public Integer getAcademyId() {
-        return academyId;
+    public Integer getAcademy_id() {
+        return academy_id;
     }
 
     /**
      * 设置学院id
      *
-     * @param academyId 学院id
+     * @param academy_id 学院id
      */
-    public void setAcademyId(Integer academyId) {
-        this.academyId = academyId;
+    public void setAcademy_id(Integer academy_id) {
+        this.academy_id = academy_id;
     }
 
     /**

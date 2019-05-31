@@ -43,7 +43,7 @@ public class PageController {
 	private PayDetailInterFace payDetailInterFace;
 	@Autowired
 	private SecretKeyInterFace secretKeyInterFace;
-	/*
+	
 	//支付界面
 	@RequestMapping(value ="/zhif")
 	public ModelAndView  getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
@@ -53,15 +53,6 @@ public class PageController {
 		//System.out.println("businessId:"+businessId);
 		return new ModelAndView("pay");
 	}
-	*/
-	
-	//支付界面
-		@RequestMapping(value ="/zhif")
-		public  List<SchoolInfo> getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
-			List<SchoolInfo>  schoolList =  payDetailInterFace.querySchoolList();
-			//System.out.println("businessId:"+businessId);
-			return schoolList;
-		}
 	
 	//获取缴费信息
 	@RequestMapping(value ="/costDetail")
