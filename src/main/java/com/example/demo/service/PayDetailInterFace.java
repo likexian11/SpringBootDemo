@@ -2,16 +2,16 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.model.AcademyInfo;
-import com.example.demo.model.CostType;
-import com.example.demo.model.PayDetail;
-import com.example.demo.model.Professional;
-import com.example.demo.model.SchoolInfo;
+import com.example.demo.pojo.AcademyInfo;
+import com.example.demo.pojo.CostList;
+import com.example.demo.pojo.PaycostDetail;
+import com.example.demo.pojo.Professional;
+import com.example.demo.pojo.SchoolInfo;
 
 public interface PayDetailInterFace {
 	
 	//
-	public PayDetail queryDetail(String paycost_num);
+	public PaycostDetail queryDetail(String paycost_num);
 	
 	//获取学校
 	public List<SchoolInfo> querySchoolList();
@@ -23,6 +23,6 @@ public interface PayDetailInterFace {
 	public List<Professional> queryPrfList(int school_id,int school_area_id,int academy_id);
 	
 	//获取缴费类型
-	public List<CostType> queryCostList(int professional_id);
+	public List<CostList> queryCostList(int professional_id);
 
 }

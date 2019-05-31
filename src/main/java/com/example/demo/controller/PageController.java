@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -25,11 +24,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.model.AcademyInfo;
-import com.example.demo.model.CostType;
-import com.example.demo.model.PayDetail;
-import com.example.demo.model.Professional;
-import com.example.demo.model.SchoolInfo;
+import com.example.demo.pojo.AcademyInfo;
+import com.example.demo.pojo.CostList;
+import com.example.demo.pojo.PaycostDetail;
+import com.example.demo.pojo.Professional;
+import com.example.demo.pojo.SchoolInfo;
 import com.example.demo.service.PayDetailInterFace;
 import com.example.demo.service.SecretKeyInterFace;
 import com.example.demo.utils.DateUtil;
@@ -44,20 +43,7 @@ public class PageController {
 	private PayDetailInterFace payDetailInterFace;
 	@Autowired
 	private SecretKeyInterFace secretKeyInterFace;
-	
-	@RequestMapping(value ="/sy")
-	public ModelAndView  getPage(ModelMap map) {
-		List<SchoolInfo>  schoolList =  payDetailInterFace.querySchoolList();
-		map.addAttribute("schoolList",schoolList);
-		
-		return new ModelAndView("index");
-	}
-	
-	@RequestMapping(value ="/te")
-	public ModelAndView  getPayPage() {
-		
-		return new ModelAndView("test");
-	}
+	/*
 	//支付界面
 	@RequestMapping(value ="/zhif")
 	public ModelAndView  getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
@@ -67,10 +53,20 @@ public class PageController {
 		//System.out.println("businessId:"+businessId);
 		return new ModelAndView("pay");
 	}
+	*/
+	
+	//支付界面
+		@RequestMapping(value ="/zhif")
+		public  List<SchoolInfo> getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
+			List<SchoolInfo>  schoolList =  payDetailInterFace.querySchoolList();
+			//System.out.println("businessId:"+businessId);
+			return schoolList;
+		}
+	
 	//获取缴费信息
 	@RequestMapping(value ="/costDetail")
-	public PayDetail getPayByNum(@RequestParam("num")  String num) {
-		PayDetail payDetail = payDetailInterFace.queryDetail(num);
+	public PaycostDetail getPayByNum(@RequestParam("num")  String num) {
+		PaycostDetail payDetail = payDetailInterFace.queryDetail(num);
 		return payDetail;
 	}
 	//获取已选择学校的学院列表
@@ -92,9 +88,9 @@ public class PageController {
 	}
 	//获取已选择的专业对应的缴费项目
 	@RequestMapping(value ="/costType")
-	public List<CostType> getCostType(@RequestParam("pid") String pid) {
+	public List<CostList> getCostType(@RequestParam("pid") String pid) {
 		int professional_id = Integer.valueOf(pid);
-		List<CostType> costList = payDetailInterFace.queryCostList(professional_id);
+		List<CostList> costList = payDetailInterFace.queryCostList(professional_id);
 		return costList;
 	}
 	//

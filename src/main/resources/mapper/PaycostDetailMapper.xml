@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PaycostDetailMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.PaycostDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="paycost_num" jdbcType="VARCHAR" property="paycostNum" />
+    <result column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <result column="school_area_id" jdbcType="INTEGER" property="schoolAreaId" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+    <result column="academy_id" jdbcType="INTEGER" property="academyId" />
+    <result column="academy_name" jdbcType="VARCHAR" property="academyName" />
+    <result column="professional_id" jdbcType="INTEGER" property="professionalId" />
+    <result column="prf_name" jdbcType="VARCHAR" property="prfName" />
+    <result column="class_num" jdbcType="VARCHAR" property="classNum" />
+    <result column="money" jdbcType="DOUBLE" property="money" />
+    <result column="cost_id" jdbcType="INTEGER" property="costId" />
+    <result column="cost_name" jdbcType="VARCHAR" property="costName" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="batch_num" jdbcType="VARCHAR" property="batchNum" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="is_pay" jdbcType="INTEGER" property="isPay" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+</mapper>

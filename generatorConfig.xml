@@ -28,12 +28,8 @@
         <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-		<table tableName="fkr_secretkey_tb" enableCountByExample="true"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-           <domainObjectRenamingRule searchString="^Tb" replaceString="" />  
+		<table tableName="%" >
+           <domainObjectRenamingRule searchString="^Fkr" replaceString="" />  
 			<!-- <columnRenamingRule searchString="^Fkr" replaceString=""/>-->
 		</table>
 

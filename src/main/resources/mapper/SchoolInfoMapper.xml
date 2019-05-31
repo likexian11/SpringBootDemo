@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SchoolInfoMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.SchoolInfo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="school_id" jdbcType="INTEGER" property="schoolId" />
+    <id column="school_area_id" jdbcType="INTEGER" property="schoolAreaId" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  
+  
+</mapper>

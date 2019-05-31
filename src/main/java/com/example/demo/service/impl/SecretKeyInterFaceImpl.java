@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -18,15 +18,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.dao.SecretKeyDao;
-import com.example.demo.model.FKRSecretKey;
+import com.example.demo.mapper.SecretkeyMapper;
+import com.example.demo.pojo.Secretkey;
+import com.example.demo.service.SecretKeyInterFace;
 import com.example.demo.utils.DateUtil;
 import com.example.demo.utils.EmptyUtil;
 import com.example.demo.utils.EncryptionMD5;
 
 @Service
 public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
-	@Autowired SecretKeyDao secretKeyDao;
+	@Autowired SecretkeyMapper secretkeyMapper;
 	
 	@Override
 	public String getPayUrl(String businessId,Map<String, String> map){
@@ -37,10 +38,10 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	    StringBuffer sb = new StringBuffer();
 		String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 		
-		FKRSecretKey secretKey = secretKeyDao.queryKeyInfo(businessId);
+		Secretkey secretKey = secretkeyMapper.queryKeyInfo(businessId);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
 			signMap.put("app", secretKey.getApp());
-			signMap.put("operator_id", secretKey.getOperator_id());
+			signMap.put("operator_id", secretKey.getOperatorId());
 			signMap.put("amount", map.get("amount"));
 			signMap.put("local_order_no", "TEST_"+date);
 			signMap.put("timestamp", System.currentTimeMillis()+"");
@@ -67,7 +68,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url
 			String uri="http://openapi.borongsoft.com/gatewayOpen.htm"+"?"
-						+newStrTemp +"&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirect_url() +"&version="+secretKey.getVersion()
+						+newStrTemp +"&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirectUrl() +"&version="+secretKey.getVersion()
 						+ "&sign="+sign;;
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
