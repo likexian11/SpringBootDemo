@@ -261,34 +261,37 @@
 		           async:false, 
 		 		   type:'post', 
 		 		   data:{num:num}, 
-		                success:function(data){ 
-		             	   //alert(data.length);
-		                   
-		                   $("#paycost_num").val(num);
-		                   //$("#schoolInfo").val(data.school_id);
-		                   //学校-校区
-		                   $("#schoolInfo").val(data.school_id+"-"+data.school_area_id);
-		                   //学院
-		                   $("#academyInfo").empty();
-		                   $("#academyInfo").append("<option value='"+data.academy_id+"'>"+ data.academy_name+"</option>"); 
-		                   //专业
-		                   $("#prfInfo").empty();
-		                   $("#prfInfo").append("<option value='"+data.professional_id+"'>"+ data.prf_name+"</option>"); 
-		                   //班级
-		                   $("#classNum").attr("readOnly",true);
-		                   $("#classNum").val(data.class_num);
-		                   //缴费项目
-		                   $("#costType").empty();
-		                   $("#costType").append("<option value='"+data.cost_id+"-"+data.money+"'>"+ data.cost_name+"</option>"); 
-		                   //金额
-		                   $("#costMoney").attr("readOnly",true);
-		                   $("#costMoney").val(data.money);
-		                   //学生姓名
-		                   $("#studentName").attr("readOnly",true);
-		                   $("#studentName").val(data.student_name);
+		                success:function(data){
+		                	if(null == data || "" == data){
+		                		alert("无"+num+"相关信息,请确认后输入.");
+		                	}else{
+		                		//alert(data.length);
+				                   $("#paycost_num").val(num);
+				                   //$("#schoolInfo").val(data.school_id);
+				                   //学校-校区
+				                   $("#schoolInfo").val(data.school_id+"-"+data.school_area_id);
+				                   //学院
+				                   $("#academyInfo").empty();
+				                   $("#academyInfo").append("<option value='"+data.academy_id+"'>"+ data.academy_name+"</option>"); 
+				                   //专业
+				                   $("#prfInfo").empty();
+				                   $("#prfInfo").append("<option value='"+data.professional_id+"'>"+ data.prf_name+"</option>"); 
+				                   //班级
+				                   $("#classNum").attr("readOnly",true);
+				                   $("#classNum").val(data.class_num);
+				                   //缴费项目
+				                   $("#costType").empty();
+				                   $("#costType").append("<option value='"+data.cost_id+"-"+data.money+"'>"+ data.cost_name+"</option>"); 
+				                   //金额
+				                   $("#costMoney").attr("readOnly",true);
+				                   $("#costMoney").val(data.money);
+				                   //学生姓名
+				                   $("#studentName").attr("readOnly",true);
+				                   $("#studentName").val(data.student_name);
+		                	}
+		             	   
 		                } 
 		 		   })
-		 		   
 		}
  		   
 	}
@@ -296,8 +299,9 @@
 	function req(){
 	    	
 		var amount= $("#costMoney").val()*100; 
-		var remark= $("#studentName").val() + "|" + $("#academyInfo").text() +"|"
+		var subject= $("#studentName").val() + "|" + $("#academyInfo").text() +"|"
 					+ $("#prfInfo").text()  +"|"+ $("#costType").text() +"|"+ $("#costMoney").val() ;
+		var remark = $("#remark").val();
 
 		var businessId = $("#businessId").val();
 		$.ajax({ 
@@ -305,9 +309,13 @@
                async:false, 
     		   type:'post', 
     		   //dataType:'json',
-    		   data:{businessId:businessId,amount:amount,remark:remark,}, 
-               success:function(data){        
-            	   window.location.href=data;  	   
+    		   data:{businessId:businessId,amount:amount,subject:subject,remark:remark}, 
+               success:function(data){      
+            	   if(null == data || "" == data ){
+            		   alert("未知商户.");
+            	   }else{
+            		   window.location.href=data;  
+            	   }
                } 
 		})
 		

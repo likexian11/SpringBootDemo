@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.javassist.expr.NewArray;
+import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -43,7 +44,7 @@ public class PageController {
 	private PayDetailInterFace payDetailInterFace;
 	@Autowired
 	private SecretKeyInterFace secretKeyInterFace;
-	
+
 	//支付界面
 	@RequestMapping(value ="/zhif")
 	public ModelAndView  getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
@@ -90,10 +91,12 @@ public class PageController {
 		String businessId="";
 		String payUrl="";
 		
+		
 		if(map.containsKey("businessId")) {
 			businessId= map.get("businessId");
 			//System.out.println("businessId:"+businessId);
 			payUrl = secretKeyInterFace.getPayUrl(businessId, map);
+			//System.out.println(payUrl);
 		}
 		return payUrl;
 		

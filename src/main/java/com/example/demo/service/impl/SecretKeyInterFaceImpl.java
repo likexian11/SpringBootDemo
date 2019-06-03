@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.config.BasicConfig;
 import com.example.demo.mapper.SecretkeyMapper;
 import com.example.demo.pojo.Secretkey;
 import com.example.demo.service.SecretKeyInterFace;
@@ -28,7 +30,11 @@ import com.example.demo.utils.EncryptionMD5;
 
 @Service
 public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
-	@Autowired SecretkeyMapper secretkeyMapper;
+	@Autowired 
+	SecretkeyMapper secretkeyMapper;
+	
+	@Autowired
+	private Sid sid;
 	
 	@Override
 	public String getPayUrl(String businessId,Map<String, String> map){
@@ -37,16 +43,17 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		String payUrl = "";
 		String sign=null;
 	    StringBuffer sb = new StringBuffer();
-		String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
+		//String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 		
 		Secretkey secretKey = secretkeyMapper.getKeyInfo(businessId);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
 			signMap.put("app", secretKey.getApp());
 			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
-			signMap.put("local_order_no", "TEST_"+date);
+			signMap.put("local_order_no", sid.nextShort());
 			signMap.put("timestamp", System.currentTimeMillis()+"");
-			signMap.put("subject", map.get("remark"));
+			signMap.put("subject", map.get("subject"));
+			signMap.put("remark", map.get("remark"));
 			
 		    //排序
 		    List<Map.Entry<String, String>> infoIds =
@@ -64,13 +71,12 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		            sb.append(infoIds.get(i).getKey() + "=" + infoIds.get(i).getValue() + "&");
 		        }
 		    }
-		    System.out.println(secretKey.getKey().trim());
 		    String newStrTemp = sb.toString()+"key="+secretKey.getKey().trim();
 			//生成签名
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url
-			String uri="http://openapi.borongsoft.com/gatewayOpen.htm"+"?"
-						+newStrTemp +"&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirect_url() +"&version="+secretKey.getVersion()
+			String uri=BasicConfig.H5_PAY_URL+"?"
+						+newStrTemp + "&remark=" + map.get("remark") + "&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirect_url() +"&version="+secretKey.getVersion()
 						+ "&sign="+sign;;
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
