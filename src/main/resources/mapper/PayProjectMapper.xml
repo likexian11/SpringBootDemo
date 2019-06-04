@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PayProjectMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.PayProject">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="organ_id" jdbcType="VARCHAR" property="organ_id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pay_single_money" jdbcType="DOUBLE" property="pay_single_money" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="pay_total_money" jdbcType="DOUBLE" property="pay_total_money" />
+    <result column="pay_statues" jdbcType="VARCHAR" property="pay_statues" />
+    <result column="is_temporary_pro" jdbcType="VARCHAR" property="is_temporary_pro" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="start_time" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="end_time" />
+    <result column="pay_years" jdbcType="VARCHAR" property="pay_years" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+</mapper>

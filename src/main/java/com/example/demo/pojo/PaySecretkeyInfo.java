@@ -2,31 +2,30 @@ package com.example.demo.pojo;
 
 import javax.persistence.*;
 
-@Table(name = "fkr_secretkey")
-public class Secretkey {
-    /**
-     * 收款商户id
-     */
+@Table(name = "pay_secretkey_info")
+public class PaySecretkeyInfo {
     @Id
-    private String business_id;
+    private String id;
 
     /**
-     * br接口名
+     * 归属机构
      */
+    private String business_id;
+
     private String command;
 
     /**
-     * br接入商标识
+     * 接入商标识
      */
     private String app;
 
     /**
-     * br收银员的id
+     * 收银员的id，用于标识收款账户
      */
     private String operator_id;
 
     /**
-     * 接口版本号
+     * 调用的接口版本，固定为：2.0
      */
     private String version;
 
@@ -36,95 +35,105 @@ public class Secretkey {
     private String redirect_url;
 
     /**
-     * br校验key
+     * 商户对应的key
      */
-    private String key;
+    private String app_key;
 
     /**
-     * 获取收款商户id
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取归属机构
      *
-     * @return business_id - 收款商户id
+     * @return business_id - 归属机构
      */
     public String getBusiness_id() {
         return business_id;
     }
 
     /**
-     * 设置收款商户id
+     * 设置归属机构
      *
-     * @param business_id 收款商户id
+     * @param business_id 归属机构
      */
     public void setBusiness_id(String business_id) {
         this.business_id = business_id;
     }
 
     /**
-     * 获取br接口名
-     *
-     * @return command - br接口名
+     * @return command
      */
     public String getCommand() {
         return command;
     }
 
     /**
-     * 设置br接口名
-     *
-     * @param command br接口名
+     * @param command
      */
     public void setCommand(String command) {
         this.command = command;
     }
 
     /**
-     * 获取br接入商标识
+     * 获取接入商标识
      *
-     * @return app - br接入商标识
+     * @return app - 接入商标识
      */
     public String getApp() {
         return app;
     }
 
     /**
-     * 设置br接入商标识
+     * 设置接入商标识
      *
-     * @param app br接入商标识
+     * @param app 接入商标识
      */
     public void setApp(String app) {
         this.app = app;
     }
 
     /**
-     * 获取br收银员的id
+     * 获取收银员的id，用于标识收款账户
      *
-     * @return operator_id - br收银员的id
+     * @return operator_id - 收银员的id，用于标识收款账户
      */
     public String getOperator_id() {
         return operator_id;
     }
 
     /**
-     * 设置br收银员的id
+     * 设置收银员的id，用于标识收款账户
      *
-     * @param operator_id br收银员的id
+     * @param operator_id 收银员的id，用于标识收款账户
      */
     public void setOperator_id(String operator_id) {
         this.operator_id = operator_id;
     }
 
     /**
-     * 获取接口版本号
+     * 获取调用的接口版本，固定为：2.0
      *
-     * @return version - 接口版本号
+     * @return version - 调用的接口版本，固定为：2.0
      */
     public String getVersion() {
         return version;
     }
 
     /**
-     * 设置接口版本号
+     * 设置调用的接口版本，固定为：2.0
      *
-     * @param version 接口版本号
+     * @param version 调用的接口版本，固定为：2.0
      */
     public void setVersion(String version) {
         this.version = version;
@@ -149,20 +158,20 @@ public class Secretkey {
     }
 
     /**
-     * 获取br校验key
+     * 获取商户对应的key
      *
-     * @return key - br校验key
+     * @return app_key - 商户对应的key
      */
-    public String getKey() {
-        return key;
+    public String getApp_key() {
+        return app_key;
     }
 
     /**
-     * 设置br校验key
+     * 设置商户对应的key
      *
-     * @param key br校验key
+     * @param app_key 商户对应的key
      */
-    public void setKey(String key) {
-        this.key = key;
+    public void setApp_key(String app_key) {
+        this.app_key = app_key;
     }
 }

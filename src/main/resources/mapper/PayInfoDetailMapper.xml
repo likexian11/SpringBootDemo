@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PayInfoDetailMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.PayInfoDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="app_order_no" jdbcType="VARCHAR" property="app_order_no" />
+    <result column="pay_info_id" jdbcType="VARCHAR" property="pay_info_id" />
+    <result column="cb_order_no" jdbcType="VARCHAR" property="cb_order_no" />
+    <result column="out_order_no" jdbcType="VARCHAR" property="out_order_no" />
+    <result column="order_status" jdbcType="VARCHAR" property="order_status" />
+    <result column="total_amount" jdbcType="DOUBLE" property="total_amount" />
+    <result column="receive_amount" jdbcType="DOUBLE" property="receive_amount" />
+    <result column="payment_channel" jdbcType="VARCHAR" property="payment_channel" />
+    <result column="discount_amount" jdbcType="DOUBLE" property="discount_amount" />
+    <result column="payment_way" jdbcType="VARCHAR" property="payment_way" />
+    <result column="pay_time" jdbcType="VARCHAR" property="pay_time" />
+    <result column="subject" jdbcType="LONGVARCHAR" property="subject" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+</mapper>

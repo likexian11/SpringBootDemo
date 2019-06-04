@@ -25,11 +25,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.pojo.AcademyInfo;
-import com.example.demo.pojo.CostList;
-import com.example.demo.pojo.PaycostDetail;
-import com.example.demo.pojo.Professional;
-import com.example.demo.pojo.SchoolInfo;
+import com.example.demo.pojo.Dept;
+import com.example.demo.pojo.PayPersonnel;
 import com.example.demo.service.PayDetailInterFace;
 import com.example.demo.service.SecretKeyInterFace;
 import com.example.demo.utils.DateUtil;
@@ -42,19 +39,24 @@ public class PageController {
 	
 	@Autowired
 	private PayDetailInterFace payDetailInterFace;
-	@Autowired
-	private SecretKeyInterFace secretKeyInterFace;
+	//@Autowired
+	//private SecretKeyInterFace secretKeyInterFace;
 
 	//支付界面
 	@RequestMapping(value ="/zhif")
-	public ModelAndView  getPayPage(ModelMap map,@RequestParam(name = "businessId",required = false) String businessId) {
-		List<SchoolInfo>  schoolList =  payDetailInterFace.querySchoolList();
-		map.addAttribute("schoolList",schoolList);
-		map.addAttribute("businessId",businessId);
+	public ModelAndView  getPayPage(ModelMap retMap,@RequestParam Map<String,String> reqMap) {
+		if(reqMap.containsKey("pid")) {
+			List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("pid"));
+			retMap.addAttribute("schoolList",deptList);
+			System.out.println(deptList);
+		}
+		if(reqMap.containsKey("businessId")) {
+			retMap.addAttribute("businessId",reqMap.get("businessId"));
+		}
 		//System.out.println("businessId:"+businessId);
 		return new ModelAndView("pay");
 	}
-	
+	/*
 	//获取缴费信息
 	@RequestMapping(value ="/costDetail")
 	public PaycostDetail getPayByNum(@RequestParam("num")  String num) {
@@ -101,5 +103,5 @@ public class PageController {
 		return payUrl;
 		
 	}
-	
+	*/
 }

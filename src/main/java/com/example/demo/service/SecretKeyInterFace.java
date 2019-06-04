@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface SecretKeyInterFace {
 	
-	public String getPayUrl(String businessId,Map<String, String> map) ;
+	//public String getPayUrl(String businessId,Map<String, String> map) ;
 
 }

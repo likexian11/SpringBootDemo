@@ -13,7 +13,7 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.170.131:3306/test"
+                        connectionURL="jdbc:mysql://192.168.170.131:3306/fkr_pay_website"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -28,14 +28,24 @@
         <javaClientGenerator targetPackage="com.example.demo.mapper" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-		<table tableName="%" enableSelectByExample="false"
+		<table tableName="pay%" enableSelectByExample="false"
 			enableDeleteByExample="false" enableCountByExample="false"
 			selectByExampleQueryId="true" enableUpdateByExample="false">
 			
            <property name="useActualColumnNames" value="true"/>
-           <domainObjectRenamingRule searchString="^Fkr" replaceString="" />  
+          <!-- <domainObjectRenamingRule searchString="^Fkr" replaceString="" /> --> 
 			<!-- <columnRenamingRule searchString="^Fkr" replaceString=""/>-->
 		</table>
+		
+		<table tableName="sys_dept" enableSelectByExample="false"
+			enableDeleteByExample="false" enableCountByExample="false"
+			selectByExampleQueryId="true" enableUpdateByExample="false">
+			
+           <property name="useActualColumnNames" value="true"/>
+          <domainObjectRenamingRule searchString="^Sys" replaceString="" />  
+			<!-- <columnRenamingRule searchString="^Fkr" replaceString=""/>-->
+		</table>
+		
 
 
 <!-- 
