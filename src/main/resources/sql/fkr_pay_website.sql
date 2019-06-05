@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-06-04 14:08:58
+Date: 2019-06-05 18:35:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,9 @@ CREATE TABLE `pay_info` (
 -- ----------------------------
 -- Records of pay_info
 -- ----------------------------
-INSERT INTO `pay_info` VALUES ('1D582BA67794406A882B38F34DC41E4D', '201810001', '31578ff3-800c-4f51-8763-f960ff4ce567', '1', null, '0', null, '无', '2019', '无');
+INSERT INTO `pay_info` VALUES ('1F226B6990D1403D817BFB86565E1AA8', '201810001', '31578ff3-800c-4f51-8763-f960ff4ce567', '1', '0', '0', null, null, null, null);
+INSERT INTO `pay_info` VALUES ('AA32423DF6644978B80FAB458CCDBE64', '201810002', '31578ff3-800c-4f51-8763-f960ff4ce567', '1', '0', '0', null, null, null, null);
+INSERT INTO `pay_info` VALUES ('DA64340073BC49AAA4A44500AD26FE77', '201810001', '72574D067AB54C64A7ADEF41964218AE', '1', '0', '0', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for pay_info_detail
@@ -80,8 +82,10 @@ CREATE TABLE `pay_personnel` (
 -- ----------------------------
 -- Records of pay_personnel
 -- ----------------------------
-INSERT INTO `pay_personnel` VALUES ('593E9F0934674BED988DCA644694A9AA', '108', '201810002', '李健', '15075754545', '无');
-INSERT INTO `pay_personnel` VALUES ('E692CC516D784152A5017D241292F8DC', '108', '201810001', '王泽', '15245454545', '测试');
+INSERT INTO `pay_personnel` VALUES ('1113A5E6B52E4004A9608654BF06B29C', '11113', '201810002', '王静', '18012121212', '无');
+INSERT INTO `pay_personnel` VALUES ('272D4E87FCBF4A869AC79479E8EEBC22', '108', '201910005', '王哲号', '18978784545', '测试');
+INSERT INTO `pay_personnel` VALUES ('AC383A902ADC43929D13B932D7D0FF75', '11115', '210111101', '100111101', '1515151515121', ' 大幅度发');
+INSERT INTO `pay_personnel` VALUES ('E692CC516D784152A5017D241292F8DC', '11113', '201810001', '王泽', '15245454545', '测试');
 
 -- ----------------------------
 -- Table structure for pay_project
@@ -106,8 +110,17 @@ CREATE TABLE `pay_project` (
 -- ----------------------------
 -- Records of pay_project
 -- ----------------------------
-INSERT INTO `pay_project` VALUES ('31578ff3-800c-4f51-8763-f960ff4ce567', '108', '学杂费', '1', '1', '1', '1', '0', null, null, '2017', '测试');
-INSERT INTO `pay_project` VALUES ('49F0ABC655144FDDA2B0DB5A156FE2A1', '108', '住宿费', '1', '1', '1', '1', '1', null, null, null, '无');
+INSERT INTO `pay_project` VALUES ('31578ff3-800c-4f51-8763-f960ff4ce567', '11113', '2019学杂费', '0.01', '1', '0.01', '1', '0', null, null, '2017', '测试');
+INSERT INTO `pay_project` VALUES ('555EA5B54AF140BDA8A1E28C1DD3806D', '11115', '住宿费', '0.01', '1', '0.01', '1', '0', null, null, null, '测试');
+INSERT INTO `pay_project` VALUES ('72574D067AB54C64A7ADEF41964218AE', '11113', '高等数学重修费', '0.01', '1', '0.01', '1', '0', null, null, null, '长期缴费项目');
+INSERT INTO `pay_project` VALUES ('7AC36ADAC61945DAADA6E04213B36258', '11113', '2019住宿费', '0.01', '1', '0.01', '1', '1', '2019-06-04 10:04:53', '2019-06-04 10:04:56', null, '无');
+INSERT INTO `pay_project` VALUES ('B5C9E376DE1349139212A5C484D9FA15', '11114', '2019学杂费', '0.01', '1', '0.01', '1', '0', null, null, null, 'ces');
+INSERT INTO `pay_project` VALUES ('BCA10E67F15A49EF8A5E674F8C50CEA5', '11114', '2019住宿费', '0.01', '1', '0.01', '1', '1', '2019-07-01 00:00:00', '2019-12-31 00:00:00', null, '测试');
+INSERT INTO `pay_project` VALUES ('BCA10E67F15A49EF8A5E674F8C50CEB5', '11115', '2019住宿费111', '0.01', '1', '0.01', '1', '1', '2019-07-01 00:00:00', '2019-12-31 00:00:00', null, '测试');
+INSERT INTO `pay_project` VALUES ('BCA10E67F15A49EF8A5E674F8C50CVV5', '11115', '2019住宿费121', '0.01', '1', '0.01', '1', '1', '2019-07-01 00:00:00', '2019-12-31 00:00:00', null, '测试');
+INSERT INTO `pay_project` VALUES ('BCA10E67F15A49EF8A5E674F8EE50CEA5', '11115', '2019住宿费14', '0.01', '1', '0.01', '1', '1', '2019-07-01 00:00:00', '2019-12-31 00:00:00', null, '测试');
+INSERT INTO `pay_project` VALUES ('BCA10E67F15A49EF8A5E674FSSSEEA5', '11116', '2019住宿费11', '0.01', '1', '0.01', '1', '1', '2019-07-01 00:00:00', '2019-12-31 00:00:00', null, '测试');
+INSERT INTO `pay_project` VALUES ('BCA12447F15A49EF8A5E674F8C50CEA5', '11117', '2019住宿费111', '0.01', '1', '0.01', '1', '1', '2019-07-01 00:00:00', '2019-12-31 00:00:00', null, '测试');
 
 -- ----------------------------
 -- Table structure for pay_secretkey_info
@@ -276,7 +289,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'CY-20190527LWFG1559533578681', '1559534678782', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('RuoyiScheduler', 'CY-20190527LWFG1559730073261', '1559730138113', '15000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -353,8 +366,8 @@ CREATE TABLE `qrtz_triggers` (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_1', 'DEFAULT', 'TASK_1', 'DEFAULT', null, '1556373550000', '-1', '5', 'PAUSED', 'CRON', '1556373547000', '0', null, '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720028636F6D2E72756F79692E70726F6A6563742E6D6F6E69746F722E6A6F622E646F6D61696E2E4A6F6200000000000000010200074900067374617475734C000E63726F6E45787072657373696F6E7400124C6A6176612F6C616E672F537472696E673B4C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E000978720029636F6D2E72756F79692E6672616D65776F726B2E7765622E646F6D61696E2E42617365456E7469747900000000000000010200064C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001622CDE29E078707070700000000174000E302F3130202A202A202A202A203F740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E697A0E58F82EFBC897372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000000000000174000672795461736B74000A72794E6F506172616D737400007800);
-INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_2', 'DEFAULT', 'TASK_2', 'DEFAULT', null, '1556373560000', '-1', '5', 'PAUSED', 'CRON', '1556373547000', '0', null, '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720028636F6D2E72756F79692E70726F6A6563742E6D6F6E69746F722E6A6F622E646F6D61696E2E4A6F6200000000000000010200074900067374617475734C000E63726F6E45787072657373696F6E7400124C6A6176612F6C616E672F537472696E673B4C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E000978720029636F6D2E72756F79692E6672616D65776F726B2E7765622E646F6D61696E2E42617365456E7469747900000000000000010200064C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001622CDE29E078707070700000000174000E302F3230202A202A202A202A203F740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E69C89E58F82EFBC897372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000000000000274000672795461736B7400087279506172616D7374000272797800);
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_1', 'DEFAULT', 'TASK_1', 'DEFAULT', null, '1556373550000', '-1', '5', 'PAUSED', 'CRON', '1556373547000', '0', null, '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720028636F6D2E72756F79692E70726F6A6563742E6D6F6E69746F722E6A6F622E646F6D61696E2E4A6F6200000000000000010200074900067374617475734C000E63726F6E45787072657373696F6E7400124C6A6176612F6C616E672F537472696E673B4C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E000978720029636F6D2E72756F79692E6672616D65776F726B2E7765622E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C001064617461417574686F7269747953716C71007E00094C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001622CDE29E07870707070700000000174000E302F3130202A202A202A202A203F740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E697A0E58F82EFBC897372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000000000000174000672795461736B74000A72794E6F506172616D737400007800);
+INSERT INTO `qrtz_triggers` VALUES ('RuoyiScheduler', 'TASK_2', 'DEFAULT', 'TASK_2', 'DEFAULT', null, '1556373560000', '-1', '5', 'PAUSED', 'CRON', '1556373547000', '0', null, '0', 0xACED0005737200156F72672E71756172747A2E4A6F62446174614D61709FB083E8BFA9B0CB020000787200266F72672E71756172747A2E7574696C732E537472696E674B65794469727479466C61674D61708208E8C3FBC55D280200015A0013616C6C6F77735472616E7369656E74446174617872001D6F72672E71756172747A2E7574696C732E4469727479466C61674D617013E62EAD28760ACE0200025A000564697274794C00036D617074000F4C6A6176612F7574696C2F4D61703B787001737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000D4A4F425F504152414D5F4B455973720028636F6D2E72756F79692E70726F6A6563742E6D6F6E69746F722E6A6F622E646F6D61696E2E4A6F6200000000000000010200074900067374617475734C000E63726F6E45787072657373696F6E7400124C6A6176612F6C616E672F537472696E673B4C00086A6F6247726F757071007E00094C00056A6F6249647400104C6A6176612F6C616E672F4C6F6E673B4C00076A6F624E616D6571007E00094C000A6D6574686F644E616D6571007E00094C0006706172616D7371007E000978720029636F6D2E72756F79692E6672616D65776F726B2E7765622E646F6D61696E2E42617365456E7469747900000000000000010200074C0008637265617465427971007E00094C000A63726561746554696D657400104C6A6176612F7574696C2F446174653B4C001064617461417574686F7269747953716C71007E00094C000672656D61726B71007E00094C000B73656172636856616C756571007E00094C0008757064617465427971007E00094C000A75706461746554696D6571007E000C787074000561646D696E7372000E6A6176612E7574696C2E44617465686A81014B59741903000078707708000001622CDE29E07870707070700000000174000E302F3230202A202A202A202A203F740018E7B3BBE7BB9FE9BB98E8AEA4EFBC88E69C89E58F82EFBC897372000E6A6176612E6C616E672E4C6F6E673B8BE490CC8F23DF0200014A000576616C7565787200106A6176612E6C616E672E4E756D62657286AC951D0B94E08B0200007870000000000000000274000672795461736B7400087279506172616D7374000272797800);
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -398,7 +411,7 @@ CREATE TABLE `sys_dept` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`dept_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11113 DEFAULT CHARSET=utf8 COMMENT='部门表';
+) ENGINE=InnoDB AUTO_INCREMENT=11118 DEFAULT CHARSET=utf8 COMMENT='部门表';
 
 -- ----------------------------
 -- Records of sys_dept
@@ -409,8 +422,12 @@ INSERT INTO `sys_dept` VALUES ('101', '100', '南宁校区', '1', '若依', '158
 INSERT INTO `sys_dept` VALUES ('102', '100', '贵港校区', '2', '若依', '15888888888', 'ry@qq.com', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
 INSERT INTO `sys_dept` VALUES ('106', '101', '计算机科学与技术学院', '1', '若依', '15888888888', 'ry@qq.com', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2019-05-31 10:11:57');
 INSERT INTO `sys_dept` VALUES ('108', '102', '计算机学院', '1', '若依', '15888888888', 'ry@qq.com', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2019-05-31 10:13:15');
-INSERT INTO `sys_dept` VALUES ('110', '101', '挖掘机技术哪家强', '20', '刘青国', '15875451212', '1212121@99.com', '0', 'admin', '2019-05-31 10:12:57', '', null);
 INSERT INTO `sys_dept` VALUES ('11112', '99', '测试机构', '500', '小邓', '15077232323', '11645454@qq.com', '0', 'admin', '2019-05-31 16:27:43', '', null);
+INSERT INTO `sys_dept` VALUES ('11113', '106', '计算机科学', '10', '', '', '', '0', 'admin', '2019-06-05 09:36:12', '', null);
+INSERT INTO `sys_dept` VALUES ('11114', '106', '软件工程', '20', '', '', '', '0', 'admin', '2019-06-05 09:36:25', '', null);
+INSERT INTO `sys_dept` VALUES ('11115', '11114', '软件工程1801班', '10', '', '', '', '0', 'admin', '2019-06-05 09:37:43', '', null);
+INSERT INTO `sys_dept` VALUES ('11116', '11114', '软件工程1802班', '20', '', '', '', '0', 'admin', '2019-06-05 09:38:06', 'admin', '2019-06-05 09:38:13');
+INSERT INTO `sys_dept` VALUES ('11117', '11113', '计算机1901班', '10', '', '', '', '0', 'admin', '2019-06-05 09:38:36', '', null);
 
 -- ----------------------------
 -- Table structure for sys_dict_data
@@ -532,7 +549,7 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -589,11 +606,88 @@ INSERT INTO `sys_logininfor` VALUES ('148', 'admin', '0:0:0:0:0:0:0:1', 'Chrome'
 INSERT INTO `sys_logininfor` VALUES ('149', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 11:20:35');
 INSERT INTO `sys_logininfor` VALUES ('150', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 11:38:18');
 INSERT INTO `sys_logininfor` VALUES ('151', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 11:46:35');
-INSERT INTO `sys_logininfor` VALUES ('152', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 14:42:13');
-INSERT INTO `sys_logininfor` VALUES ('153', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 14:48:40');
-INSERT INTO `sys_logininfor` VALUES ('154', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 14:58:48');
-INSERT INTO `sys_logininfor` VALUES ('155', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 14:59:08');
-INSERT INTO `sys_logininfor` VALUES ('156', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 15:16:22');
+INSERT INTO `sys_logininfor` VALUES ('152', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 13:02:42');
+INSERT INTO `sys_logininfor` VALUES ('153', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 14:31:51');
+INSERT INTO `sys_logininfor` VALUES ('154', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '验证码错误', '2019-06-03 14:37:59');
+INSERT INTO `sys_logininfor` VALUES ('155', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 14:38:03');
+INSERT INTO `sys_logininfor` VALUES ('156', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 15:21:46');
+INSERT INTO `sys_logininfor` VALUES ('157', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 15:36:10');
+INSERT INTO `sys_logininfor` VALUES ('158', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-03 15:40:24');
+INSERT INTO `sys_logininfor` VALUES ('159', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 08:54:39');
+INSERT INTO `sys_logininfor` VALUES ('160', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 09:10:19');
+INSERT INTO `sys_logininfor` VALUES ('161', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 09:11:18');
+INSERT INTO `sys_logininfor` VALUES ('162', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 09:41:19');
+INSERT INTO `sys_logininfor` VALUES ('163', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 09:46:18');
+INSERT INTO `sys_logininfor` VALUES ('164', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:01:09');
+INSERT INTO `sys_logininfor` VALUES ('165', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:10:57');
+INSERT INTO `sys_logininfor` VALUES ('166', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:12:17');
+INSERT INTO `sys_logininfor` VALUES ('167', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:17:06');
+INSERT INTO `sys_logininfor` VALUES ('168', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:26:07');
+INSERT INTO `sys_logininfor` VALUES ('169', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:28:04');
+INSERT INTO `sys_logininfor` VALUES ('170', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '验证码错误', '2019-06-04 10:45:09');
+INSERT INTO `sys_logininfor` VALUES ('171', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:45:13');
+INSERT INTO `sys_logininfor` VALUES ('172', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 10:48:18');
+INSERT INTO `sys_logininfor` VALUES ('173', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 11:01:42');
+INSERT INTO `sys_logininfor` VALUES ('174', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-04 11:08:31');
+INSERT INTO `sys_logininfor` VALUES ('175', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 11:12:15');
+INSERT INTO `sys_logininfor` VALUES ('176', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 11:51:16');
+INSERT INTO `sys_logininfor` VALUES ('177', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 14:21:59');
+INSERT INTO `sys_logininfor` VALUES ('178', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 14:29:49');
+INSERT INTO `sys_logininfor` VALUES ('179', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 14:33:11');
+INSERT INTO `sys_logininfor` VALUES ('180', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 14:35:52');
+INSERT INTO `sys_logininfor` VALUES ('181', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-04 14:37:24');
+INSERT INTO `sys_logininfor` VALUES ('182', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 09:21:41');
+INSERT INTO `sys_logininfor` VALUES ('183', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 09:28:31');
+INSERT INTO `sys_logininfor` VALUES ('184', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '密码输入错误1次，admin123', '2019-06-05 09:49:27');
+INSERT INTO `sys_logininfor` VALUES ('185', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 09:49:33');
+INSERT INTO `sys_logininfor` VALUES ('186', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 10:58:36');
+INSERT INTO `sys_logininfor` VALUES ('187', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 11:04:03');
+INSERT INTO `sys_logininfor` VALUES ('188', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 11:12:36');
+INSERT INTO `sys_logininfor` VALUES ('189', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 11:12:38');
+INSERT INTO `sys_logininfor` VALUES ('190', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 11:54:59');
+INSERT INTO `sys_logininfor` VALUES ('191', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 12:35:33');
+INSERT INTO `sys_logininfor` VALUES ('192', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 14:02:55');
+INSERT INTO `sys_logininfor` VALUES ('193', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '验证码错误', '2019-06-05 14:03:18');
+INSERT INTO `sys_logininfor` VALUES ('194', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '验证码错误', '2019-06-05 14:03:19');
+INSERT INTO `sys_logininfor` VALUES ('195', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 14:03:23');
+INSERT INTO `sys_logininfor` VALUES ('196', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 14:27:19');
+INSERT INTO `sys_logininfor` VALUES ('197', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 14:29:08');
+INSERT INTO `sys_logininfor` VALUES ('198', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:24:50');
+INSERT INTO `sys_logininfor` VALUES ('199', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:25:45');
+INSERT INTO `sys_logininfor` VALUES ('200', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 15:26:38');
+INSERT INTO `sys_logininfor` VALUES ('201', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:26:45');
+INSERT INTO `sys_logininfor` VALUES ('202', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 15:27:40');
+INSERT INTO `sys_logininfor` VALUES ('203', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:28:38');
+INSERT INTO `sys_logininfor` VALUES ('204', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:42:29');
+INSERT INTO `sys_logininfor` VALUES ('205', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:59:17');
+INSERT INTO `sys_logininfor` VALUES ('206', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 15:59:43');
+INSERT INTO `sys_logininfor` VALUES ('207', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 15:59:45');
+INSERT INTO `sys_logininfor` VALUES ('208', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 16:00:42');
+INSERT INTO `sys_logininfor` VALUES ('209', 'test2', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:00:49');
+INSERT INTO `sys_logininfor` VALUES ('210', 'test1', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '用户不存在/密码错误', '2019-06-05 16:12:28');
+INSERT INTO `sys_logininfor` VALUES ('211', 'test1', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '用户不存在/密码错误', '2019-06-05 16:12:36');
+INSERT INTO `sys_logininfor` VALUES ('212', 'test2', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:25:05');
+INSERT INTO `sys_logininfor` VALUES ('213', 'test2', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 16:25:57');
+INSERT INTO `sys_logininfor` VALUES ('214', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:26:06');
+INSERT INTO `sys_logininfor` VALUES ('215', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 16:26:49');
+INSERT INTO `sys_logininfor` VALUES ('216', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:26:53');
+INSERT INTO `sys_logininfor` VALUES ('217', 'test', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:41:12');
+INSERT INTO `sys_logininfor` VALUES ('218', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:43:24');
+INSERT INTO `sys_logininfor` VALUES ('219', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '1', '验证码错误', '2019-06-05 16:44:44');
+INSERT INTO `sys_logininfor` VALUES ('220', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:44:51');
+INSERT INTO `sys_logininfor` VALUES ('221', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:52:12');
+INSERT INTO `sys_logininfor` VALUES ('222', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 16:58:06');
+INSERT INTO `sys_logininfor` VALUES ('223', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:15:59');
+INSERT INTO `sys_logininfor` VALUES ('224', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '退出成功', '2019-06-05 17:16:16');
+INSERT INTO `sys_logininfor` VALUES ('225', 'gxy_nn', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:16:31');
+INSERT INTO `sys_logininfor` VALUES ('226', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:20:31');
+INSERT INTO `sys_logininfor` VALUES ('227', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:22:17');
+INSERT INTO `sys_logininfor` VALUES ('228', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:24:29');
+INSERT INTO `sys_logininfor` VALUES ('229', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:27:56');
+INSERT INTO `sys_logininfor` VALUES ('230', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 17:55:15');
+INSERT INTO `sys_logininfor` VALUES ('231', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 18:12:16');
+INSERT INTO `sys_logininfor` VALUES ('232', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 18:16:24');
+INSERT INTO `sys_logininfor` VALUES ('233', 'admin', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', '0', '登录成功', '2019-06-05 18:21:21');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -751,7 +845,7 @@ CREATE TABLE `sys_oper_log` (
   `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
   PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8 COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -833,6 +927,40 @@ INSERT INTO `sys_oper_log` VALUES ('173', '系统管理', '菜单管理-修改�
 INSERT INTO `sys_oper_log` VALUES ('174', '系统管理', '菜单管理-保存菜单', 'com.ruoyi.project.system.menu.controller.MenuController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/menu/save', '0:0:0:0:0:0:0:1', '{\"menuId\":[\"76\"],\"parentId\":[\"3\"],\"menuType\":[\"C\"],\"menuName\":[\"缴费流水\"],\"url\":[\"/pay/infoDetail\"],\"perms\":[\"pay:infoDetail:view\"],\"orderNum\":[\"40\"],\"icon\":[\"#\"],\"visible\":[\"0\"]}', '0', null, '2019-06-03 11:41:28');
 INSERT INTO `sys_oper_log` VALUES ('175', '系统管理', '菜单管理-修改菜单', 'com.ruoyi.project.system.menu.controller.MenuController.edit()', 'web', 'admin', '计算机科学与技术学院', '/system/menu/edit/104', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-03 11:41:41');
 INSERT INTO `sys_oper_log` VALUES ('176', '系统管理', '菜单管理-保存菜单', 'com.ruoyi.project.system.menu.controller.MenuController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/menu/save', '0:0:0:0:0:0:0:1', '{\"menuId\":[\"104\"],\"parentId\":[\"3\"],\"menuType\":[\"C\"],\"menuName\":[\"商户慧商通\"],\"url\":[\"/pay/secretkeyInfo\"],\"perms\":[\"pay:secretkeyInfo:view\"],\"orderNum\":[\"50\"],\"icon\":[\"#\"],\"visible\":[\"0\"]}', '0', null, '2019-06-03 11:41:44');
+INSERT INTO `sys_oper_log` VALUES ('177', '系统管理', '角色管理-新增角色', 'com.ruoyi.project.system.role.controller.RoleController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/role/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-04 09:00:52');
+INSERT INTO `sys_oper_log` VALUES ('178', '系统管理', '用户管理-新增用户', 'com.ruoyi.project.system.user.controller.UserController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/user/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-04 09:01:00');
+INSERT INTO `sys_oper_log` VALUES ('179', '监控管理', '定时任务-新增调度', 'com.ruoyi.project.monitor.job.controller.JobController.add()', 'web', 'admin', '计算机科学与技术学院', '/monitor/job/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-04 09:01:16');
+INSERT INTO `sys_oper_log` VALUES ('180', '系统管理', '字典管理-修改字典类型', 'com.ruoyi.project.system.dict.controller.DictTypeController.edit()', 'web', 'admin', '计算机科学与技术学院', '/system/dict/edit/2', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-04 11:05:35');
+INSERT INTO `sys_oper_log` VALUES ('181', '系统管理', '字典管理-查询字典数据', 'com.ruoyi.project.system.dict.controller.DictTypeController.detail()', 'web', 'admin', '计算机科学与技术学院', '/system/dict/detail/2', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-04 11:05:38');
+INSERT INTO `sys_oper_log` VALUES ('182', '系统管理', '用户管理-新增用户', 'com.ruoyi.project.system.user.controller.UserController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/user/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:22:25');
+INSERT INTO `sys_oper_log` VALUES ('183', '系统管理', '用户管理-保存用户', 'com.ruoyi.project.system.user.controller.UserController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/user/save', '0:0:0:0:0:0:0:1', '{\"deptId\":[\"101\"],\"loginName\":[\"gxy_nn\"],\"userName\":[\"工学院南宁校区\"],\"password\":[\"123456\"],\"email\":[\"gxy_na@sohu.com\"],\"phonenumber\":[\"15201210001\"],\"sex\":[\"0\"],\"status\":[\"0\"],\"roleIds\":[\"2\"],\"postIds\":[\"1\"]}', '0', null, '2019-06-05 09:23:55');
+INSERT INTO `sys_oper_log` VALUES ('184', '系统管理', '角色管理-修改角色', 'com.ruoyi.project.system.role.controller.RoleController.edit()', 'web', 'admin', '计算机科学与技术学院', '/system/role/edit/2', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:24:04');
+INSERT INTO `sys_oper_log` VALUES ('185', '系统管理', '角色管理-保存角色', 'com.ruoyi.project.system.role.controller.RoleController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/role/save', '0:0:0:0:0:0:0:1', '{\"roleId\":[\"2\"],\"roleName\":[\"学校负责人\"],\"roleKey\":[\"common\"],\"roleSort\":[\"2\"],\"status\":[\"0\"],\"remark\":[\"普通角色\"],\"menuIds\":[\"3,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,16,74,75,17\"]}', '0', null, '2019-06-05 09:24:33');
+INSERT INTO `sys_oper_log` VALUES ('186', '系统管理', '部门管理-新增部门', 'com.ruoyi.project.system.dept.controller.DeptController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/add/106', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:35:48');
+INSERT INTO `sys_oper_log` VALUES ('187', '系统管理', '部门管理-保存部门', 'com.ruoyi.project.system.dept.controller.DeptController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/save', '0:0:0:0:0:0:0:1', '{\"parentId\":[\"106\"],\"deptName\":[\"计算机科学\"],\"orderNum\":[\"10\"],\"leader\":[\"\"],\"phone\":[\"\"],\"email\":[\"\"],\"status\":[\"0\"]}', '0', null, '2019-06-05 09:36:12');
+INSERT INTO `sys_oper_log` VALUES ('188', '系统管理', '部门管理-新增部门', 'com.ruoyi.project.system.dept.controller.DeptController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/add/106', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:36:15');
+INSERT INTO `sys_oper_log` VALUES ('189', '系统管理', '部门管理-保存部门', 'com.ruoyi.project.system.dept.controller.DeptController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/save', '0:0:0:0:0:0:0:1', '{\"parentId\":[\"106\"],\"deptName\":[\"软件工程\"],\"orderNum\":[\"20\"],\"leader\":[\"\"],\"phone\":[\"\"],\"email\":[\"\"],\"status\":[\"0\"]}', '0', null, '2019-06-05 09:36:25');
+INSERT INTO `sys_oper_log` VALUES ('190', '系统管理', '部门管理-删除部门', 'com.ruoyi.project.system.dept.controller.DeptController.remove()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/remove/110', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:37:09');
+INSERT INTO `sys_oper_log` VALUES ('191', '系统管理', '部门管理-新增部门', 'com.ruoyi.project.system.dept.controller.DeptController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/add/11114', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:37:26');
+INSERT INTO `sys_oper_log` VALUES ('192', '系统管理', '部门管理-保存部门', 'com.ruoyi.project.system.dept.controller.DeptController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/save', '0:0:0:0:0:0:0:1', '{\"parentId\":[\"11114\"],\"deptName\":[\"软件工程1801班\"],\"orderNum\":[\"10\"],\"leader\":[\"\"],\"phone\":[\"\"],\"email\":[\"\"],\"status\":[\"0\"]}', '0', null, '2019-06-05 09:37:43');
+INSERT INTO `sys_oper_log` VALUES ('193', '系统管理', '部门管理-新增部门', 'com.ruoyi.project.system.dept.controller.DeptController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/add/11114', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:37:56');
+INSERT INTO `sys_oper_log` VALUES ('194', '系统管理', '部门管理-保存部门', 'com.ruoyi.project.system.dept.controller.DeptController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/save', '0:0:0:0:0:0:0:1', '{\"parentId\":[\"11114\"],\"deptName\":[\"软件工程1802\"],\"orderNum\":[\"20\"],\"leader\":[\"\"],\"phone\":[\"\"],\"email\":[\"\"],\"status\":[\"0\"]}', '0', null, '2019-06-05 09:38:06');
+INSERT INTO `sys_oper_log` VALUES ('195', '系统管理', '部门管理-修改部门', 'com.ruoyi.project.system.dept.controller.DeptController.edit()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/edit/11116', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:38:10');
+INSERT INTO `sys_oper_log` VALUES ('196', '系统管理', '部门管理-保存部门', 'com.ruoyi.project.system.dept.controller.DeptController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/save', '0:0:0:0:0:0:0:1', '{\"deptId\":[\"11116\"],\"parentId\":[\"11114\"],\"deptName\":[\"软件工程1802班\"],\"orderNum\":[\"20\"],\"leader\":[\"\"],\"phone\":[\"\"],\"email\":[\"\"],\"status\":[\"0\"]}', '0', null, '2019-06-05 09:38:13');
+INSERT INTO `sys_oper_log` VALUES ('197', '系统管理', '部门管理-新增部门', 'com.ruoyi.project.system.dept.controller.DeptController.add()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/add/11113', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:38:23');
+INSERT INTO `sys_oper_log` VALUES ('198', '系统管理', '部门管理-保存部门', 'com.ruoyi.project.system.dept.controller.DeptController.save()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/save', '0:0:0:0:0:0:0:1', '{\"parentId\":[\"11113\"],\"deptName\":[\"计算机1901班\"],\"orderNum\":[\"10\"],\"leader\":[\"\"],\"phone\":[\"\"],\"email\":[\"\"],\"status\":[\"0\"]}', '0', null, '2019-06-05 09:38:36');
+INSERT INTO `sys_oper_log` VALUES ('199', '系统管理', '部门管理-修改部门', 'com.ruoyi.project.system.dept.controller.DeptController.edit()', 'web', 'admin', '计算机科学与技术学院', '/system/dept/edit/11115', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 09:39:38');
+INSERT INTO `sys_oper_log` VALUES ('200', '系统管理', '角色管理-修改角色', 'com.ruoyi.project.system.role.controller.RoleController.edit()', 'web', 'admin', '计算机科学与技术学院', '/system/role/edit/2', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 11:09:17');
+INSERT INTO `sys_oper_log` VALUES ('201', '系统管理', '角色管理-新增角色', 'com.ruoyi.project.system.role.controller.RoleController.add()', 'web', 'admin', '凡科睿简易支付平台', '/system/role/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 14:29:39');
+INSERT INTO `sys_oper_log` VALUES ('202', '系统管理', '角色管理-保存角色', 'com.ruoyi.project.system.role.controller.RoleController.save()', 'web', 'admin', '凡科睿简易支付平台', '/system/role/save', '0:0:0:0:0:0:0:1', '{\"roleName\":[\"学院负责人\"],\"roleKey\":[\"sss\"],\"roleSort\":[\"11\"],\"status\":[\"0\"],\"remark\":[\"测试\"],\"menuIds\":[\"\"]}', '0', null, '2019-06-05 14:30:08');
+INSERT INTO `sys_oper_log` VALUES ('203', '系统管理', '角色管理-新增角色', 'com.ruoyi.project.system.role.controller.RoleController.add()', 'web', 'admin', '凡科睿简易支付平台', '/system/role/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 14:30:11');
+INSERT INTO `sys_oper_log` VALUES ('204', '系统管理', '角色管理-保存角色', 'com.ruoyi.project.system.role.controller.RoleController.save()', 'web', 'admin', '凡科睿简易支付平台', '/system/role/save', '0:0:0:0:0:0:0:1', '{\"roleName\":[\"孙菲菲\"],\"roleKey\":[\"11\"],\"roleSort\":[\"5\"],\"status\":[\"0\"],\"remark\":[\"测试\"],\"menuIds\":[\"\"]}', '0', null, '2019-06-05 14:30:22');
+INSERT INTO `sys_oper_log` VALUES ('205', '系统管理', '角色管理-删除角色', 'com.ruoyi.project.system.role.controller.RoleController.remove()', 'web', 'admin', '凡科睿简易支付平台', '/system/role/remove/4', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 14:30:31');
+INSERT INTO `sys_oper_log` VALUES ('206', '系统管理', '角色管理-删除角色', 'com.ruoyi.project.system.role.controller.RoleController.remove()', 'web', 'admin', '凡科睿简易支付平台', '/system/role/remove/3', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 14:30:35');
+INSERT INTO `sys_oper_log` VALUES ('207', '系统管理', '用户管理-新增用户', 'com.ruoyi.project.system.user.controller.UserController.add()', 'web', 'admin', '凡科睿简易支付平台', '/system/user/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 15:25:51');
+INSERT INTO `sys_oper_log` VALUES ('208', '系统管理', '用户管理-保存用户', 'com.ruoyi.project.system.user.controller.UserController.save()', 'web', 'admin', '凡科睿简易支付平台', '/system/user/save', '0:0:0:0:0:0:0:1', '{\"deptId\":[\"11113\"],\"loginName\":[\"test\"],\"userName\":[\"测试\"],\"password\":[\"123456\"],\"email\":[\"tetstt@11.com\"],\"phonenumber\":[\"15454545454\"],\"sex\":[\"0\"],\"status\":[\"0\"],\"roleIds\":[\"2\"],\"postIds\":[\"4\"]}', '0', null, '2019-06-05 15:26:35');
+INSERT INTO `sys_oper_log` VALUES ('209', '系统管理', '用户管理-新增用户', 'com.ruoyi.project.system.user.controller.UserController.add()', 'web', 'admin', '凡科睿简易支付平台', '/system/user/add', '0:0:0:0:0:0:0:1', '{}', '0', null, '2019-06-05 16:00:06');
+INSERT INTO `sys_oper_log` VALUES ('210', '系统管理', '用户管理-保存用户', 'com.ruoyi.project.system.user.controller.UserController.save()', 'web', 'admin', '凡科睿简易支付平台', '/system/user/save', '0:0:0:0:0:0:0:1', '{\"deptId\":[\"108\"],\"loginName\":[\"test2\"],\"userName\":[\"贵港测试\"],\"password\":[\"123456\"],\"email\":[\"test2@qq.com\"],\"phonenumber\":[\"15678789090\"],\"sex\":[\"0\"],\"status\":[\"0\"],\"roleIds\":[\"2\"],\"postIds\":[\"4\"]}', '0', null, '2019-06-05 16:00:39');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -876,13 +1004,13 @@ CREATE TABLE `sys_role` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='角色信息表';
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '管理员', 'admin', '1', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2019-05-31 14:34:38', '管理员');
-INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2019-05-30 09:44:48', '普通角色');
+INSERT INTO `sys_role` VALUES ('2', '学校负责人', 'school_lead', '2', '0', 'admin', '2018-03-16 11:33:00', 'admin', '2019-06-05 09:24:33', '普通角色');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -1008,81 +1136,39 @@ INSERT INTO `sys_role_menu` VALUES ('1', '108');
 INSERT INTO `sys_role_menu` VALUES ('1', '109');
 INSERT INTO `sys_role_menu` VALUES ('1', '110');
 INSERT INTO `sys_role_menu` VALUES ('1', '111');
-INSERT INTO `sys_role_menu` VALUES ('2', '1');
-INSERT INTO `sys_role_menu` VALUES ('2', '2');
 INSERT INTO `sys_role_menu` VALUES ('2', '3');
-INSERT INTO `sys_role_menu` VALUES ('2', '4');
-INSERT INTO `sys_role_menu` VALUES ('2', '5');
-INSERT INTO `sys_role_menu` VALUES ('2', '6');
-INSERT INTO `sys_role_menu` VALUES ('2', '7');
-INSERT INTO `sys_role_menu` VALUES ('2', '8');
-INSERT INTO `sys_role_menu` VALUES ('2', '9');
-INSERT INTO `sys_role_menu` VALUES ('2', '10');
-INSERT INTO `sys_role_menu` VALUES ('2', '11');
-INSERT INTO `sys_role_menu` VALUES ('2', '12');
-INSERT INTO `sys_role_menu` VALUES ('2', '13');
-INSERT INTO `sys_role_menu` VALUES ('2', '14');
-INSERT INTO `sys_role_menu` VALUES ('2', '15');
 INSERT INTO `sys_role_menu` VALUES ('2', '16');
 INSERT INTO `sys_role_menu` VALUES ('2', '17');
-INSERT INTO `sys_role_menu` VALUES ('2', '18');
-INSERT INTO `sys_role_menu` VALUES ('2', '19');
-INSERT INTO `sys_role_menu` VALUES ('2', '20');
-INSERT INTO `sys_role_menu` VALUES ('2', '21');
-INSERT INTO `sys_role_menu` VALUES ('2', '22');
-INSERT INTO `sys_role_menu` VALUES ('2', '23');
-INSERT INTO `sys_role_menu` VALUES ('2', '24');
-INSERT INTO `sys_role_menu` VALUES ('2', '25');
-INSERT INTO `sys_role_menu` VALUES ('2', '26');
-INSERT INTO `sys_role_menu` VALUES ('2', '27');
-INSERT INTO `sys_role_menu` VALUES ('2', '28');
-INSERT INTO `sys_role_menu` VALUES ('2', '29');
-INSERT INTO `sys_role_menu` VALUES ('2', '30');
-INSERT INTO `sys_role_menu` VALUES ('2', '31');
-INSERT INTO `sys_role_menu` VALUES ('2', '32');
-INSERT INTO `sys_role_menu` VALUES ('2', '33');
-INSERT INTO `sys_role_menu` VALUES ('2', '34');
-INSERT INTO `sys_role_menu` VALUES ('2', '35');
-INSERT INTO `sys_role_menu` VALUES ('2', '36');
-INSERT INTO `sys_role_menu` VALUES ('2', '37');
-INSERT INTO `sys_role_menu` VALUES ('2', '38');
-INSERT INTO `sys_role_menu` VALUES ('2', '39');
-INSERT INTO `sys_role_menu` VALUES ('2', '40');
-INSERT INTO `sys_role_menu` VALUES ('2', '41');
-INSERT INTO `sys_role_menu` VALUES ('2', '42');
-INSERT INTO `sys_role_menu` VALUES ('2', '43');
-INSERT INTO `sys_role_menu` VALUES ('2', '44');
-INSERT INTO `sys_role_menu` VALUES ('2', '45');
-INSERT INTO `sys_role_menu` VALUES ('2', '46');
-INSERT INTO `sys_role_menu` VALUES ('2', '47');
-INSERT INTO `sys_role_menu` VALUES ('2', '48');
-INSERT INTO `sys_role_menu` VALUES ('2', '49');
-INSERT INTO `sys_role_menu` VALUES ('2', '50');
-INSERT INTO `sys_role_menu` VALUES ('2', '51');
-INSERT INTO `sys_role_menu` VALUES ('2', '52');
-INSERT INTO `sys_role_menu` VALUES ('2', '53');
-INSERT INTO `sys_role_menu` VALUES ('2', '54');
-INSERT INTO `sys_role_menu` VALUES ('2', '55');
-INSERT INTO `sys_role_menu` VALUES ('2', '56');
-INSERT INTO `sys_role_menu` VALUES ('2', '57');
-INSERT INTO `sys_role_menu` VALUES ('2', '58');
-INSERT INTO `sys_role_menu` VALUES ('2', '59');
-INSERT INTO `sys_role_menu` VALUES ('2', '60');
-INSERT INTO `sys_role_menu` VALUES ('2', '61');
-INSERT INTO `sys_role_menu` VALUES ('2', '62');
-INSERT INTO `sys_role_menu` VALUES ('2', '63');
-INSERT INTO `sys_role_menu` VALUES ('2', '64');
-INSERT INTO `sys_role_menu` VALUES ('2', '65');
-INSERT INTO `sys_role_menu` VALUES ('2', '66');
-INSERT INTO `sys_role_menu` VALUES ('2', '67');
-INSERT INTO `sys_role_menu` VALUES ('2', '68');
-INSERT INTO `sys_role_menu` VALUES ('2', '69');
-INSERT INTO `sys_role_menu` VALUES ('2', '70');
-INSERT INTO `sys_role_menu` VALUES ('2', '71');
-INSERT INTO `sys_role_menu` VALUES ('2', '72');
-INSERT INTO `sys_role_menu` VALUES ('2', '73');
 INSERT INTO `sys_role_menu` VALUES ('2', '74');
 INSERT INTO `sys_role_menu` VALUES ('2', '75');
+INSERT INTO `sys_role_menu` VALUES ('2', '76');
+INSERT INTO `sys_role_menu` VALUES ('2', '77');
+INSERT INTO `sys_role_menu` VALUES ('2', '78');
+INSERT INTO `sys_role_menu` VALUES ('2', '79');
+INSERT INTO `sys_role_menu` VALUES ('2', '80');
+INSERT INTO `sys_role_menu` VALUES ('2', '81');
+INSERT INTO `sys_role_menu` VALUES ('2', '82');
+INSERT INTO `sys_role_menu` VALUES ('2', '83');
+INSERT INTO `sys_role_menu` VALUES ('2', '84');
+INSERT INTO `sys_role_menu` VALUES ('2', '85');
+INSERT INTO `sys_role_menu` VALUES ('2', '86');
+INSERT INTO `sys_role_menu` VALUES ('2', '87');
+INSERT INTO `sys_role_menu` VALUES ('2', '88');
+INSERT INTO `sys_role_menu` VALUES ('2', '89');
+INSERT INTO `sys_role_menu` VALUES ('2', '90');
+INSERT INTO `sys_role_menu` VALUES ('2', '91');
+INSERT INTO `sys_role_menu` VALUES ('2', '92');
+INSERT INTO `sys_role_menu` VALUES ('2', '93');
+INSERT INTO `sys_role_menu` VALUES ('2', '94');
+INSERT INTO `sys_role_menu` VALUES ('2', '95');
+INSERT INTO `sys_role_menu` VALUES ('2', '96');
+INSERT INTO `sys_role_menu` VALUES ('2', '97');
+INSERT INTO `sys_role_menu` VALUES ('2', '98');
+INSERT INTO `sys_role_menu` VALUES ('2', '99');
+INSERT INTO `sys_role_menu` VALUES ('2', '100');
+INSERT INTO `sys_role_menu` VALUES ('2', '101');
+INSERT INTO `sys_role_menu` VALUES ('2', '102');
+INSERT INTO `sys_role_menu` VALUES ('2', '103');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -1109,13 +1195,16 @@ CREATE TABLE `sys_user` (
   `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '106', 'admin', '若依', 'ry@163.com', '15888888888', '0', '', '29c67a30398638269fe600f73a054934', '111111', 'Y', '0', '正常', '0:0:0:0:0:0:0:1', '2019-06-03 15:16:28', 'admin', '2018-03-16 11:33:00', 'ry', '2019-06-03 15:16:22');
+INSERT INTO `sys_user` VALUES ('1', '99', 'admin', '系统管理员', 'ry@163.com', '15888888888', '0', '', '29c67a30398638269fe600f73a054934', '111111', 'Y', '0', '正常', '0:0:0:0:0:0:0:1', '2019-06-05 18:21:28', 'admin', '2018-03-16 11:33:00', 'ry', '2019-06-05 18:21:21');
 INSERT INTO `sys_user` VALUES ('2', '108', 'ry', '若依', 'ry@qq.com', '15666666666', '1', '', '7ee5c4be4feae4cefa912f94d0cd91b2', '091d4a', 'N', '0', '正常', '0:0:0:0:0:0:0:1', '2019-05-30 09:45:03', 'admin', '2018-03-16 11:33:00', 'admin', '2019-05-30 09:45:03');
+INSERT INTO `sys_user` VALUES ('3', '101', 'gxy_nn', '工学院南宁校区', 'gxy_na@sohu.com', '15201210001', '0', '', 'a2d13438ef712693ffa7aef71d41daa2', 'da5328', 'N', '0', '', '0:0:0:0:0:0:0:1', '2019-06-05 17:16:38', 'admin', '2019-06-05 09:23:55', '', '2019-06-05 17:16:31');
+INSERT INTO `sys_user` VALUES ('4', '11113', 'test', '测试', 'tetstt@11.com', '15454545454', '0', '', '11ba3fb8d1320ffec7becb173bd8baab', 'ff51f1', 'N', '0', '', '0:0:0:0:0:0:0:1', '2019-06-05 16:41:19', 'admin', '2019-06-05 15:26:35', '', '2019-06-05 16:41:12');
+INSERT INTO `sys_user` VALUES ('5', '108', 'test2', '贵港测试', 'test2@qq.com', '15678789090', '0', '', '6b1eb8dd8ebb40f5f63d47bbe2e78271', '3485c1', 'N', '0', '', '0:0:0:0:0:0:0:1', '2019-06-05 16:25:12', 'admin', '2019-06-05 16:00:39', '', '2019-06-05 16:25:05');
 
 -- ----------------------------
 -- Table structure for sys_user_online
@@ -1138,8 +1227,7 @@ CREATE TABLE `sys_user_online` (
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
-INSERT INTO `sys_user_online` VALUES ('835f448e-a9ba-4d34-8074-1ac48e4b8f18', 'admin', '计算机科学与技术学院', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', 'on_line', '2019-06-03 15:16:18', '2019-06-03 15:16:29', '1800000');
-INSERT INTO `sys_user_online` VALUES ('a27cc2fc-1705-4e4e-8074-ed662fa6b413', 'admin', '计算机科学与技术学院', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', 'on_line', '2019-06-03 14:58:49', '2019-06-03 14:58:55', '1800000');
+INSERT INTO `sys_user_online` VALUES ('84a8ec3f-94c0-451d-8617-57b0e6a8db61', 'admin', '凡科睿简易支付平台', '0:0:0:0:0:0:0:1', 'Chrome', 'Windows 7', 'on_line', '2019-06-05 18:21:25', '2019-06-05 18:21:29', '1800000');
 
 -- ----------------------------
 -- Table structure for sys_user_post
@@ -1156,6 +1244,9 @@ CREATE TABLE `sys_user_post` (
 -- ----------------------------
 INSERT INTO `sys_user_post` VALUES ('1', '1');
 INSERT INTO `sys_user_post` VALUES ('2', '2');
+INSERT INTO `sys_user_post` VALUES ('3', '1');
+INSERT INTO `sys_user_post` VALUES ('4', '4');
+INSERT INTO `sys_user_post` VALUES ('5', '4');
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -1172,3 +1263,52 @@ CREATE TABLE `sys_user_role` (
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('1', '1');
 INSERT INTO `sys_user_role` VALUES ('2', '1');
+INSERT INTO `sys_user_role` VALUES ('3', '2');
+INSERT INTO `sys_user_role` VALUES ('4', '2');
+INSERT INTO `sys_user_role` VALUES ('5', '2');
+
+-- ----------------------------
+-- Function structure for queryChildrenDeptInfo
+-- ----------------------------
+DROP FUNCTION IF EXISTS `queryChildrenDeptInfo`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` FUNCTION `queryChildrenDeptInfo`(deptId INT) RETURNS varchar(4000) CHARSET utf8
+BEGIN
+DECLARE sTemp VARCHAR(4000);
+DECLARE sTempChd VARCHAR(4000);
+
+SET sTemp='-1';
+SET sTempChd = CAST(deptId AS CHAR);
+
+WHILE sTempChd IS NOT NULL DO
+SET sTemp= CONCAT(sTemp,',',sTempChd);
+SELECT GROUP_CONCAT(dept_id) INTO sTempChd FROM sys_dept WHERE FIND_IN_SET(parent_id,sTempChd)>0;
+END WHILE;
+RETURN sTemp;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Function structure for queryChildrenDeptInfoUp
+-- ----------------------------
+DROP FUNCTION IF EXISTS `queryChildrenDeptInfoUp`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`%` FUNCTION `queryChildrenDeptInfoUp`(deptId INT) RETURNS varchar(4000) CHARSET utf8
+BEGIN
+DECLARE sTemp VARCHAR(4000);
+DECLARE sTempChd VARCHAR(4000);
+
+SET sTemp='$';
+SET sTempChd = CAST(deptId AS CHAR);
+SET sTemp = CONCAT(sTemp,',',sTempChd);
+
+SELECT parent_id INTO sTempChd FROM sys_dept WHERE dept_id = sTempChd;
+WHILE sTempChd <> 0 DO
+SET sTemp = CONCAT(sTemp,',',sTempChd);
+SELECT parent_id INTO sTempChd FROM sys_dept WHERE dept_id = sTempChd;
+END WHILE;
+RETURN sTemp;
+END
+;;
+DELIMITER ;
