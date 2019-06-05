@@ -11,7 +11,8 @@
 			j.id pay_project_id,
 			j.`name` project_name,
 			i.already_pay,
-			i.pay_money
+			i.pay_money,
+			i.pay_money - i.already_pay money
 		FROM
 			pay_personnel p
 		LEFT JOIN pay_info i ON p.pay_no = i.pay_no

@@ -64,7 +64,7 @@
                     </div>
                     <div class="aui-list-item-input">
                         <select id="areaInfo">
-                            <option value="">请选择校区</option>
+                            <!--  <option value="">请选择校区</option>-->
                             
                         </select>
                     </div>
@@ -286,33 +286,14 @@
 		                		alert("无"+payNo+"相关信息,请确认后输入.");
 		                	}else{
 		                		
-		                		/*
-		                		//alert(data.length);
-				                   $("#payNo").val(num);
+				                   //$("#payNo").val(num);
 				                   //$("#schoolInfo").val(data.school_id);
-				                   //学校-校区
-				                   $("#schoolInfo").val(data.school_id+"-"+data.school_area_id);
-				                   //学院
-				                   $("#academyInfo").empty();
-				                   $("#academyInfo").append("<option value='"+data.academy_id+"'>"+ data.academy_name+"</option>"); 
-				                   //专业
-				                   $("#prfInfo").empty();
-				                   $("#prfInfo").append("<option value='"+data.professional_id+"'>"+ data.prf_name+"</option>"); 
-				                   //班级
-				                   $("#classNum").attr("readOnly",true);
-				                   $("#classNum").val(data.class_num);
-				                   //缴费项目
-				                   $("#costType").empty();
-				                   $("#costType").append("<option value='"+data.cost_id+"-"+data.money+"'>"+ data.cost_name+"</option>"); 
-				                   //金额
-				                   $("#costMoney").attr("readOnly",true);
-				                   $("#costMoney").val(data.money);
-				                   */
+				                   
 				                 //缴费项目
 				                   t6 = $("#costType").empty();
 				                   t6.append("<option value=\"\">请选择</option>"); 
 		                           for ( var i = 0; i < data.length; i++) { 
-		                               t6.append("<option value='"+data[i].pay_project_id+"'>"+ data[i].project_name+"</option>"); 
+		                               t6.append("<option value='"+data[i].pay_project_id + "_"+ data[i].money +"'>"+ data[i].project_name+"</option>"); 
 		                           }
 				                   //学生姓名
 				                   $("#studentName").attr("readOnly",true);
@@ -325,7 +306,20 @@
 				    		 		   type:'post', 
 				    		 		   data:{orgId:orgId}, 
 				    		                success:function(data){
-				    		                	alert(data.length);
+				    		                	//alert(data.length);
+				    		                	var input=new Array("#classNum","#prfInfo","#academyInfo","#areaInfo","#schoolInfo");
+				    		                	var len = input.length;
+				    		                	//$("#schoolInfo").val(data[3].dept_id);
+				    		                	for(i = data.length-1; i>=0 ; i-- ){
+				    		                		if(i == data.length-1){
+				    		                			len--;
+				    		                			$(input[len]).val(data[i].dept_id);
+				    		                		}else{
+				    		                			len--;
+				    		                			$(input[len]).empty;
+				    		                			$(input[len]).append("<option value='"+data[i].dept_id+"'>"+ data[i].dept_name+"</option>"); 
+				    		                		}
+				    		                	}
 				    		                }
 				    		      })
 				                   
@@ -340,8 +334,16 @@
 	function req(){
 	    	
 		var amount= $("#costMoney").val()*100; 
-		var subject= $("#studentName").val() + "|" + $("#academyInfo").text() +"|"
-					+ $("#prfInfo").text()  +"|"+ $("#costType").text() +"|"+ $("#costMoney").val() ;
+		var subject= $("#studentName").val() + "|" 
+					//+ $("#schoolInfo option:selected").text()+"|" 
+					//+ $("#areaInfo option:selected").text() +"|" 
+					//+ $("#academyInfo option:selected").text() +"|"
+					+ $("#prfInfo option:selected").text()  +"|" 
+					+ $("#costType option:selected").text()  +"|" 
+					+ $("#classNum option:selected").text() +"|" 
+					+ $("#costMoney").val() +"|"
+					+ $("#payNo").val();
+		
 		var remark = $("#remark").val();
 
 		var businessId = $("#businessId").val();

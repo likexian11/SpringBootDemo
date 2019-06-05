@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import com.example.demo.pojo.Custom;
 import com.example.demo.pojo.Dept;
 import com.example.demo.pojo.PayProject;
 import com.example.demo.service.PayDetailInterFace;
+import com.example.demo.service.SecretKeyInterFace;
 
 @RestController
 @RequestMapping(value ="/page")
@@ -21,8 +23,8 @@ public class PageController {
 	
 	@Autowired
 	private PayDetailInterFace payDetailInterFace;
-	//@Autowired
-	//private SecretKeyInterFace secretKeyInterFace;
+	@Autowired
+	private SecretKeyInterFace secretKeyInterFace;
 
 	//支付界面
 	@RequestMapping(value ="/zhif")
@@ -68,13 +70,12 @@ public class PageController {
 		return costList;
 	}
 	
-	/*
-	//
+	
+	//获取支付url
 	@RequestMapping(value ="/sign")
 	public String markSign(@RequestParam Map<String,String> map) throws ParseException {
 		String businessId="";
 		String payUrl="";
-		
 		
 		if(map.containsKey("businessId")) {
 			businessId= map.get("businessId");
@@ -85,5 +86,5 @@ public class PageController {
 		return payUrl;
 		
 	}
-	*/
+	
 }

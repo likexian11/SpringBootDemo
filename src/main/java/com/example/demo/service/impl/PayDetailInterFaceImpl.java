@@ -42,7 +42,6 @@ public class PayDetailInterFaceImpl implements PayDetailInterFace {
 		Dept dept = new Dept();
 		List<Dept> deptList =  new ArrayList<Dept>();
 		while( id != BasicConfig.FKR_ORGAN_ID) {
-			System.out.println("id:"+id);
 			dept = deptMapper.getOrgInfoById(id);
 			deptList.add(dept);
 			id = dept.getParent_id();

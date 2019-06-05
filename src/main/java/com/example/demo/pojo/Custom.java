@@ -30,11 +30,16 @@ public class Custom {
      * 已缴费金额
      */
     private double already_pay;
-
+    
     /**
      * 所需缴费金额
      */
     private double pay_money;
+    
+    /**
+     * 剩余需缴费金额
+     */
+    private double money;
 
 	public String getPay_no() {
 		return pay_no;
@@ -90,5 +95,13 @@ public class Custom {
 
 	public void setPer_name(String per_name) {
 		this.per_name = per_name;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
 	}
 }

@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.config.BasicConfig;
 import com.example.demo.mapper.PaySecretkeyInfoMapper;
+import com.example.demo.pojo.PaySecretkeyInfo;
 import com.example.demo.service.SecretKeyInterFace;
 import com.example.demo.utils.DateUtil;
 import com.example.demo.utils.EmptyUtil;
@@ -29,7 +30,7 @@ import com.example.demo.utils.EncryptionMD5;
 
 @Service
 public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
-	/*
+	
 	@Autowired 
 	PaySecretkeyInfoMapper paySecretkeyInfoMapper;
 	
@@ -45,7 +46,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	    StringBuffer sb = new StringBuffer();
 		//String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 		
-		Secretkey secretKey = secretkeyMapper.getKeyInfo(businessId);
+		PaySecretkeyInfo secretKey = paySecretkeyInfoMapper.getKeyInfo(businessId);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
 			signMap.put("app", secretKey.getApp());
 			signMap.put("operator_id", secretKey.getOperator_id());
@@ -71,7 +72,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		            sb.append(infoIds.get(i).getKey() + "=" + infoIds.get(i).getValue() + "&");
 		        }
 		    }
-		    String newStrTemp = sb.toString()+"key="+secretKey.getKey().trim();
+		    String newStrTemp = sb.toString()+"key="+secretKey.getApp_key().trim();
 			//生成签名
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url
@@ -94,5 +95,5 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		}
 		return payUrl;
 	}
-*/
+
 }
