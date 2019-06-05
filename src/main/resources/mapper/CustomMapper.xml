@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CustomMapper">
+
+  <!-- 查询 -->
+	<select id="getPayInfoByNo" parameterType="java.lang.String" resultType="com.example.demo.pojo.Custom">
+	    SELECT
+			p.pay_no,
+			p.organ_no,
+			p.per_name,
+			j.id pay_project_id,
+			j.`name` project_name,
+			i.already_pay,
+			i.pay_money
+		FROM
+			pay_personnel p
+		LEFT JOIN pay_info i ON p.pay_no = i.pay_no
+		LEFT JOIN pay_project j ON j.id = i.pay_project_id
+		WHERE
+			p.pay_no = #{payNo}
+	</select>
+  
+</mapper>

@@ -38,7 +38,7 @@
                        	<span>缴费号</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input id ="paycost_num" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
+                        <input id ="payNo" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
                     </div>
                     <button class="aui-btn aui-btn-info aui-margin-r-5" type="button" onclick="selectPayInfo()">查找</button>
                 </div>
@@ -52,6 +52,20 @@
                         <select id="schoolInfo">
                             <option value="">请选择学校</option>
                             <option th:each="s:${schoolList}" th:value="${s.dept_id}" th:text="${s.dept_name}">
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span>校区</span>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <select id="areaInfo">
+                            <option value="">请选择校区</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -89,16 +103,29 @@
                         <span>班级名称</span>
                     </div>
                     <div class="aui-list-item-input">
+                        <select id='classNum'>
+					       	<!-- <option value="">请选择</option>-->
+                        </select>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        <span>班级名称</span>
+                    </div>
+                    <div class="aui-list-item-input">
                         <input id="classNum" type="number" placeholder="输入班级名称">
                     </div>
                     
                 </div>
             </li>
-            
+             -->
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        <span>费用类型</span>
+                        <span>缴费项目</span>
                     </div>
                     <div class="aui-list-item-input">
                         <select id="costType">
@@ -170,103 +197,98 @@
 
 	$(document).ready(function(){ 
 		
-		
-		//显示学院列表
-	    $("#schoolInfo").change(function(){ 
-	       var id = $("#schoolInfo").val(); 
-	       //alert(id);
-	       if(id !=""){
-	    	   $.ajax({ 
-	    		   url:'/page/academy', 
-                   async:false, 
-	    		   type:'post', 
-	    		   data:{id:id}, 
-                       success:function(data){ 
-                    	   //alert(data.length);
-                           var t2 = $("#academyInfo").empty();
-                           var t3 = $("#prfInfo").empty();
-                           t2.append("<option value=\"\">请选择</option>"); 
-                           t3.append("<option value=\"\">请选择</option>"); 
-                           for ( var i = 0; i < data.length; i++) { 
-                               t2.append("<option value='"+data[i].academy_id+"'>"+ data[i].academy_name+"</option>"); 
-                           } 
-                           
-                       } 
-	    		   }) 
-	    	}; 
-	    });
-	    
-	    $("#academyInfo").change(function(){ 
-	    	   var id = $("#schoolInfo").val(); 
-		       var academyId = $("#academyInfo").val(); 
-		       if(academyId !=""){
-		    	 //显示专业列表
+		function reqOrgList(pid,t){
+			if(pid !=""){
 		    	   $.ajax({ 
-		    		   url:'/page/professional', 
-	                   async:false, 
-		    		   type:'post', 
-		    		   data:{id:id,aid:academyId}, 
-	                       success:function(data){ 
-	                    	   //alert(data.length);
-	                           var t2 = $("#prfInfo").empty();
-	                           var t3 = $("#prfInfo").empty();
-	                           t3.append("<option value=\"\">请选择</option>");
-	                           for ( var i = 0; i < data.length; i++) { 
-	                               t2.append("<option value='"+data[i].professional_id+"'>"+ data[i].prf_name+"</option>"); 
-	                           } 
-	                       } 
-		    		   })
-		    		 
-		    		}; 
-	       });
-	    
-	    $("#prfInfo").change(function(){ 
-	    	   var pid = $("#prfInfo").val(); 
-		       if(pid !=""){
-		    	 //显示缴费类型列表
-		    	   $.ajax({ 
-		    		   url:'/page/costType', 
+		    		   url:'/page/relevance', 
 	                   async:false, 
 		    		   type:'post', 
 		    		   data:{pid:pid}, 
 	                       success:function(data){ 
 	                    	   //alert(data.length);
-	                           var t4 = $("#costType").empty();
-	                           t4.append("<option value=\"\">请选择</option>");
+	                           t.append("<option value=\"\">请选择</option>"); 
 	                           for ( var i = 0; i < data.length; i++) { 
-	                               t4.append("<option value='"+data[i].cost_id+"-"+data[i].money+"'>"+ data[i].cost_name+"</option>"); 
+	                               t.append("<option value='"+data[i].dept_id+"'>"+ data[i].dept_name+"</option>"); 
 	                           } 
 	                           
 	                       } 
-		    		   })
-		    		 
-		    		}; 
+		    		   }) 
+		    	};
+		}
+		
+		function reqCostList(orgId,t){
+			if(orgId !=""){
+		    	   $.ajax({ 
+		    		   url:'/page/costType', 
+	                   async:false, 
+		    		   type:'post', 
+		    		   data:{orgId:orgId}, 
+	                       success:function(data){
+	                    	   if(data != null && data !=""){
+	                    		   t.append("<option value=\"\">请选择</option>"); 
+		                           for ( var i = 0; i < data.length; i++) { 
+		                               t.append("<option value='"+data[i].id + "_"+ data[i].pay_single_money +"'>"+ data[i].name+"</option>"); 
+		                           } 
+	                    	   }
+	                       } 
+		    		   }) 
+		    	};
+		}
+		
+		//显示学院列表
+	    $("#schoolInfo").change(function(){ 
+	       var pid = $("#schoolInfo").val(); 
+	       var t1 = $("#areaInfo").empty();
+	       reqOrgList(pid,t1);
+	    });
+	    
+	    $("#areaInfo").change(function(){ 
+		       var pid = $("#areaInfo").val(); 
+		       var t2 = $("#academyInfo").empty();
+		       reqOrgList(pid,t2); 
+	       });
+		
+	    $("#academyInfo").change(function(){ 
+	    	   var pid = $("#academyInfo").val(); 
+	    	   var t3 = $("#prfInfo").empty();
+	    	   reqOrgList(pid,t3);
+	       });
+	    //
+	    $("#prfInfo").change(function(){ 
+	    	
+	    	   var pid = $("#prfInfo").val(); 
+	    	   var t4 = $("#classNum").empty();
+	    	   reqOrgList(pid,t4);
+	    	   var orgId = $("#prfInfo").val(); 
+	    	   var t5 = $("#costType").empty();
+	    	   reqCostList(orgId,t5);
 	       });
 	    
 	    $("#costType").change(function(){ 
-	    	   var pid = $("#costType").val(); 
-	    	   //value: id_money
-	    	   $("#costMoney").val(pid.split("-")[1]);
+	    	   var costId = $("#costType").val(); 
+	    	   $("#costMoney").val(costId.split("_")[1]);
 	       });
 
 	})
 	
 	function selectPayInfo(){
-		var num = $("#paycost_num").val();
-		if("" == num || null == num ){
+		var payNo = $("#payNo").val();
+		if("" == payNo || null == payNo ){
 			alert("缴费号不能为空.");
 		}else{
 			$.ajax({ 
-		 		   url:'/page/costDetail', 
+		 		   url:'/page/payDetail', 
 		           async:false, 
 		 		   type:'post', 
-		 		   data:{num:num}, 
+		 		   data:{payNo:payNo}, 
 		                success:function(data){
 		                	if(null == data || "" == data){
-		                		alert("无"+num+"相关信息,请确认后输入.");
+		                		alert("无"+payNo+"相关信息,请确认后输入.");
 		                	}else{
+		                		
+		                		/*
 		                		//alert(data.length);
-				                   $("#paycost_num").val(num);
+				                   $("#payNo").val(num);
 				                   //$("#schoolInfo").val(data.school_id);
 				                   //学校-校区
 				                   $("#schoolInfo").val(data.school_id+"-"+data.school_area_id);
@@ -285,9 +307,28 @@
 				                   //金额
 				                   $("#costMoney").attr("readOnly",true);
 				                   $("#costMoney").val(data.money);
+				                   */
+				                 //缴费项目
+				                   t6 = $("#costType").empty();
+				                   t6.append("<option value=\"\">请选择</option>"); 
+		                           for ( var i = 0; i < data.length; i++) { 
+		                               t6.append("<option value='"+data[i].pay_project_id+"'>"+ data[i].project_name+"</option>"); 
+		                           }
 				                   //学生姓名
 				                   $("#studentName").attr("readOnly",true);
-				                   $("#studentName").val(data.student_name);
+				                   $("#studentName").val(data[0].per_name);
+				                   
+				                   var orgId = data[0].organ_no;
+				                   $.ajax({ 
+				    		 		   url:'/page/payDetailOrg', 
+				    		           async:false, 
+				    		 		   type:'post', 
+				    		 		   data:{orgId:orgId}, 
+				    		                success:function(data){
+				    		                	alert(data.length);
+				    		                }
+				    		      })
+				                   
 		                	}
 		             	   
 		                } 

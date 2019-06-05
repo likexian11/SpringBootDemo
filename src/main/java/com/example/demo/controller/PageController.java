@@ -1,37 +1,19 @@
 package com.example.demo.controller;
 
-import java.awt.RenderingHints.Key;
-import java.text.ParseException;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.javassist.expr.NewArray;
-import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
+import com.example.demo.pojo.Custom;
 import com.example.demo.pojo.Dept;
-import com.example.demo.pojo.PayPersonnel;
+import com.example.demo.pojo.PayProject;
 import com.example.demo.service.PayDetailInterFace;
-import com.example.demo.service.SecretKeyInterFace;
-import com.example.demo.utils.DateUtil;
-import com.example.demo.utils.EmptyUtil;
-import com.example.demo.utils.EncryptionMD5;
 
 @RestController
 @RequestMapping(value ="/page")
@@ -48,7 +30,7 @@ public class PageController {
 		if(reqMap.containsKey("pid")) {
 			List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("pid"));
 			retMap.addAttribute("schoolList",deptList);
-			System.out.println(deptList);
+			//System.out.println(deptList);
 		}
 		if(reqMap.containsKey("businessId")) {
 			retMap.addAttribute("businessId",reqMap.get("businessId"));
@@ -56,37 +38,37 @@ public class PageController {
 		//System.out.println("businessId:"+businessId);
 		return new ModelAndView("pay");
 	}
-	/*
+	
 	//获取缴费信息
-	@RequestMapping(value ="/costDetail")
-	public PaycostDetail getPayByNum(@RequestParam("num")  String num) {
-		PaycostDetail payDetail = payDetailInterFace.queryDetail(num);
-		return payDetail;
+	@RequestMapping(value ="/payDetail")
+	public List<Custom> getPayByNum(@RequestParam("payNo")  String payNo) {
+		List<Custom> CustomList = payDetailInterFace.queryDetail(payNo);
+		return CustomList;
 	}
-	//获取已选择学校的学院列表
-	@RequestMapping(value ="/academy")
-	public List<AcademyInfo> getAcademy(@RequestParam("id") String id) {
-		int school_id = Integer.valueOf(id.split("-")[0]);
-		int school_area_id = Integer.valueOf(id.split("-")[1]);
-		List<AcademyInfo> academyList = payDetailInterFace.queryAcademyList(school_id,school_area_id);
-		return academyList;
+	//反显机构信息
+	@RequestMapping(value ="/payDetailOrg")
+	public List<Dept> getPayDetailOrg(@RequestParam("orgId")  Integer orgId) {
+		List<Dept> deptList = payDetailInterFace.queryOrgInfo(orgId);
+		return deptList;
 	}
-	//获取已选择的学院的专业列表
-	@RequestMapping(value ="/professional")
-	public List<Professional> getProfessional(@RequestParam("id") String id,@RequestParam("aid") String aid) {
-		int school_id = Integer.valueOf(id.split("-")[0]);
-		int school_area_id = Integer.valueOf(id.split("-")[1]);
-		int academy_id = Integer.valueOf(aid);
-		List<Professional> prfList = payDetailInterFace.queryPrfList(school_id, school_area_id, academy_id);
-		return prfList;
+	
+	
+	//联动选择列表
+	@RequestMapping(value ="/relevance")
+	public List<Dept> getAreaInfo(@RequestParam("pid") String pid) {
+		List<Dept> reList = payDetailInterFace.queryOrgList(pid);
+		return reList;
 	}
-	//获取已选择的专业对应的缴费项目
+	
+	
+	//获取已选择的机构对应的缴费项目
 	@RequestMapping(value ="/costType")
-	public List<CostList> getCostType(@RequestParam("pid") String pid) {
-		int professional_id = Integer.valueOf(pid);
-		List<CostList> costList = payDetailInterFace.queryCostList(professional_id);
+	public List<PayProject> getCostType(@RequestParam("orgId") String orgId) {
+		List<PayProject> costList = payDetailInterFace.queryCostList(orgId);
 		return costList;
 	}
+	
+	/*
 	//
 	@RequestMapping(value ="/sign")
 	public String markSign(@RequestParam Map<String,String> map) throws ParseException {

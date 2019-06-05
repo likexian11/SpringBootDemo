@@ -8,4 +8,6 @@ import com.example.demo.utils.ParentMapper;
 public interface DeptMapper extends ParentMapper<Dept> {
 
 	List<Dept> getOrgListByPId(String pid);
+	
+	Dept getOrgInfoById(Integer id);
 }

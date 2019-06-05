@@ -18,4 +18,19 @@
     <result column="pay_years" jdbcType="VARCHAR" property="pay_years" />
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
+  
+    <!-- 查询缴费列表信息 -->
+	<select id="getProListByOrgId" parameterType="java.lang.String" resultType="com.example.demo.pojo.PayProject">
+		SELECT
+			p.id,
+			p.organ_id,
+			p.`name`,
+			p.pay_single_money,
+			p.pay_total_money
+		FROM
+			pay_project p
+		WHERE
+			p.organ_id = #{orgId}
+	</select>
+  
 </mapper>

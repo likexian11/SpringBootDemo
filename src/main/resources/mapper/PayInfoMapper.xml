@@ -16,4 +16,5 @@
     <result column="pay_years" jdbcType="VARCHAR" property="pay_years" />
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>
+	
 </mapper>

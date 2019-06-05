@@ -30,5 +30,18 @@
 		WHERE
 			d.parent_id = #{pid}
 	</select>
-  
+	
+	<!-- 查询机构列表信息 -->
+	<select id="getOrgInfoById" parameterType="java.lang.Integer" resultType="com.example.demo.pojo.Dept">
+   	    SELECT
+			d.dept_id,
+      		d.parent_id ,
+			d.dept_name
+		FROM
+			sys_dept d
+
+		WHERE
+			d.dept_id = #{orgId}
+	</select>
+	
 </mapper>
