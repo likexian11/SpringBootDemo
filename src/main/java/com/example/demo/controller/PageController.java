@@ -54,7 +54,6 @@ public class PageController {
 		return deptList;
 	}
 	
-	
 	//联动选择列表
 	@RequestMapping(value ="/relevance")
 	public List<Dept> getAreaInfo(@RequestParam("pid") String pid) {
@@ -79,9 +78,7 @@ public class PageController {
 		
 		if(map.containsKey("businessId")) {
 			businessId= map.get("businessId");
-			//System.out.println("businessId:"+businessId);
 			payUrl = secretKeyInterFace.getPayUrl(businessId, map);
-			//System.out.println(payUrl);
 		}
 		return payUrl;
 		
