@@ -35,7 +35,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	private Sid sid;
 	
 	@Override
-	public String getPayUrl(String businessId,Map<String, String> map){
+	public String getPayUrl(String businessId, String ip, Map<String, String> map){
 		
 		Map<String, String> signMap = new HashMap<String, String>();
 		String payUrl = "";
@@ -74,7 +74,12 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url
 			String uri=BasicConfig.H5_PAY_URL+"?"
-						+newStrTemp + "&remark=" + map.get("remark") + "&command="+secretKey.getCommand() +"&redirect_url="+secretKey.getRedirect_url() +"&version="+secretKey.getVersion()
+						+ newStrTemp + "&remark=" 
+						+ map.get("remark") + "&command="
+						+ secretKey.getCommand() 
+						+ "&redirect_url="+secretKey.getRedirect_url() 
+						+ "&version="+secretKey.getVersion()
+						+ "&notify_url="+ ip +secretKey.getNotify_url()
 						+ "&sign="+sign;;
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);

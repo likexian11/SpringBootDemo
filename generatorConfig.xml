@@ -12,9 +12,10 @@
             <property name="mappers" value="com.example.demo.utils.ParentMapper"/>
         </plugin>
 
+		<!-- connectionURL="jdbc:mysql://192.168.170.131:3306/fkr_pay_website" -->
+        <!-- connectionURL="jdbc:mysql://192.168.100.12:3306/fkr_pay_website"  -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        <!-- connectionURL="jdbc:mysql://192.168.170.131:3306/fkr_pay_website" -->
-                        connectionURL="jdbc:mysql://192.168.100.12:3306/fkr_pay_website" 
+                        connectionURL="jdbc:mysql://251f5z6021.wicp.vip:29565/fkr_pay_website" 
                         userId="root"
                         password="123456">
         </jdbcConnection>

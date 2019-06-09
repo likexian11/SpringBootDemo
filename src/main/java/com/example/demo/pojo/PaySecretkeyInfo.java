@@ -40,6 +40,11 @@ public class PaySecretkeyInfo {
     private String app_key;
 
     /**
+     * 回调地址
+     */
+    private String notify_url;
+
+    /**
      * @return id
      */
     public String getId() {
@@ -173,5 +178,23 @@ public class PaySecretkeyInfo {
      */
     public void setApp_key(String app_key) {
         this.app_key = app_key;
+    }
+
+    /**
+     * 获取回调地址
+     *
+     * @return notify_url - 回调地址
+     */
+    public String getNotify_url() {
+        return notify_url;
+    }
+
+    /**
+     * 设置回调地址
+     *
+     * @param notify_url 回调地址
+     */
+    public void setNotify_url(String notify_url) {
+        this.notify_url = notify_url;
     }
 }

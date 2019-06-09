@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.example.demo.config.BasicConfig;
+import com.example.demo.config.ServerConfig;
 import com.example.demo.pojo.Custom;
 import com.example.demo.pojo.Dept;
 import com.example.demo.pojo.PayProject;
@@ -21,6 +26,8 @@ import com.example.demo.service.SecretKeyInterFace;
 @RequestMapping(value ="/page")
 public class PageController {
 	
+	@Autowired
+	private ServerConfig serverConfig;
 	@Autowired
 	private PayDetailInterFace payDetailInterFace;
 	@Autowired
@@ -78,10 +85,19 @@ public class PageController {
 		
 		if(map.containsKey("businessId")) {
 			businessId= map.get("businessId");
-			payUrl = secretKeyInterFace.getPayUrl(businessId, map);
+			payUrl = secretKeyInterFace.getPayUrl(businessId,BasicConfig.LOCAL_HOST, map);
 		}
 		return payUrl;
-		
 	}
 	
+	//获取支付url
+	@RequestMapping(value ="/callback")
+	public void callBack(@RequestParam Map<String,String> map) throws ParseException, UnknownHostException {
+		System.out.println("回调..");
+		//InetAddress addr = null;  
+		//addr = InetAddress.getLocalHost();  
+		//System.out.println("addr:"+serverConfig.getUrl());
+		String paramsJson = JSON.toJSONString(map);
+		System.out.println("回调:  "+ paramsJson);
+	}
 }

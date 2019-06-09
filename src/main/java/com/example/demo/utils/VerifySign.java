@@ -8,36 +8,11 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 
 public class VerifySign {
 
-	/**
-     * 排序需要签名的字段
-     * @param sortedParams 参数Map
-     * @return
-     */
-    public static String getSignContent(Map<String, String> sortedParams) {
-        StringBuffer content = new StringBuffer();
-        ArrayList keys = new ArrayList(sortedParams.keySet());
-        Collections.sort(keys);
-        int index = 0;
-
-        for(int i = 0; i < keys.size(); ++i) {
-            String key = (String)keys.get(i);
-            String value = (String)sortedParams.get(key);
-            if (EmptyUtil.isNotEmpty(value)) {
-                content.append((index == 0 ? "" : "&") + key + "=" + value);
-                ++index;
-            }
-        }
-        return content.toString();
-    }
-    
     /**
      * 验证签名
      * @param content 签证签名内容串
