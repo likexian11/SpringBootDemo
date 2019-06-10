@@ -33,12 +33,10 @@ public class PageController {
 		if(reqMap.containsKey("pid")) {
 			List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("pid"));
 			retMap.addAttribute("schoolList",deptList);
-			//System.out.println(deptList);
 		}
 		if(reqMap.containsKey("businessId")) {
 			retMap.addAttribute("businessId",reqMap.get("businessId"));
 		}
-		//System.out.println("businessId:"+businessId);
 		return new ModelAndView("pay");
 	}
 	
