@@ -30,12 +30,12 @@ public class PageController {
 	//支付界面
 	@RequestMapping(value ="/zhif")
 	public ModelAndView  getPayPage(ModelMap retMap,@RequestParam Map<String,String> reqMap) {
-		if(reqMap.containsKey("pid")) {
-			List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("pid"));
-			retMap.addAttribute("schoolList",deptList);
-		}
 		if(reqMap.containsKey("businessId")) {
+			//List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("businessId"));
+			//retMap.addAttribute("schoolList",deptList);
+			Dept dept = payDetailInterFace.queryOrg(Integer.valueOf(reqMap.get("businessId")));
 			retMap.addAttribute("businessId",reqMap.get("businessId"));
+			retMap.addAttribute("dept",dept);
 		}
 		return new ModelAndView("pay");
 	}

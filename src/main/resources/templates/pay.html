@@ -51,7 +51,8 @@
                     <div class="aui-list-item-input">
                         <select id="schoolInfo">
                             <option value="">请选择学校</option>
-                            <option th:each="s:${schoolList}" th:value="${s.dept_id}" th:text="${s.dept_name}">
+                            <!-- <option th:each="s:${schoolList}" th:value="${s.dept_id}" th:text="${s.dept_name}"> -->
+                            <option th:value="${dept.dept_id}" th:text="${dept.dept_name}"> 
                         </select>
                     </div>
                 </div>
@@ -283,7 +284,7 @@
 		 		   data:{payNo:payNo}, 
 		                success:function(data){
 		                	if(null == data || "" == data){
-		                		alert("无"+payNo+"相关信息,请确认后输入.");
+		                		alert("无"+payNo+"相关信息或已完成缴费,请确认后输入.");
 		                	}else{
 		                		
 				                   //$("#payNo").val(num);
@@ -322,6 +323,7 @@
 				    		                	}
 				    		                }
 				    		      })
+				    		      t6 = $("#costMoney").val("");
 				                   
 		                	}
 		             	   

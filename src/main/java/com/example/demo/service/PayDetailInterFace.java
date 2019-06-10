@@ -11,11 +11,14 @@ public interface PayDetailInterFace {
 	//
 	public List<Custom> queryDetail(String payNo);
 	
-	//获取机构信息
+	//获取父机构信息
 	public List<Dept> queryOrgInfo(Integer id);
 	
 	//获取机构列表
 	public List<Dept> queryOrgList(String pid);
+	
+	//获取机构信息
+	public Dept queryOrg(Integer id);
 	
 	//获取缴费类型
 	public List<PayProject> queryCostList(String orgId);

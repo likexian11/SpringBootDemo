@@ -49,4 +49,9 @@ public class PayDetailInterFaceImpl implements PayDetailInterFace {
 		return deptList;
 	}
 
+	@Override
+	public Dept queryOrg(Integer id) {
+		return deptMapper.selectByPrimaryKey(id);
+	}
+
 }
