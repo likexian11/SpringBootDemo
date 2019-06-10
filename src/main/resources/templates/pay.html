@@ -227,7 +227,7 @@
 	                    	   if(data != null && data !=""){
 	                    		   t.append("<option value=\"\">请选择</option>"); 
 		                           for ( var i = 0; i < data.length; i++) { 
-		                               t.append("<option value='"+data[i].id + "_"+ data[i].pay_single_money +"'>"+ data[i].name+"</option>"); 
+		                               t.append("<option value='"+ data[i].id+ "_"+ data[i].pay_single_money +"'>"+ data[i].name+"</option>"); 
 		                           } 
 	                    	   }
 	                       } 
@@ -293,7 +293,7 @@
 				                   t6 = $("#costType").empty();
 				                   t6.append("<option value=\"\">请选择</option>"); 
 		                           for ( var i = 0; i < data.length; i++) { 
-		                               t6.append("<option value='"+data[i].pay_project_id + "_"+ data[i].money +"'>"+ data[i].project_name+"</option>"); 
+		                               t6.append("<option value='"+data[i].id + "_"+ data[i].money +"'>"+ data[i].project_name+"</option>"); 
 		                           }
 				                   //学生姓名
 				                   $("#studentName").attr("readOnly",true);
@@ -333,7 +333,6 @@
 	
 	function req(){
 	    	
-		var amount= $("#costMoney").val()*100; 
 		var subject= $("#studentName").val() + "|" 
 					//+ $("#schoolInfo option:selected").text()+"|" 
 					//+ $("#areaInfo option:selected").text() +"|" 
@@ -342,8 +341,10 @@
 					+ $("#costType option:selected").text()  +"|" 
 					+ $("#classNum option:selected").text() +"|" 
 					+ $("#costMoney").val() +"|"
-					+ $("#payNo").val();
-		
+					+ $("#payNo").val() +"|";
+		costId = $("#costType").val();
+		var localNo= costId.split("_")[0];
+		var amount= $("#costMoney").val()*100; 
 		var remark = $("#remark").val();
 
 		var businessId = $("#businessId").val();
@@ -352,7 +353,7 @@
                async:false, 
     		   type:'post', 
     		   //dataType:'json',
-    		   data:{businessId:businessId,amount:amount,subject:subject,remark:remark}, 
+    		   data:{businessId:businessId,amount:amount,subject:subject,remark:remark,localNo:localNo}, 
                success:function(data){      
             	   if(null == data || "" == data ){
             		   alert("未知商户.");

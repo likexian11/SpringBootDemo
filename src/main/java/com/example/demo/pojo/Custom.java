@@ -20,6 +20,11 @@ public class Custom {
      * 缴费编号
      */
     private String pay_project_id;
+    
+    /**
+     	* 订单编号
+     */
+    private String id;
 
     /**
      * 缴费项目名称
@@ -103,5 +108,13 @@ public class Custom {
 
 	public void setMoney(double money) {
 		this.money = money;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

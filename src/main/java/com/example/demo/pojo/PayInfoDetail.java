@@ -1,5 +1,7 @@
 package com.example.demo.pojo;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Table(name = "pay_info_detail")
@@ -58,7 +60,7 @@ public class PayInfoDetail {
     /**
      * 支付时间，数字格式，值为距离1970.1.1日的毫秒数
      */
-    private String pay_time;
+    private Date pay_time;
 
     /**
      * 订单简介
@@ -255,7 +257,7 @@ public class PayInfoDetail {
      *
      * @return pay_time - 支付时间，数字格式，值为距离1970.1.1日的毫秒数
      */
-    public String getPay_time() {
+    public Date getPay_time() {
         return pay_time;
     }
 
@@ -264,7 +266,7 @@ public class PayInfoDetail {
      *
      * @param pay_time 支付时间，数字格式，值为距离1970.1.1日的毫秒数
      */
-    public void setPay_time(String pay_time) {
+    public void setPay_time(Date pay_time) {
         this.pay_time = pay_time;
     }
 

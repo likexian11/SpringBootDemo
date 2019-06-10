@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
 import tk.mybatis.spring.annotation.MapperScan;
@@ -16,6 +17,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan(basePackages = "com.example.demo.mapper")
 //扫描 所有需要的包, 包含一些自用的工具类包 所在的路径
 @ComponentScan(basePackages= {"com.example.demo", "org.n3r.idworker"})
+//开启事务支持
+@EnableTransactionManagement
 public class FirstDemoApplication {
 
 

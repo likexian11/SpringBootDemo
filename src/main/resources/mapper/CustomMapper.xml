@@ -10,6 +10,7 @@
 			p.per_name,
 			j.id pay_project_id,
 			j.`name` project_name,
+			i.id,
 			i.already_pay,
 			i.pay_money,
 			i.pay_money - i.already_pay money
@@ -19,6 +20,7 @@
 		LEFT JOIN pay_project j ON j.id = i.pay_project_id
 		WHERE
 			p.pay_no = #{payNo}
+			and i.is_pay_over='0'
 	</select>
   
 </mapper>

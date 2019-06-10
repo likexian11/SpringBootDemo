@@ -19,5 +19,5 @@ public interface PayDetailInterFace {
 	
 	//获取缴费类型
 	public List<PayProject> queryCostList(String orgId);
-
+	
 }

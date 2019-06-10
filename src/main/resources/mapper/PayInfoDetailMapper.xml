@@ -15,7 +15,7 @@
     <result column="payment_channel" jdbcType="VARCHAR" property="payment_channel" />
     <result column="discount_amount" jdbcType="DOUBLE" property="discount_amount" />
     <result column="payment_way" jdbcType="VARCHAR" property="payment_way" />
-    <result column="pay_time" jdbcType="VARCHAR" property="pay_time" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="pay_time" />
     <result column="subject" jdbcType="LONGVARCHAR" property="subject" />
     <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
   </resultMap>

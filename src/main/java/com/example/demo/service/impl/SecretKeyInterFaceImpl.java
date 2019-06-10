@@ -48,7 +48,8 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 			signMap.put("app", secretKey.getApp());
 			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
-			signMap.put("local_order_no", sid.nextShort());
+			signMap.put("local_order_no", sid.nextShort()+"_"+ map.get("localNo"));
+			//signMap.put("local_order_no", map.get("localNo"));
 			signMap.put("timestamp", System.currentTimeMillis()+"");
 			signMap.put("subject", map.get("subject"));
 			signMap.put("remark", map.get("remark"));
