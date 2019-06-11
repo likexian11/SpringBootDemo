@@ -86,7 +86,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 	        HttpEntity<String> entity = new HttpEntity<String>(headers);
 	        String strbody=new RestTemplate().exchange(uri, HttpMethod.GET, entity,String.class).getBody();
-	        
+
 	        JSONObject jsonResult = (JSONObject) JSON.parseObject(strbody).get("result");
 	        JSONObject jsonData = (JSONObject) JSON.parseObject(strbody).get("data");
 

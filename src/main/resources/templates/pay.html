@@ -28,7 +28,7 @@
                        	<span>商户id</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input id ="businessId" type="text" th:value="${businessId}">
+                        <input id ="bid" type="text" th:value="${bid}">
                     </div>
                 </div>
             </li>
@@ -335,6 +335,11 @@
 	
 	function req(){
 	    	
+		if($("#costMoney").val() > $("#costType").val().split("_")[1]){
+			alert("输入金额错误..");
+			return ;
+		}
+		
 		var subject= $("#studentName").val() + "|" 
 					//+ $("#schoolInfo option:selected").text()+"|" 
 					//+ $("#areaInfo option:selected").text() +"|" 
@@ -349,13 +354,13 @@
 		var amount= $("#costMoney").val()*100; 
 		var remark = $("#remark").val();
 
-		var businessId = $("#businessId").val();
+		var bid = $("#bid").val();
 		$.ajax({ 
     		   url:'/page/sign', 
                async:false, 
     		   type:'post', 
     		   //dataType:'json',
-    		   data:{businessId:businessId,amount:amount,subject:subject,remark:remark,localNo:localNo}, 
+    		   data:{bid:bid,amount:amount,subject:subject,remark:remark,localNo:localNo}, 
                success:function(data){      
             	   if(null == data || "" == data ){
             		   alert("未知商户.");

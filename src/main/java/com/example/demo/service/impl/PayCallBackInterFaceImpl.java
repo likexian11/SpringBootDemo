@@ -30,26 +30,41 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 	public void updatePayInfo(Map<String, String> map) {
 		
 		log.info("支付完成，支付信息更改....");
+		String payDetailId = map.get("appOrderNo").split("_")[0];
+		String payInfoId = map.get("appOrderNo").split("_")[1];
 		PayInfo payInfo = new PayInfo();
 		PayInfoDetail payInfoDetail = new PayInfoDetail();
-		payInfo.setAlready_pay(Double.valueOf(map.get("receiveAmount"))/100 );
-		payInfo.setIs_pay_over("1");
+		//
+		payInfo = payInfoMapper.selectByPrimaryKey(payInfoId);
+		//总共需缴金额
+		double tkPayMoney = payInfo.getPay_money();
+		//已缴金额
+		double rdPayMoney = payInfo.getAlready_pay();
+		//本次缴费金额
+		double thisPayMoney = Double.valueOf(map.get("receiveAmount"))/100;
+		//若 总共需缴金额 = 已缴金额 + 次缴费金额，则缴费完成
+		payInfo.setAlready_pay(rdPayMoney + thisPayMoney);
+		if(rdPayMoney + thisPayMoney == tkPayMoney) {
+			payInfo.setIs_pay_over("1");
+		}
+		
+		
 		if( map.get("appOrderNo").split("_").length >= 2) {
-			payInfo.setId( (map.get("appOrderNo")).split("_")[1] );
+			payInfo.setId(payInfoId);
 			payInfoMapper.updateByPrimaryKeySelective(payInfo);
 		}else {
 			map.put("appOrderNo", map.get("appOrderNo")+UUID.randomUUID());
-			payInfo.setId((map.get("appOrderNo")).split("_")[1]);
+			payInfo.setId(payInfoId);
 			//payInfo.set
 		}
 		
 		log.info("新增流水信息....");
-		payInfoDetail.setApp_order_no(map.get("appOrderNo").split("_")[0]);
+		payInfoDetail.setApp_order_no(payDetailId);
 		payInfoDetail.setCb_order_no(map.get("cbOrderNo"));
 		payInfoDetail.setDiscount_amount(Double.valueOf(map.get("discountAmount")));
 		payInfoDetail.setOrder_status(map.get("orderStatus"));
 		payInfoDetail.setOut_order_no(map.get("outOrderNo"));
-		payInfoDetail.setPay_info_id(map.get("appOrderNo").split("_")[1]);
+		payInfoDetail.setPay_info_id(payInfoId);
 		payInfoDetail.setPay_time(DateUtil.scsToData(map.get("payTime")));
 		payInfoDetail.setPayment_channel("WECHAT".equals(map.get("paymentChannel"))?"微信支付":"支付宝支付");
 		payInfoDetail.setPayment_way( "QRCODE".equals(map.get("paymentWay"))?"二维码":"其它");

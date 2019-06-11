@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <script src="../js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style type="text/css">
+        .header {
+            padding: 2.5rem 0.5rem 2rem 0.5rem;
+        }
+    </style>
+    <title>智慧校园</title>
+</head>
+<body>
+
+	<img th:each="page:${payPageList}" th:if="${page.type}==1" th:src="@{${page.url}}" width="100%" height="140">
+	</hr>
+	
+	<div class="aui-content aui-margin-b-15">
+        <ul class="aui-list">
+            <li class="aui-list-header">
+
+            </li>
+            <li class="aui-list-item aui-list-item-middle" th:each="page:${payPageList}" th:if="${page.type}==2">
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                	<a th:href="@{${page.url}+'?bid='+${bid}}" ><span th:text="${page.url_name}"></span></a>
+            	</div>
+            </li>
+            <!-- 
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <a th:href="@{${payPage.help_url}}">新生手册</a>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <a th:href="@{'zhif?bid='+${bid}}">缴费页面</a>
+                </div>
+            </li>
+             -->
+        </ul>
+    </div>
+     
+	
+</body>
+
+
+</html>

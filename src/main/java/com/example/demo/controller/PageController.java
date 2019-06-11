@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.config.BasicConfig;
 import com.example.demo.pojo.Custom;
 import com.example.demo.pojo.Dept;
+import com.example.demo.pojo.PayPage;
 import com.example.demo.pojo.PayProject;
+import com.example.demo.service.PageJumpInterFace;
 import com.example.demo.service.PayDetailInterFace;
 import com.example.demo.service.SecretKeyInterFace;
 
@@ -26,15 +28,29 @@ public class PageController {
 	private PayDetailInterFace payDetailInterFace;
 	@Autowired
 	private SecretKeyInterFace secretKeyInterFace;
+	@Autowired
+	private PageJumpInterFace pageJumpInterFace;
 
+	//主页
+	@RequestMapping(value ="/index")
+	public ModelAndView  getIndexPage(ModelMap retMap,@RequestParam Map<String,String> reqMap) {
+		if(reqMap.containsKey("bid")) {
+			List<PayPage> payPageList = pageJumpInterFace.queryPageUrl(reqMap.get("bid"));
+			retMap.addAttribute("payPageList",payPageList);
+			retMap.addAttribute("bid",reqMap.get("bid"));
+		}
+		return new ModelAndView("index");
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	//支付界面
 	@RequestMapping(value ="/zhif")
 	public ModelAndView  getPayPage(ModelMap retMap,@RequestParam Map<String,String> reqMap) {
-		if(reqMap.containsKey("businessId")) {
-			//List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("businessId"));
+		if(reqMap.containsKey("bid")) {
+			//List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("bid"));
 			//retMap.addAttribute("schoolList",deptList);
-			Dept dept = payDetailInterFace.queryOrg(Integer.valueOf(reqMap.get("businessId")));
-			retMap.addAttribute("businessId",reqMap.get("businessId"));
+			Dept dept = payDetailInterFace.queryOrg(Integer.valueOf(reqMap.get("bid")));
+			retMap.addAttribute("bid",reqMap.get("bid"));
 			retMap.addAttribute("dept",dept);
 		}
 		return new ModelAndView("pay");
@@ -75,8 +91,8 @@ public class PageController {
 		String businessId="";
 		String payUrl="";
 		
-		if(map.containsKey("businessId")) {
-			businessId= map.get("businessId");
+		if(map.containsKey("bid")) {
+			businessId= map.get("bid");
 			payUrl = secretKeyInterFace.getPayUrl(businessId,BasicConfig.LOCAL_HOST, map);
 		}
 		return payUrl;

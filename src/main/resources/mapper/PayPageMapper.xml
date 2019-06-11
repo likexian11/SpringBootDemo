@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PayPageMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.PayPage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bid" jdbcType="VARCHAR" property="bid" />
+    <result column="url_name" jdbcType="VARCHAR" property="url_name" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="is_show" jdbcType="INTEGER" property="is_show" />
+  </resultMap>
+  
+  <!-- 查询 -->
+	<select id="getPageUrlByBId" parameterType="java.lang.String" resultType="com.example.demo.pojo.PayPage">
+	    SELECT
+			p.bid,
+			p.url_name,
+			p.url,
+			p.type,
+			p.is_show
+		FROM
+			pay_page p
+		WHERE
+			p.is_show = 1
+		AND p.bid = #{bid}
+	</select>
+	
+</mapper>
