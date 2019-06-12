@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +21,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @ComponentScan(basePackages= {"com.example.demo", "org.n3r.idworker"})
 //开启事务支持
 @EnableTransactionManagement
-public class FirstDemoApplication {
+public class FirstDemoApplication extends SpringBootServletInitializer{
 
 
 	@Configuration
@@ -39,9 +41,13 @@ public class FirstDemoApplication {
 	    }
 	 
 	}
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(FirstDemoApplication.class);
+    }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(FirstDemoApplication.class, args);
 	}
-
+	
 }
