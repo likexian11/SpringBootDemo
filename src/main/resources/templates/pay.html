@@ -21,7 +21,9 @@
 	<div class="aui-content aui-margin-b-15">
 	<form id="formId" action="">
         <ul class="aui-list aui-form-list">
-        
+        <li class="aui-list-header">
+
+         </li>
           <li class="aui-list-item aui-hide">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
@@ -38,11 +40,13 @@
                        	<span>缴费号</span>
                     </div>
                     <div class="aui-list-item-input">
-                        <input id ="payNo" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;输入缴费号">
+                        <input id ="payNo" type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;缴费号">
                     </div>
                     <button class="aui-btn aui-btn-info aui-margin-r-5" type="button" onclick="selectPayInfo()">查找</button>
                 </div>
             </li>
+            
+         <div id ="inputInfo" style="display:none;">
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
@@ -50,7 +54,7 @@
                     </div>
                     <div class="aui-list-item-input">
                         <select id="schoolInfo">
-                            <option value="">请选择学校</option>
+                            <!-- <option value="">请选择学校</option> -->
                             <!-- <option th:each="s:${schoolList}" th:value="${s.dept_id}" th:text="${s.dept_name}"> -->
                             <option th:value="${dept.dept_id}" th:text="${dept.dept_name}"> 
                         </select>
@@ -189,6 +193,8 @@
                     <button class="aui-btn-info aui-btn-block aui-margin-r-5" type="button" onclick="req()">创建账单</button>
                 </div>
             </li>
+          </div>  
+          
         </ul>
         </form>
     </div>
@@ -268,6 +274,8 @@
 	    $("#costType").change(function(){ 
 	    	   var costId = $("#costType").val(); 
 	    	   $("#costMoney").val(costId.split("_")[1]);
+	    	   $("#costMoney").attr("readOnly",false);
+               $("#remark").attr("readOnly",false);
 	       });
 
 	})
@@ -284,8 +292,12 @@
 		 		   data:{payNo:payNo}, 
 		                success:function(data){
 		                	if(null == data || "" == data){
-		                		alert("无"+payNo+"相关信息或已完成缴费,请确认后输入.");
+		                		$("#inputInfo").css("display","none");
+		                		alert("无 "+payNo+" 缴费号相关信息或已完成缴费,请确认后输入.");
 		                	}else{
+		                		
+		                		  //显示输入信息
+		                		  $("#inputInfo").css("display","");
 		                		
 				                   //$("#payNo").val(num);
 				                   //$("#schoolInfo").val(data.school_id);
@@ -294,11 +306,14 @@
 				                   t6 = $("#costType").empty();
 				                   t6.append("<option value=\"\">请选择</option>"); 
 		                           for ( var i = 0; i < data.length; i++) { 
-		                               t6.append("<option value='"+data[i].id + "_"+ data[i].money +"'>"+ data[i].project_name+"</option>"); 
+		                               t6.append("<option value='"+data[i].id + "_"+ data[i].money +"'>"+ data[i].project_name+"(已缴"+data[i].already_pay+"/总共"+data[i].pay_money+")</option>"); 
 		                           }
 				                   //学生姓名
 				                   $("#studentName").attr("readOnly",true);
 				                   $("#studentName").val(data[0].per_name);
+				                   
+				                   $("#costMoney").attr("readOnly",true);
+				                   $("#remark").attr("readOnly",true);
 				                   
 				                   var orgId = data[0].organ_no;
 				                   $.ajax({ 
@@ -334,41 +349,47 @@
 	}
 	
 	function req(){
-	    	
-		if($("#costMoney").val() > $("#costType").val().split("_")[1]){
+	    
+		var payNo = $("#payNo").val();
+		if("" == payNo || null == payNo ){
+			alert("缴费号 不能为空.");
+		}else if($("#costMoney").val() > $("#costType").val().split("_")[1]){
 			alert("输入金额错误..");
-			return ;
+			//return ;
+		}else{
+			var subject= $("#studentName").val() + "|" 
+			//+ $("#schoolInfo option:selected").text()+"|" 
+			//+ $("#areaInfo option:selected").text() +"|" 
+			//+ $("#academyInfo option:selected").text() +"|"
+			//+ $("#prfInfo option:selected").text()  +"|" 
+			+ ($("#costType option:selected").text()).split("(")[0]  +"|" 
+			+ $("#classNum option:selected").text() +"|" 
+			+ $("#costMoney").val() +"|"
+			+ $("#payNo").val();
+			
+			costId = $("#costType").val();
+			var localNo= costId.split("_")[0];
+			var amount= $("#costMoney").val()*100; 
+			var remark = $("#remark").val();
+			
+			var bid = $("#bid").val();
+			$.ajax({ 
+				   url:'/page/sign', 
+			       async:false, 
+				   type:'post', 
+				   //dataType:'json',
+				   data:{bid:bid,amount:amount,subject:subject,remark:remark,localNo:localNo}, 
+			       success:function(data){      
+			    	   if(null == data || "" == data ){
+			    		   alert("未知商户.");
+			    	   }else{
+			    		   window.location.href=data;  
+			    	   }
+			       } 
+			})
 		}
 		
-		var subject= $("#studentName").val() + "|" 
-					//+ $("#schoolInfo option:selected").text()+"|" 
-					//+ $("#areaInfo option:selected").text() +"|" 
-					//+ $("#academyInfo option:selected").text() +"|"
-					+ $("#prfInfo option:selected").text()  +"|" 
-					+ $("#costType option:selected").text()  +"|" 
-					+ $("#classNum option:selected").text() +"|" 
-					+ $("#costMoney").val() +"|"
-					+ $("#payNo").val();
-		costId = $("#costType").val();
-		var localNo= costId.split("_")[0];
-		var amount= $("#costMoney").val()*100; 
-		var remark = $("#remark").val();
-
-		var bid = $("#bid").val();
-		$.ajax({ 
-    		   url:'/page/sign', 
-               async:false, 
-    		   type:'post', 
-    		   //dataType:'json',
-    		   data:{bid:bid,amount:amount,subject:subject,remark:remark,localNo:localNo}, 
-               success:function(data){      
-            	   if(null == data || "" == data ){
-            		   alert("未知商户.");
-            	   }else{
-            		   window.location.href=data;  
-            	   }
-               } 
-		})
+		
 		
 	}
 	</script>

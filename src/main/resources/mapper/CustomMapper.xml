@@ -21,6 +21,7 @@
 		WHERE
 			p.pay_no = #{payNo}
 			and i.is_pay_over='0'
+			and j.pay_statues='1'
 	</select>
   
 </mapper>

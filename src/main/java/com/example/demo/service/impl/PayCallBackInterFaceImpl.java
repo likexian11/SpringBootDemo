@@ -55,6 +55,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 		}else {
 			map.put("appOrderNo", map.get("appOrderNo")+UUID.randomUUID());
 			payInfo.setId(payInfoId);
+			//TODO  自助招生信息录入
 			//payInfo.set
 		}
 		
