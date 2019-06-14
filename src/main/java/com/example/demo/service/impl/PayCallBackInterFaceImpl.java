@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -32,6 +33,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 		log.info("支付完成，支付信息更改....");
 		String payDetailId = map.get("appOrderNo").split("_")[0];
 		String payInfoId = map.get("appOrderNo").split("_")[1];
+		Date payDate =  DateUtil.scsToData(map.get("payTime"));
 		PayInfo payInfo = new PayInfo();
 		PayInfoDetail payInfoDetail = new PayInfoDetail();
 		//
@@ -46,6 +48,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 		payInfo.setAlready_pay(rdPayMoney + thisPayMoney);
 		if(rdPayMoney + thisPayMoney == tkPayMoney) {
 			payInfo.setIs_pay_over("1");
+			payInfo.setPay_over_time(payDate);
 		}
 		
 		
@@ -66,7 +69,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 		payInfoDetail.setOrder_status(map.get("orderStatus"));
 		payInfoDetail.setOut_order_no(map.get("outOrderNo"));
 		payInfoDetail.setPay_info_id(payInfoId);
-		payInfoDetail.setPay_time(DateUtil.scsToData(map.get("payTime")));
+		payInfoDetail.setPay_time(payDate);
 		payInfoDetail.setPayment_channel("WECHAT".equals(map.get("paymentChannel"))?"微信支付":"支付宝支付");
 		payInfoDetail.setPayment_way( "QRCODE".equals(map.get("paymentWay"))?"二维码":"其它");
 		payInfoDetail.setReceive_amount(Double.valueOf(map.get("receiveAmount"))/100);
