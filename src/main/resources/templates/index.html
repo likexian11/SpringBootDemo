@@ -23,10 +23,10 @@
             <li class="aui-list-header">
 
             </li>
-            <li class="aui-list-item aui-list-item-middle" th:each="page:${payPageList}" th:if="${page.type}==2">
-                <div class="aui-list-item-inner aui-list-item-arrow">
-                	<a th:href="@{${page.url}+'?bid='+${bid}}" ><span th:text="${page.url_name}"></span></a>
-            	</div>
+            <li class="" th:each="page:${payPageList}" th:if="${page.type}==2">
+               	<a class="aui-list-item-middle aui-list-item aui-list-item-inner aui-list-item-arrow" th:href="@{${page.url}+'?bid='+${bid}}" >
+               		<span th:text="${page.url_name}"></span>
+               	</a>
             </li>
             <!-- 
             <li class="aui-list-item">

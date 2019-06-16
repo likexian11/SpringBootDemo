@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -12,6 +13,9 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.service.impl.PayCallBackInterFaceImpl;
+
+import ch.qos.logback.classic.Logger;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
@@ -22,7 +26,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 //开启事务支持
 @EnableTransactionManagement
 public class FirstDemoApplication extends SpringBootServletInitializer{
-
+	private final static Logger logger = (Logger) LoggerFactory.getLogger(FirstDemoApplication.class);
 
 	@Configuration
 	public class RestTemplateConfig {
