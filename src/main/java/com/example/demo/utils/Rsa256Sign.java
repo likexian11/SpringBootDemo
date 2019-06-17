@@ -41,7 +41,7 @@ public class Rsa256Sign {
 	    public static PrivateKey getPrivateKeyFromPKCS8(String algorithm, InputStream ins) throws Exception {
 	        if (ins != null && !EmptyUtil.isEmpty(algorithm)) {
 	            KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
-	            byte[] encodedKey = StreamUtil.readString(ins).getBytes();
+	            byte[] encodedKey = StreamUtil.readText(ins).getBytes();
 	            encodedKey = Base64.decodeBase64(encodedKey);
 	            return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(encodedKey));
 	        } else {
@@ -49,15 +49,12 @@ public class Rsa256Sign {
 	        }
 	    }
 	    
-	    public static void main(String[] args) {
-	    	String content = "amount=100&app=zyptestapp&barcode=123123123123&local_order_no=localorderno123123123123&operator_id=axgdfdafd34124&subject=这是一笔支付订单&timestamp=1460512556270";
-	    	String privateKey = "thisistestkey";
-	    	try {
-				System.out.println(rsa256Sign(content, privateKey, "UTF-8"));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	    public static void main(String[] args) throws Exception {
+	    	
+	    	String content = "&timestamp=1460512556270";
+	    	String privateKey = "111";
+	    	String charset = "UTF-8";
+	    	System.out.println(rsa256Sign(content, privateKey, charset));
 		}
 	
 }

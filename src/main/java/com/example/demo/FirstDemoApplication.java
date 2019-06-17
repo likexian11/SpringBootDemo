@@ -13,8 +13,6 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
-import com.example.demo.service.impl.PayCallBackInterFaceImpl;
-
 import ch.qos.logback.classic.Logger;
 import tk.mybatis.spring.annotation.MapperScan;
 

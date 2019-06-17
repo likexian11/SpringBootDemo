@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
+import org.n3r.idworker.Sid;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 	@Autowired  PayInfoMapper payInfoMapper;
 	@Autowired  PayInfoDetailMapper payInfoDetailMapper;
 	
+	@Autowired private Sid sid;
+	
 	private final Logger log = (Logger) LoggerFactory.getLogger(PayCallBackInterFaceImpl.class);
 	
 	@Override
@@ -31,8 +34,10 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 	public void updatePayInfo(Map<String, String> map) {
 		
 		log.info("支付完成，支付信息更改....");
-		String payDetailId = map.get("appOrderNo").split("_")[0];
-		String payInfoId = map.get("appOrderNo").split("_")[1];
+//		String payDetailId = map.get("appOrderNo").split("_")[0];
+//		String payInfoId = map.get("appOrderNo").split("_")[1];
+		String payDetailId = sid.nextShort();
+		String payInfoId = map.get("appOrderNo");
 		Date payDate =  DateUtil.scsToData(map.get("payTime"));
 		PayInfo payInfo = new PayInfo();
 		PayInfoDetail payInfoDetail = new PayInfoDetail();
