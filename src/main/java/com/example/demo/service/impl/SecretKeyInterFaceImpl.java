@@ -1,13 +1,8 @@
 package com.example.demo.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,42 +30,26 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	//private Sid sid;
 	
 	@Override
-	public String getPayUrl(String businessId, String ip, Map<String, String> map){
+	public String getPayUrl(String bid, String ip, Map<String, String> map){
 		
 		Map<String, String> signMap = new HashMap<String, String>();
 		String payUrl = "";
 		String sign=null;
-	    StringBuffer sb = new StringBuffer();
 		//String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 		
-		PaySecretkeyInfo secretKey = paySecretkeyInfoMapper.getKeyInfo(businessId);
+		PaySecretkeyInfo secretKey = paySecretkeyInfoMapper.getKeyInfo(bid);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
 			signMap.put("app", secretKey.getApp());
 			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
 			//signMap.put("local_order_no", sid.nextShort()+"_"+ map.get("localNo"));
-			signMap.put("local_order_no", map.get("localNo"));
+			signMap.put("local_order_no", map.get("localNo") +"_"+ bid);
 			signMap.put("timestamp", System.currentTimeMillis()+"");
 			signMap.put("subject", map.get("subject"));
-			signMap.put("remark", map.get("remark"));
-			
-		    //排序
-		    List<Map.Entry<String, String>> infoIds =
-		            new ArrayList<Map.Entry<String, String>>(signMap.entrySet());
-		    Collections.sort(infoIds, new Comparator<Map.Entry<String, String>>() {
-		        @Override
-				public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-		            return (o1.getKey()).toString().compareTo(o2.getKey());
-		        }
-		    });
-		    //对参数数组进行按key升序排列,然后拼接，最后调用md5签名方法
-		    int size  = infoIds.size();
-		    for(int i = 0; i < size; i++) {
-		        if(EmptyUtil.isNotEmptyStrTrim(infoIds.get(i).getValue())) {//不为空，为空的不参与签名
-		            sb.append(infoIds.get(i).getKey() + "=" + infoIds.get(i).getValue() + "&");
-		        }
-		    }
-		    String newStrTemp = sb.toString()+"key="+secretKey.getApp_key().trim();
+			//signMap.put("remark", map.get("remark"));
+			//排序
+			String newStrTemp = EncryptionMD5.sortMD5Sign(signMap, secretKey);
+			System.out.println("请求排序："+newStrTemp);
 			//生成签名
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url

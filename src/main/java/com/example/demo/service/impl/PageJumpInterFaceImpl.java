@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.config.BasicConfig;
 import com.example.demo.mapper.PayPageMapper;
 import com.example.demo.pojo.PayPage;
 import com.example.demo.service.PageJumpInterFace;
@@ -16,7 +17,15 @@ public class PageJumpInterFaceImpl implements PageJumpInterFace {
 	
 	@Override
 	public List<PayPage> queryPageUrl(String bid) {
-		return payPageMapper.getPageUrlByBId(bid);
+		
+		List<PayPage> pageInfoList = payPageMapper.getPageUrlByBId(bid);
+		//拼接显示图片地址
+		for(PayPage page : pageInfoList) {
+			if(1 == page.getType()) {
+				page.setUrl(BasicConfig.IMG_HOST + page.getUrl());
+			}
+		}
+		return pageInfoList;
 	}
 
 
