@@ -9,7 +9,7 @@ public class BasicConfig {
 	
 	//外网回调地址
 	//----------虚拟机
-	public static final String LOCAL_HOST = "http://2f523579h9.qicp.vip:36880";
+	public static final String LOCAL_HOST = "http://likexian.free.idcfengye.com";
 	//----------本机
 	//public static final String LOCAL_HOST = "http://hhh123.free.idcfengye.com";
 	

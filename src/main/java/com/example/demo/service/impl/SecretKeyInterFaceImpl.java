@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +21,8 @@ import com.example.demo.service.SecretKeyInterFace;
 import com.example.demo.utils.EmptyUtil;
 import com.example.demo.utils.EncryptionMD5;
 
+import ch.qos.logback.classic.Logger;
+
 @Service
 public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	
@@ -29,12 +32,15 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	//@Autowired
 	//private Sid sid;
 	
+	private final Logger log = (Logger) LoggerFactory.getLogger(SecretKeyInterFaceImpl.class);
+	
 	@Override
 	public String getPayUrl(String bid, String ip, Map<String, String> map){
 		
 		Map<String, String> signMap = new HashMap<String, String>();
 		String payUrl = "";
 		String sign=null;
+		String localNo = map.get("localNo");
 		
 		PaySecretkeyInfo secretKey = paySecretkeyInfoMapper.getKeyInfo(bid);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
@@ -42,14 +48,16 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
 			//signMap.put("local_order_no", sid.nextShort()+"_"+ map.get("localNo"));
-			signMap.put("local_order_no", map.get("localNo"));
+			signMap.put("local_order_no", localNo);
 			signMap.put("timestamp", System.currentTimeMillis()+"");
 			signMap.put("subject", map.get("subject"));
-			//signMap.put("remark", map.get("remark"));
+			signMap.put("remark", map.get("remark"));
 			//排序
 			String newStrTemp = EncryptionMD5.sortMD5Sign(signMap, secretKey);
 			//生成签名
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
+		    log.info("订单："+ localNo +"发起支付....");
+		    
 			//拼接请求url
 			String uri=BasicConfig.H5_PAY_URL+"?"
 						+ newStrTemp + "&remark=" 
@@ -69,6 +77,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 
 	        if((boolean) jsonResult.get("success")) {
 				payUrl = jsonData.getString("url");
+				log.info("订单："+ localNo +"返回支付链接：."+ payUrl);
 				return payUrl;
 			}
 		}

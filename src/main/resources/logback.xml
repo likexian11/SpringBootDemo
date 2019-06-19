@@ -13,8 +13,8 @@
 -->
 <configuration>
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-      <property name="LOG_HOME" value="F:/springboot_log/" />
-	<!--  <property name="LOG_HOME" value="log/" />-->
+     <!--  <property name="LOG_HOME" value="F:/springboot_log/" />-->
+	 <property name="LOG_HOME" value="log/" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->

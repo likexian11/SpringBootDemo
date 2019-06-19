@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.example.demo.service.PayCallBackInterFace;
+import com.example.demo.utils.JsonUtils;
 
 import ch.qos.logback.classic.Logger;
 
@@ -29,9 +30,13 @@ public class PayCallBackController {
 	@RequestMapping(value ="/callback")
 	public String callBack(@RequestParam Map<String,String> map) throws ParseException, UnknownHostException {
 		String paramsJson = JSON.toJSONString(map);
-		log.info("json: "+ paramsJson);
-		payCallBackInterFace.updatePayInfo(map);
-		return "success";
+		log.info("json: "+ JsonUtils.toFormat(paramsJson, true, true));
+		if(payCallBackInterFace.updatePayInfo(map)) {
+			return "success";
+		}else {
+			return "";
+		}
+		
 	}
 	
 }
