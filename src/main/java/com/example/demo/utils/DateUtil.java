@@ -17,12 +17,12 @@ public class DateUtil {
     public static final String HOUR_ONLY_PATTERN = "HH";
     public static final String TIME_STAMP = "yyyyMMddHHmmss";
     
-    
-    public static Date scsToData(String scs) {
+    //距离19700101 秒转 date
+    public static Date secToData(String sec) {
     	//SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//12小时制
         //long time = System.currentTimeMillis();//获取当前系统时间
         Date date = new Date();
-        date.setTime(Long.valueOf(scs));
+        date.setTime(Long.valueOf(sec));
         return date;
     }
     

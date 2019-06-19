@@ -35,7 +35,6 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 		Map<String, String> signMap = new HashMap<String, String>();
 		String payUrl = "";
 		String sign=null;
-		//String date = DateUtil.dateFormat(new Date(), DateUtil.TIME_STAMP);
 		
 		PaySecretkeyInfo secretKey = paySecretkeyInfoMapper.getKeyInfo(bid);
 		if(EmptyUtil.isNotEmpty(secretKey)) {
@@ -43,13 +42,12 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
 			//signMap.put("local_order_no", sid.nextShort()+"_"+ map.get("localNo"));
-			signMap.put("local_order_no", map.get("localNo") +"_"+ bid);
+			signMap.put("local_order_no", map.get("localNo"));
 			signMap.put("timestamp", System.currentTimeMillis()+"");
 			signMap.put("subject", map.get("subject"));
 			//signMap.put("remark", map.get("remark"));
 			//排序
 			String newStrTemp = EncryptionMD5.sortMD5Sign(signMap, secretKey);
-			System.out.println("请求排序："+newStrTemp);
 			//生成签名
 		    sign = EncryptionMD5.encryptWithMD5(newStrTemp,"UTF-8");
 			//拼接请求url

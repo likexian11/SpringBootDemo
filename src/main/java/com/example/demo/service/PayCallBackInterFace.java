@@ -5,6 +5,6 @@ import java.util.Map;
 public interface PayCallBackInterFace {
 	
 	//更新支付信息
-	public void updatePayInfo(Map<String, String> map);
+	public boolean updatePayInfo(Map<String, String> map);
 
 }

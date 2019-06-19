@@ -1,9 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.n3r.idworker.Sid;
 import org.slf4j.LoggerFactory;
@@ -17,10 +15,9 @@ import com.example.demo.mapper.PayInfoMapper;
 import com.example.demo.mapper.PaySecretkeyInfoMapper;
 import com.example.demo.pojo.PayInfo;
 import com.example.demo.pojo.PayInfoDetail;
-import com.example.demo.pojo.PaySecretkeyInfo;
 import com.example.demo.service.PayCallBackInterFace;
 import com.example.demo.utils.DateUtil;
-import com.example.demo.utils.EncryptionMD5;
+import com.example.demo.utils.Rsa256Sign;
 import com.example.demo.utils.VerifySign;
 
 import ch.qos.logback.classic.Logger;
@@ -37,33 +34,20 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 	
 	@Override
 	@Transactional
-	public void updatePayInfo(Map<String, String> map) {
+	public boolean updatePayInfo(Map<String, String> map) {
 		//验签
-		String bid = map.get("appOrderNo").split("_")[1];
-		PaySecretkeyInfo secretKey = paySecretkeyInfoMapper.getKeyInfo(bid);
-		Map<String,String> signMap = new HashMap<String, String>();		
-		
-		signMap.put("app", secretKey.getApp());
-		signMap.put("operator_id", secretKey.getOperator_id());
-		signMap.put("amount", map.get("totalAmount"));
-		//signMap.put("local_order_no", sid.nextShort()+"_"+ map.get("localNo"));
-		signMap.put("local_order_no", map.get("appOrderNo"));
-		signMap.put("timestamp", map.get("payTime"));
-		signMap.put("subject", map.get("subject"));
-		//signMap.put("remark", map.get("remark"));
+		String sign = map.get("sign");
+		//去掉sign字段验签
+		map.remove("sign");
 		//排序
-		String newStrTemp = EncryptionMD5.sortMD5Sign(signMap, secretKey);
-		System.out.println("验签排序："+newStrTemp);
+		String newStrTemp = Rsa256Sign.getSignContent(map);
 		try {
-			if(VerifySign.rsaCheck(newStrTemp, map.get("sign"), BasicConfig.PUBLIC_KEY, "UTF-8", "RSA2")) {
+			if(VerifySign.rsaCheck(newStrTemp, sign, BasicConfig.PUBLIC_KEY, "UTF-8", "RSA2")) {
 				
 				log.info("验签完成，支付信息更改....");
-//				String payDetailId = map.get("appOrderNo").split("_")[0];
-//				String payInfoId = map.get("appOrderNo").split("_")[1];
 				String payDetailId = sid.nextShort();
 				String payInfoId = map.get("appOrderNo").split("_")[0];
-				
-				Date payDate =  DateUtil.scsToData(map.get("payTime"));
+				Date payDate =  DateUtil.secToData(map.get("payTime"));
 				PayInfo payInfo = new PayInfo();
 				PayInfoDetail payInfoDetail = new PayInfoDetail();
 				//
@@ -84,10 +68,9 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 					payInfo.setId(payInfoId);
 					payInfoMapper.updateByPrimaryKeySelective(payInfo);
 				}else {
-					map.put("appOrderNo", map.get("appOrderNo")+UUID.randomUUID());
-					payInfo.setId(payInfoId);
+					//map.put("appOrderNo", map.get("appOrderNo")+UUID.randomUUID());
+					//payInfo.setId(payInfoId);
 					//TODO  自助招生信息录入
-					//payInfo.set
 				}
 				
 				log.info("新增流水信息....");
@@ -108,14 +91,15 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 				log.info("新增流水信息完成 ,流水订单号为: "+payInfoDetail.getApp_order_no());
 				
 				log.info("支付信息和流水修改完成！");
+				return true;
 			}else{
 				log.error("验签失败...订单号："+map.get("appOrderNo"));
+				return false;
 			}
 		} catch (Exception e) {
 			log.error("验签错误");
-			e.printStackTrace();
+			return false;
 		}
-		
 	}
 
 }
