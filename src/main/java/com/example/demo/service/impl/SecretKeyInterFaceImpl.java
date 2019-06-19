@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.n3r.idworker.Sid;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -29,8 +30,7 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 	@Autowired 
 	PaySecretkeyInfoMapper paySecretkeyInfoMapper;
 	
-	//@Autowired
-	//private Sid sid;
+	@Autowired private Sid sid;
 	
 	private final Logger log = (Logger) LoggerFactory.getLogger(SecretKeyInterFaceImpl.class);
 	
@@ -47,8 +47,8 @@ public class SecretKeyInterFaceImpl implements SecretKeyInterFace {
 			signMap.put("app", secretKey.getApp());
 			signMap.put("operator_id", secretKey.getOperator_id());
 			signMap.put("amount", map.get("amount"));
-			//signMap.put("local_order_no", sid.nextShort()+"_"+ map.get("localNo"));
-			signMap.put("local_order_no", localNo);
+			signMap.put("local_order_no", map.get("localNo") +"_"+sid.nextShort());
+			//signMap.put("local_order_no", localNo);
 			signMap.put("timestamp", System.currentTimeMillis()+"");
 			signMap.put("subject", map.get("subject"));
 			signMap.put("remark", map.get("remark"));

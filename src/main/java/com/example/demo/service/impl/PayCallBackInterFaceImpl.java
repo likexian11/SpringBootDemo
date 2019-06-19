@@ -45,8 +45,8 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 			if(VerifySign.rsaCheck(newStrTemp, sign, BasicConfig.PUBLIC_KEY, "UTF-8", "RSA2")) {
 				
 				log.info("验签完成，支付信息更改....");
-				String payDetailId = sid.nextShort();
 				String payInfoId = map.get("appOrderNo").split("_")[0];
+				String payDetailId = map.get("appOrderNo").split("_")[1];
 				Date payDate =  DateUtil.secToData(map.get("payTime"));
 				PayInfo payInfo = new PayInfo();
 				PayInfoDetail payInfoDetail = new PayInfoDetail();
