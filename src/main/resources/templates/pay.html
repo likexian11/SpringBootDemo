@@ -382,6 +382,8 @@
 			       success:function(data){      
 			    	   if(null == data || "" == data ){
 			    		   alert("未知商户.");
+			    	   }else if("1" == data){
+			    		   alert("该缴费项目已支付完成，请刷新页面后确认.");  
 			    	   }else{
 			    		   window.location.href=data;  
 			    	   }

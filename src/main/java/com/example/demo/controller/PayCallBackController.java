@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.net.UnknownHostException;
 import java.util.Map;
-import java.util.UUID;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class PayCallBackController {
 		if(payCallBackInterFace.updatePayInfo(map)) {
 			return "success";
 		}else {
-			return "";
+			return "fail";
 		}
 		
 	}
