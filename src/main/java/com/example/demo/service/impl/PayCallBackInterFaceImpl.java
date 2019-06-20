@@ -28,7 +28,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 	@Autowired  PayInfoMapper payInfoMapper;
 	@Autowired  PayInfoDetailMapper payInfoDetailMapper;
 	@Autowired  PaySecretkeyInfoMapper paySecretkeyInfoMapper;
-	@Autowired private Sid sid;
+	@Autowired  private Sid sid;
 	
 	private final Logger log = (Logger) LoggerFactory.getLogger(PayCallBackInterFaceImpl.class);
 	
@@ -51,7 +51,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 				PayInfo payInfo = new PayInfo();
 				PayInfoDetail payInfoDetail = new PayInfoDetail();
 				//
-				payInfo = payInfoMapper.selectByPrimaryKey(payInfoId);
+				payInfo = payInfoMapper.getPayInfoByIdLock(payInfoId);
 				//总共需缴金额
 				double tkPayMoney = payInfo.getPay_money();
 				//已缴金额
@@ -60,7 +60,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 				double thisPayMoney = Double.valueOf(map.get("receiveAmount"))/100;
 				//若 总共需缴金额 = 已缴金额 + 次缴费金额，则缴费完成
 				payInfo.setAlready_pay(rdPayMoney + thisPayMoney);
-				if(rdPayMoney + thisPayMoney == tkPayMoney) {
+				if(rdPayMoney + thisPayMoney >= tkPayMoney) {
 					payInfo.setIs_pay_over("1");
 					payInfo.setPay_over_time(payDate);
 				}
@@ -97,7 +97,7 @@ public class PayCallBackInterFaceImpl implements PayCallBackInterFace {
 				return false;
 			}
 		} catch (Exception e) {
-			log.error("验签错误");
+			log.error("支付成功回调错误",e);
 			return false;
 		}
 	}
