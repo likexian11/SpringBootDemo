@@ -9,51 +9,35 @@
 		<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
 		<!--引入公共的头部-->
 		<link rel="stylesheet" href="../css/common.css">
+
 	</head>
 
 	<body>
 		<!--头部导航-->
 		<div class="top-head"></div>
 
-		<div class="head-box">
-			<span>缴费号: 2018100011</span><br />
-			<span>姓名: 王敏</span><br />
-			<span>学校: 广西工学院</span><br />
-			<span>年级: 2018级</span><br />
-			<span>年级: 电器18</span><br />
+		<!--头部轮播图-->
+		<div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide"><img src="../img/haoke.jpg" style="height: 180px;width: 100%;" alt=""></div>
+				<div class="swiper-slide"><img src="../img/payhead.gif" style="height: 180px;width: 100%;" alt=""></div>
+				<!-- <div class="swiper-slide"><img src="static/images/l3.png" style="height: 200px;width: 100%;" alt=""></div>  -->
+			</div>
 		</div>
 
 		<div class="weui-cells weui-cells_form">
 		  <div class="weui-cell">
-		    <div class="weui-cell__hd"><label class="weui-label">缴费项目</label></div>
-		    <div class="weui-cell__bd" style="color: gray;">
-		      <span id="subject">2019累计缴费</span>
-		    </div>
-		  </div>
-		  <div class="weui-cell">
-		    <div class="weui-cell__hd"><label class="weui-label">代缴金额</label></div>
-		    <div class="weui-cell__bd" style="color: gray;">
-		      <span id="money" style="color: red;">1000</span> 元
+		    <div class="weui-cell__hd"><label class="weui-label">缴费号/学号</label></div>
+		    <div class="weui-cell__bd">
+		      <input class="weui-input" type="text" id="payNo"  placeholder="&nbsp;&nbsp;&nbsp;请输入缴费号">
 		    </div>
 		  </div>
 		  
-		  <div class="weui-cell">
-		    <div class="weui-cell__hd"><label class="weui-label">缴费金额</label></div>
-		    <div class="weui-cell__bd" style="color: gray;">
-		      <input class="weui-input" type="text"  placeholder="请输入缴费金额">
-		    </div>
-		  </div>
 		  
-		  <div class="weui-cell">
-		    <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
-		    <div class="weui-cell__bd" style="color: gray;">
-		      <input class="weui-input" type="text"  placeholder="备注">
-		    </div>
-		  </div>
-		  <a href="paySuccess.html" class="weui-btn weui-btn_primary">立即缴费</a>
+		  <a href="javascript:void(0)" class="weui-btn weui-btn_primary" onclick="query()">查询</a>
 		  <a href="javascript:history.go(-1)" class="weui-btn weui-btn_default">返回</a>
 		</div>
-
+		
 		
 		<!--底部导航-->
 		<div class="footor"></div>
@@ -65,11 +49,31 @@
 		<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.min.js"></script>
 		<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
 		<script src="../js/common.js"></script>
+		<script>
+			/*轮播初始化*/
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				autoplay: 2500
+			});
+			
+			function query(){
+				var payNo = $("#payNo").val();
+				if(payNo !=null && payNo !=""){
+					window.location.href = "payDetail?&payNo="+payNo;
+				}else{
+					$.toast("请输入缴费号","forbidden", function() {
+					  $("#payNo").focus();
+					});
+				}
+			}
+			
+		</script>
 
 		<script type="text/javascript">
 			document.addEventListener('plusready', function() {
 				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
-
+				
 			});
 		</script>
 	</body>

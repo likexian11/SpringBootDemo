@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.example.demo.config.BasicConfig;
 import com.example.demo.pojo.Custom;
 import com.example.demo.pojo.Dept;
@@ -44,30 +45,43 @@ public class PageController {
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
-	//支付界面
+	//输入缴费号界面
 	@RequestMapping(value ="/zhif")
 	public ModelAndView  getPayPage(ModelMap retMap,@RequestParam Map<String,String> reqMap) {
 		if(reqMap.containsKey("bid")) {
 			//List<Dept>  deptList =  payDetailInterFace.queryOrgList(reqMap.get("bid"));
 			//retMap.addAttribute("schoolList",deptList);
-			Dept dept = payDetailInterFace.queryOrg(Integer.valueOf(reqMap.get("bid")));
+			//Dept dept = payDetailInterFace.queryOrg(Integer.valueOf(reqMap.get("bid")));
 			retMap.addAttribute("bid",reqMap.get("bid"));
-			retMap.addAttribute("dept",dept);
+			//retMap.addAttribute("dept",dept);
 		}
-		return new ModelAndView("pay");
+		return new ModelAndView("payno");
 	}
 	
 	//获取缴费信息
 	@RequestMapping(value ="/payDetail")
-	public List<Custom> getPayByNum(@RequestParam("payNo")  String payNo) {
-		List<Custom> CustomList = payDetailInterFace.queryDetail(payNo);
-		return CustomList;
+	public ModelAndView getPayByNum(@RequestParam("payNo")  String payNo ,ModelMap retMap) {
+		List<Custom> customList = payDetailInterFace.queryDetail(payNo);
+		retMap.addAttribute("payNo", payNo);	
+		retMap.addAttribute("customList", customList);
+		return new ModelAndView("paydata");
+		//return CustomList;
 	}
 	//反显机构信息
 	@RequestMapping(value ="/payDetailOrg")
 	public List<Dept> getPayDetailOrg(@RequestParam("orgId")  Integer orgId) {
 		List<Dept> deptList = payDetailInterFace.queryOrgInfo(orgId);
 		return deptList;
+	}
+	
+	//确认支付页面
+	@RequestMapping(value ="/confirm")
+	public ModelAndView ConfirmPage(@RequestParam Map<String,String> map) {
+		String paramsJson = JSON.toJSONString(map);
+		System.out.println(paramsJson);
+		//List<Dept> reList = payDetailInterFace.queryOrgList(pid);
+		//return reList;
+		return new ModelAndView("pay");
 	}
 	
 	//联动选择列表

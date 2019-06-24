@@ -1,5 +1,7 @@
 package com.example.demo.pojo;
 
+import java.util.Date;
+
 public class Custom {
     /**
      * 缴费号
@@ -45,6 +47,16 @@ public class Custom {
      * 剩余需缴费金额
      */
     private double money;
+    
+    /**
+     * 缴费开始时间
+     */
+    private Date start_time;
+    
+    /**
+     * 缴费结束时间
+     */
+    private Date end_time;
 
 	public String getPay_no() {
 		return pay_no;
@@ -116,5 +128,21 @@ public class Custom {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Date getStart_time() {
+		return start_time;
+	}
+
+	public void setStart_time(Date start_time) {
+		this.start_time = start_time;
+	}
+
+	public Date getEnd_time() {
+		return end_time;
+	}
+
+	public void setEnd_time(Date end_time) {
+		this.end_time = end_time;
 	}
 }

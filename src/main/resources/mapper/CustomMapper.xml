@@ -10,6 +10,8 @@
 			p.per_name,
 			j.id pay_project_id,
 			j.`name` project_name,
+			j.start_time,
+			j.end_time,
 			i.id,
 			i.already_pay,
 			i.pay_money,

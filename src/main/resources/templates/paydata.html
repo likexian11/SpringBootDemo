@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>智能缴费系统</title>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+		<!--引入公共的头部-->
+		<link rel="stylesheet" href="../css/common.css">
+		<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+		<script src="../js/common.js"></script>
+	</head>
+
+	<body>
+		<!--头部导航-->
+		<div class="top-head"></div>
+
+		<div class="head-box">
+			
+			<span >缴费号:</span><span th:id="payNo" th:text="${payNo}"></span><br/>
+			<span >&nbsp;&nbsp;&nbsp;姓名:</span><span th:id="per_name" th:text="${customList[0].per_name}"></span><br/>
+			<span >&nbsp;&nbsp;&nbsp;学校:</span><span th:id="schoolId" ></span><br/>
+			<span >&nbsp;&nbsp;&nbsp;年级:</span><span th:id="gradeId" ></span><br/>
+			<span >&nbsp;&nbsp;&nbsp;班级:</span><span th:id="classId" ></span><br/>
+			
+		</div>
+
+		<div class="weui-panel weui-panel_access">
+			<div class="weui-panel__bd">
+				<div class="weui-media-box weui-media-box_text">
+					<p class="weui-media-box__title"><span style="color: red;" th:text="${customList.size()}"></span>个待缴费列表</p>
+					<p class="weui-media-box__desc"><span id="totalMoney" style="color: red;"></span>&nbsp;元</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="pay_data_list">
+			<div class="weui-form-preview" th:each="list:${customList}" >
+				<div class="weui-form-preview__hd">
+					<label class="weui-form-preview__label">缴费金额</label>
+					<em class="weui-form-preview__value"  th:text="${list.money}+'(已缴'+ ${list.already_pay}+')'"></em>
+				</div>
+				<div class="weui-form-preview__bd">
+					<div class="weui-form-preview__item" style="display:none">
+						<label class="weui-form-preview__label">缴费ID</label>
+						<span class="weui-form-preview__value" th:text="${list.id}"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">缴费项目</label>
+						<span class="weui-form-preview__value"  th:text="${list.project_name}"></span>
+					</div>
+					<div class="weui-form-preview__item">
+						<label class="weui-form-preview__label">缴费时间</label>
+						<span class="weui-form-preview__value" th:text="${#dates.format(list.start_time,'yyyy-MM-dd')} +'至'+${#dates.format(list.end_time,'yyyy-MM-dd')}"></span>
+					</div>
+				</div>
+				<div class="weui-form-preview__ft">
+					<a class="weui-form-preview__btn weui-form-preview__btn_default" 
+					th:href="'javascript:req1(\''+${list.id}+'\' 
+					,\'' +${list.money} +'\'
+					,\'' +${list.project_name} +'\'
+					,\'' +${list.start_time} +'\'
+					,\'' +${list.end_time} +'\')'">查看缴费记录</a>
+					<a class="weui-form-preview__btn weui-form-preview__btn_primary" th:href="'javascript:req(\''+${list.id}+'\' 
+					,\'' +${list.money} +'\'
+					,\'' +${list.project_name} +'\'
+					,\'' +${list.start_time} +'\'
+					,\'' +${list.end_time} +'\')'">去缴费</a>
+				</div>
+			</div>
+			<br />
+		</div>
+
+		<!--底部导航-->
+		<div class="footor"></div>
+
+		<!-- body 最后 -->
+		<script  th:inline="javascript">
+
+			$(document).ready(function(){ 
+				//机构信息显示
+	            var orgId = [[${customList[0].organ_no}]];
+	            $.ajax({ 
+			   	url:'/page/payDetailOrg', 
+	          	async:false, 
+			   	type:'post', 
+			   	data:{orgId:orgId}, 
+	               success:function(data){
+	               	var input=new Array("#classId","#gradeId","#schoolId");
+	               	var len = input.length;
+	               	for(i = data.length-1; i>=0 ; i-- ){
+               			len--;
+               			$(input[len]).empty;
+               			$(input[len]).text(data[i].dept_name);
+
+	               	}
+	               }
+	    		 });
+	            
+	            //计算总金额
+	            var customList = [[${customList}]];
+	            var totalMoney = 0;
+	            for(j = customList.length -1 ; j>=0 ;j--){
+	            	totalMoney  =totalMoney + customList[j].pay_money;
+           			//$(#totalMoney).text(data[i].dept_name);
+               	}
+	            $("#totalMoney").text(totalMoney);
+			})
+			
+			//缴费
+            function req(payId,money,proName,start_time,end_time){
+        	    
+        		//var payNo = $("#payNo").val();
+        		alert(payId+"_"+ money+"_"+proName+"_"+start_time+"_"+end_time);
+        		/*
+        		if("" == payNo || null == payNo ){
+        			alert("缴费号 不能为空.");
+        		}else if($("#costMoney").val() > $("#costType").val().split("_")[1]){
+        			alert("输入金额错误..");
+        			//return ;
+        		}else{
+        			var subject= $("#studentName").val() + "|" 
+        			//+ $("#schoolInfo option:selected").text()+"|" 
+        			//+ $("#areaInfo option:selected").text() +"|" 
+        			//+ $("#academyInfo option:selected").text() +"|"
+        			//+ $("#prfInfo option:selected").text()  +"|" 
+        			+ ($("#costType option:selected").text()).split("(")[0]  +"|" 
+        			+ $("#classNum option:selected").text() +"|" 
+        			+ $("#costMoney").val() +"|"
+        			+ $("#payNo").val();
+        			
+        			costId = $("#costType").val();
+        			var localNo= costId.split("_")[0];
+        			var amount= $("#costMoney").val()*100; 
+        			var remark = $("#remark").val();
+        			
+        			var bid = $("#bid").val();
+        			$.ajax({ 
+        				   url:'/page/sign', 
+        			       async:false, 
+        				   type:'post', 
+        				   //dataType:'json',
+        				   data:{bid:bid,amount:amount,subject:subject,remark:remark,localNo:localNo}, 
+        			       success:function(data){      
+        			    	   if(null == data || "" == data ){
+        			    		   alert("未知商户.");
+        			    	   }else if("1" == data){
+        			    		   alert("该缴费项目已支付完成，请刷新页面后确认.");  
+        			    	   }else{
+        			    		   window.location.href=data;  
+        			    	   }
+        			       } 
+        			})
+        		}
+        		*/
+
+        	}
+			
+			
+		</script>
+		
+	</body>
+
+</html>
