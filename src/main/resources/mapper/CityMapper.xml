@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CityMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.pojo.City">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="cityName" jdbcType="VARCHAR" property="cityname" />
+    <result column="confirmedCount" jdbcType="VARCHAR" property="confirmedcount" />
+    <result column="suspectedCount" jdbcType="VARCHAR" property="suspectedcount" />
+    <result column="curedCount" jdbcType="VARCHAR" property="curedcount" />
+    <result column="deadCount" jdbcType="VARCHAR" property="deadcount" />
+    <result column="provinceName" jdbcType="VARCHAR" property="provincename" />
+    <result column="modifyTime" jdbcType="INTEGER" property="modifytime" />
+  </resultMap>
+
+  <!-- 查询-->
+  <select id="getCityList" parameterType="java.lang.String" resultType="com.example.demo.pojo.City">
+		SELECT
+			c.cityName,
+			c.confirmedCount,
+			c.suspectedCount,
+			c.curedCount,
+			c.deadCount,
+			c.provinceName,
+			c.modifyTime
+		FROM
+			city c
+	</select>
+
+</mapper>
